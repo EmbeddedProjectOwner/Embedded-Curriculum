@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    /* hsl colors */
+    /* use whitespace instead of comma */
+    --fd-background: 0 0% 100%;
+    --fd-foreground: 222.2 47.4% 11.2%;
+   
+    --fd-muted: 210 40% 96.1%;
+    --fd-muted-foreground: 215.4 16.3% 46.9%;
+  }
+  
+
+.LogoBackground>* {
+    filter: blur(20px);
+    background-color: rgba(255, 255, 255, 0.052);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.Logo {
+    filter: blur(0);
+}
