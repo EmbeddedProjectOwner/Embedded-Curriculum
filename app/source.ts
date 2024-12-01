@@ -9,6 +9,7 @@ import { meta, docs } from '@/.source';
 export const source = loader({
   baseUrl: '/docs',
   icon(icon) {
+    console.log("If Icon", icon)
     if (icon && icon in icons)
       return createElement(IconContainer, {
         icon: icons[icon as keyof typeof icons],

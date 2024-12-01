@@ -1,0 +1,47 @@
+---
+title: Course Resources
+description: Resources for the Course (If needed)
+icon: Book
+---
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+import { TypeTable } from 'fumadocs-ui/components/type-table';
+import { Banner } from 'fumadocs-ui/components/banner';
+import { File, Folder, Files } from 'fumadocs-ui/components/files';
+import { InlineTOC } from 'fumadocs-ui/components/inline-toc';
+import { DocsLayout } from 'fumadocs-ui/layouts/docs';
+import { RootToggle } from 'fumadocs-ui/components/layout/root-toggle';
+import { Step, Steps } from 'fumadocs-ui/components/steps';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Callout } from 'fumadocs-ui/components/callout';
+import { Card, Cards } from 'fumadocs-ui/components/card';
+import { FaGraduationCap } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa6";
+import { ImStackoverflow } from "react-icons/im";
+
+<Callout>These are all resources which I strongly recommend you look at if I'm unavailable, or on your own time!</Callout>
+<Cards>
+  <Card
+    href="https://www.w3schools.com"
+    title="W3 Schools"
+    icon={<FaGraduationCap/>}
+  >
+    Really good written & interactive documentation for HTML, JS, CSS and more.
+  </Card>
+    <Card
+    href="https://github.com"
+    title="Github"
+    icon={<FaGithub/>}
+  >
+    Neccessary for pretty much any and every programmer. Create repositories to store your code, and create and deploy software 
+  </Card>
+  <Card
+    href="https://stackoverflow.com"
+    title="Stack Overflow"
+    icon={<ImStackoverflow/>}
+  >
+    A forum where programming questions can be brought up and answered.
+  </Card>
+</Cards>
+
+<Callout>**READ**: Please try not to copy and paste code, it doesn't help you. But if you do always do your best to understand it piece by piece so you can learn from it.</Callout>
+

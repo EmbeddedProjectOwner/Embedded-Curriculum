@@ -2,10 +2,8 @@
 import type { ReactNode } from 'react';
 import { baseOptions } from '@/app/layout.config';
 import { source } from '@/lib/source';
-import {DocsLayout, DocsLayoutProps} from 'fumadocs-ui/layouts/notebook'
+import {DocsLayout} from 'fumadocs-ui/layouts/notebook'
 import { Slot } from '@radix-ui/react-slot';
-
-
 
 
 export default function Layout({ children }: { children: ReactNode }) {
@@ -14,9 +12,8 @@ export default function Layout({ children }: { children: ReactNode }) {
      {
         transform(option, node) {
           const meta = source.getNodeMeta(node);
-          console.log("The meta",meta)
+          
           if (!meta) return option;
-  console.log(node)
           return {
             ...option,
             icon: (

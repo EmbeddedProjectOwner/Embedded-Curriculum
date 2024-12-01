@@ -1,12 +1,12 @@
-import { source } from '@/lib/source';
+import { source } from "@/lib/source";
 import {
   DocsPage,
   DocsBody,
   DocsDescription,
   DocsTitle,
-} from 'fumadocs-ui/page';
-import { notFound } from 'next/navigation';
-import defaultMdxComponents from 'fumadocs-ui/mdx';
+} from "fumadocs-ui/page";
+import { notFound } from "next/navigation";
+import defaultMdxComponents from "fumadocs-ui/mdx";
 
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
@@ -16,15 +16,25 @@ export default async function Page(props: {
   if (!page) notFound();
 
   const MDX = page.data.body;
-
   return (
-    <DocsPage toc={page.data.toc} full={page.data.full}>
+    <DocsPage
+      toc={page.data.toc}
+      tableOfContent={{
+        enabled: true,
+        style: "clerk",
+      }}
+      full={page.data.full}
+    >
+          <span className="DocPage_frame absolute inset-0 z-[-1] h-[64rem] max-h-screen overflow-hidden"></span>
+
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
+      
       <DocsBody>
         <MDX components={{ ...defaultMdxComponents }} />
       </DocsBody>
     </DocsPage>
+
   );
 }
 

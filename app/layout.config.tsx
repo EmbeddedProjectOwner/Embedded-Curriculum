@@ -11,7 +11,7 @@ import Icon from "./images/EmbeddedLogoScaled.png"
  * Home Layout: app/(home)/layout.tsx
  * Docs Layout: app/docs/layout.tsx
  */
-
+ 
 
 async function RetrievePathname()  {
 
@@ -47,7 +47,6 @@ export const baseOptions: BaseLayoutProps = {
       />
       <div className="absolute inset-0 rounded-md backdrop-blur-md"></div>
     </div>
-    
     
     ,
       text: 'Back To Home',

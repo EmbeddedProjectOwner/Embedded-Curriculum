@@ -1,7 +1,7 @@
 {
     "title": "Course One",
     "description": "The First Course, which teaches Vanilla JS, HTML, & CSS",
-    "icon": "Building2",
+    "icon": "LandPlot",
     "root": true,
     "pages": [
       "---Guide---",

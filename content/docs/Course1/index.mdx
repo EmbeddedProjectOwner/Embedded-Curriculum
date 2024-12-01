@@ -1,299 +1,102 @@
 ---
-title: Quick Start
-description: Getting Started with Fumadocs
+title: Course Intro
+description: This course will teach you the basics of HTML, JavaScript, and CSS.
 icon: Album
 ---
-import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
-import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
 
-import { File, Folder, Files } from 'fumadocs-ui/components/files';
-import { CpuIcon, PanelsTopLeft, Database, Terminal } from 'lucide-react';
+import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+import { File, Folder, Files } from "fumadocs-ui/components/files";
+import { CpuIcon, PanelsTopLeft, Database, Terminal } from "lucide-react";
+import { GitHubLogoIcon, DiscordLogoIcon } from "@radix-ui/react-icons";
+import { RiNextjsFill } from "react-icons/ri"
+import { IoLogoReact, IoLogoJavascript } from "react-icons/io5";
+import { SiLua, SiTypescript } from "react-icons/si";
+import { FaCss3, FaHtml5, FaCross } from "react-icons/fa6";
+import { CgWebsite } from "react-icons/cg";
 
 ## Introduction
 
-Fumadocs is a **documentation framework** based on Next.js, designed to be fast and flexible.
-It composes seamlessly into Next.js App Router, allowing a high flexibility with code.
+This course is designed to teach the basics of HTML, JavaScript, and CSS, and should prepare you to dive even deeper in the world of Web-Development. [Course 2](/docs/Course2) Is designed for programmers who already know the basics and have a solid understanding of JavaScript.
 
-Fumadocs has different parts:
+## Who am I?
 
-<Cards>
+_(And before someone comments that any of this info shouldn't be on here, it's fine it's already collected online anyways, and I'd rather those who want to know me have an opportunity to do so.)_
 
-<Card icon={<CpuIcon className="text-purple-300" />} title='Fumadocs Core'>
+### Basic Info:
+I'm completely self-taught, and I've learned most of my knowledge from programming documentation, trial and error, and my past colleagues.
 
-Handles most of the logic, including document search, content source adapters, and Markdown extensions.
+- My name: `Quincy M. Dack`,
+- My programming aliases are: `SomeProgrammer` or `SomePogProgrammer` <span className="inline-flex align-middle"> <a href="https://github.com/SomePogProgrammer" className="hover:text-blue-500"><GitHubLogoIcon className="shrink-0 w-[2vw] h-[3vh]" /></a> </span>
+- From: Minneapolis, MN. (I currently live in North Carolina)
+- Current status: (Self-Ta)
+### Interests/Hobbies:
 
-</Card>
+    - Programming (Developmental programming, like Software, Web, Hardware, and Games)
+    - Pretty much anything IT
+    - Teaching
+    - Learning new things
+    - Volunteering
+    - Hardware & Computers
+    - Ice-Hockey (NHL and some local/college teams)
+    - Casual american football enjoyer too, mainly College Level
 
-<Card icon={<PanelsTopLeft className="text-blue-300" />} title='Fumadocs UI'>
+### More on who I am:
+ I'm very religious (Christian, non denominational <span className="inline-flex align-middle"><FaCross className="shrink-0 w-[2vw] h-[3vh]" /> </span>), but I respect everyone and their beliefs. I enjoy teaching and learning things from others, and I'm really passionate about Programming and technology in general. I'm self-taught, and I've learned so much about myself through teaching both others and myself. I've come to realize that: 
+ 
+ 
+ > There is no such thing as being smarter, rather it's about how one utilizes and understands their mind.
+  - *Quincy M. Dack*
 
-The default theme of Fumadocs, it offers a beautiful look for documentation sites and many interactive components.
+  I also work (volunteer) part-time on the AV (Audio/Video) team at my Church, and I hope to get more into IT. My plan is to get into [`The University Of North Carolina: Chapel Hill`](https://www.unc.edu).
+  And I owe all my talents, and my acomplishments to the LORD, who has gifted me so much. I'm definitely not perfect, but I do my best to improve myself, I'm trying to improve my public speaking and social perspective every day. I've came a long way, I wouldn't say I'm introverted nor overly extroverted. 
+  #### The Vision
+  
+  My vision, (though It's really the LORD's not mine), is to start a Programming school, where I teach programming and other closely related things, while also doing ministry through a program in that programming school. Offering a lower cost, and hopefully eventually free way to learn the future to students and anyone interested in learning.
+### Programming Background
 
-</Card>
+I started programming when I was _11 years old_, my first programming language was `Lua` in the form of `LuaU` on Roblox, where I did game development for around 3 years full time, and another year part time. I've sinced mastered the language, and it holds a big place in my heart. And it also started my grudge against Python, Lol.
 
-<Card icon={<Database />} title='Content Source'>
+{" "}
+<ins>As of *Nov. 2024*</ins>:
 
-The input/source of your content, it can be a CMS, or local data layers like [Content Collections](https://www.content-collections.dev) and [Fumadocs MDX](/docs/mdx), the official content source.
+I have 5+ Years of Programming experience. (3-4+ Years in game development, and 2+ in Web Development )
 
-</Card>
 
-<Card icon={<Terminal />} title='Fumadocs CLI'>
+The languages I know (By know, I mean I'm fully capable of programming in, and I'm able to use them to a high degree). (These include frameworks and some aren't 'true' programming languages.)
+| Language | Knowledge |
+| ----- | ----------- |
+| NextJS <span className="inline-flex align-middle"><a href="https://nextjs.org" target="_blank" className=" hover:text-blue-500 "><RiNextjsFill className= "mdx_Icon" /></a></span> | <span className="!text-green-700 align-middle m-auto font-bold bg-black p-[.35rem] border border-zinc-700 rounded-lg">High</span> |
+| ReactJS <span className="inline-flex align-middle"><a href="https://react.dev" target="_blank" className="hover:text-blue-500"><IoLogoReact className= "mdx_Icon" /></a></span> | <span className="!text-green-700 align-middle m-auto font-bold bg-black p-[.35rem] border border-zinc-700 rounded-lg">High</span> |
+| Javascript & TypeScript <span className="inline-flex align-middle"><a href="https://www.w3schools.com/js/" target="_blank" className="hover:text-blue-500"><IoLogoJavascript className= "mdx_Icon" /></a></span> <span className="inline-flex align-middle"><a href="https://www.typescriptlang.org" target="_blank" className="hover:text-blue-500"><SiTypescript className= "mdx_Icon" /></a></span> | <span className="!text-green-700 align-middle m-auto font-bold bg-black p-[.35rem] border border-zinc-700 rounded-lg">High</span> |
+| Lua/LauU <span className="inline-flex align-middle"><a href="https://luau.org/" target="_blank" className="hover:text-blue-500"><SiLua className= "mdx_Icon" /></a></span> | <span className="!text-blue-700 align-middle m-auto font-bold bg-black p-[.35rem] border border-zinc-700 rounded-lg">Mastered</span> |
+| HTML & CSS/SCSS <span className="inline-flex align-middle"><a href="https://www.w3schools.com/html/" target="_blank" className="hover:text-blue-500"><FaHtml5 className= "mdx_Icon" /></a></span> <span className="inline-flex align-middle"><a href="https://www.w3schools.com/css/" target="_blank" className="hover:text-blue-500"><FaCss3 className= "mdx_Icon" /></a></span> | <span className="!text-green-700 align-middle m-auto font-bold bg-black p-[.35rem] border border-zinc-700 rounded-lg">High</span>  |
+| npm-deno-pnpm, Powershell/Cmd, Bash, & Git | <span className="!text-green-600 align-middle m-auto font-bold bg-black p-[.35rem] border border-zinc-700 rounded-lg">Mediocore-High</span>  |
+----------------
+I also know a bit of: Python, C#, and Rust (Enough to maybe fix small bugs and syntax errors, I basically only know their syntax) 
 
-A command line tool to configure features automatically, and install UI components (similar to Shadcn UI).
+## Course Advice
+#### **Advice**
 
-</Card>
+If you're taking this course in person, I strongly recommend and encourage that you contact me if you don't understand something, have questions, or want to get ahead. I'd gladly try and make time to ensure that you're able to effectively learn, even if you're behind or ahead.
 
-</Cards>
+#### **TL;DR**
 
-Thanks to this model, all format and content source can be supported by Fumadocs with a custom adapter.
+<ins>Contact Me If:</ins>
 
-### Use Cases
+- 1. You're wanting to go ahead,
+- 2. Need programming advice,
+- 3. Have questions,
+- 4. You're behind on the course, and want to catch up,
+- 5. Need help on another project.
 
-### Documentation
+And I'll do my best to meet you where you're at!
 
-Fumadocs focuses on **authoring experience**, it provides a beautiful theme and many docs automation tools.
 
-It helps you to iterate your codebase faster while never leaving your docs behind.
-You can take this site as an example of docs site built with Fumadocs.
+## My Contacts/Socials:
 
-### Blog sites
-
-Since Next.js is already a powerful framework, most features can be implemented with **only Next.js**.
-
-Fumadocs can process the content (e.g. syntax highlighting), and you can use the default theme (Fumadocs UI) or your custom theme.
-It is particularly helpful if you want to build complicated things like search.
-
-### Terminology
-
-For a better understanding of the docs, there are some common terminologies you should know:
-
-**Page Tree:** A tree of all the pages, separators and folders. It is essential for navigation elements, usually generated by the content source or hardcoded. See [Types definitions](/docs/headless/page-tree).
-
-**Markdown (MDX) File:** A Markdown file could be located in a folder, or available remotely.
-
-Some basic knowledge of Next.js App Router would be useful for further customisations.
-
-## Automatic Installation
-
-Create a new app with `create-fumadocs-app`, it requires Node.js 18+.
-
-<Tabs groupId='package-manager' persist items={['npm', 'pnpm', 'yarn', 'bun']}>
-
-```bash tab="npm"
-npm create fumadocs-app
-```
-
-```bash tab="pnpm"
-pnpm create fumadocs-app
-```
-
-```bash tab="yarn"
-yarn create fumadocs-app
-```
-
-```bash tab="bun"
-bun create fumadocs-app
-```
-
-</Tabs>
-
-It will ask you the following questions:
-
-- Which content source to use? (Recommended: Fumadocs MDX)
-- Configure Tailwind CSS?
-- Install dependencies?
-
-After that, it will initialize a new fumadocs app.
-Now you can start hacking!
-
-### Enjoy!
-
-Create your first mdx file in the docs folder.
-
-```mdx title="content/docs/index.mdx"
----
-title: Hello World
----
-
-## Yo what's up
-```
-
-Run the app in development mode and see http://localhost:3000/docs.
-
-```package-install
-npm run dev
-```
-
-### Explore
-
-In the project, you can see:
-
-- `lib/source.ts`: Where you organize code for content source adapter, we use [`loader`](/docs/headless/source-api) to read from content source.
-- `app/layout.config.tsx`: Shared options for layouts, this is optional but preferred to keep.
-- `app/(home)`: The route group for your landing page and other pages.
-- `app/docs`: The documentation layout and pages.
-- `app/api/search/route.ts`: The Route Handler for search.
-
-## FAQ
-
-Some common questions you may encounter.
-
-<Accordions>
-    <Accordion id='customise' title='How to Customise UI?'>
-
-Fumadocs UI offers Themes, Layouts and Components.
-
-The design system is built with Tailwind CSS, see [Themes](/docs/ui/theme).
-
-Components are pre-built elements to enhance your documentation,
-they are customisable with exposed props like `style` and `className`.
-
-Layouts are essential elements of docs, providing navigation and basic functionality.
-We provided many options to customise them, see [Layouts](/docs/ui/blocks).
-
-Fumadocs CLI offers a way to install Fumadocs components to your project, allowing you to fully customise them with code.
-
-```package-install
-@fumadocs/cli --save-dev
-```
-
-```bash
-pnpm fumadocs add
-```
-
-This is inspired and very similar to Shadcn UI.
-
-    </Accordion>
-    <Accordion id='fix-monorepo-styling' title="How to fix stylings not being applied in Monorepo?">
-
-Sometimes, `fumadocs-ui` is not installed in the workspace of your Tailwind CSS configuration file. (e.g. a monorepo setup).
-
-When using the official Tailwind CSS plugin, it will not be able to find the files from `fumadocs-ui` package.
-
-To fix this, edit the Tailwind CSS configuration and replace `./node_modules` with `../../node_modules` in the `content` section.
-
-```js
-export default {
-  content: [
-    './node_modules/fumadocs-ui/dist/**/*.js', // [!code --]
-    '../../node_modules/fumadocs-ui/dist/**/*.js', // [!code ++]
-    './components/**/*.{ts,tsx}',
-    // ...
-  ],
-};
-```
-
-    </Accordion>
-    <Accordion id='change-base-url' title="How to change the base route of /docs?">
-
-You can change the base route of docs (e.g. from `/docs/page` to `/info/page`).
-Since Fumadocs uses Next.js App Router, you can simply rename the route:
-
-<Files>
-  <Folder name="app/docs" defaultOpen className="opacity-50" disabled>
-    <File name="layout.tsx" />
-  </Folder>
-  <Folder name="app/info" defaultOpen>
-    <File name="layout.tsx" />
-  </Folder>
-</Files>
-
-And tell Fumadocs to use the new route in `source.ts`:
-
-```ts title="source.ts"
-import { createMDXSource } from 'fumadocs-mdx';
-import { loader } from 'fumadocs-core/source';
-import { docs, meta } from '@/.source';
-
-export const source = loader({
-  baseUrl: '/info',
-  source: createMDXSource(docs, meta),
-});
-```
-
-    </Accordion>
-    <Accordion id='dynamic-route' title="It uses Dynamic Route, will it be poor in performance?">
-
-Next.js turns dynamic route into static routes when `generateStaticParams` is configured.
-Hence, it is as fast as static pages.
-
-You can enable Static Exports on Next.js to get a static build output. (Notice that Route Handler doesn't work with static export, you have to configure static search)
-
-    </Accordion>
-    <Accordion id='pronunciation' title='How to say Fumadocs?'>
-        Fumadocs (Foo-ma docs).
-    </Accordion>
-    <Accordion id='custom-layout-docs-page' title='How to create a page in /docs without docs layout?'>
-
-Same as managing layouts in Next.js App Router, remove the original MDX file from content directory (`/content/docs`).
-This ensures duplicated pages will not cause errors.
-
-Now, You can add the page to another route group, which isn't a descendant of docs layout.
-
-For example, under your `app` folder:
-
-<Files>
-  <File name="(home)/docs/page.tsx" />
-  <Folder name="docs">
-    <File name="layout.tsx" />
-    <File name="[[...slug]]/page.tsx" />
-  </Folder>
-</Files>
-
-will replace the `/docs` page with your `page.tsx`.
-
-    </Accordion>
-
-</Accordions>
-
-### Why Fumadocs?
-
-Feel free to open the demo in CodeSandbox and see if it suits you.
-
-- Many built-in components.
-- Integrations with Typescript Twoslash, OpenAPI, Math (KaTeX).
-- Flexible and Fast by default.
-- Built on App Router, no need for hydration over static content.
-- Use it in an existing Next.js project, without refactoring anything.
-
-Make sure to read [Comparisons](/docs/ui/comparisons) if you're interested.
-
-## Learn More
-
-New to here? Don't worry, we are welcome for your questions.
-
-If you find anything confusing, please give your feedback on [Github Discussion](https://github.com/fuma-nama/fumadocs/discussions)!
-
-<Cards>
-  <Card
-    href="/docs/ui/page-conventions"
-    title="Organizing Pages"
-    description="Learn how to organize your pages"
-  />
-  <Card
-    href="/docs/ui/navigation"
-    title="Navigation Links"
-    description="Learn how to customise navigation links in Fumadocs"
-  />
-  <Card
-    href="/docs/ui/theme"
-    title="Theming"
-    description="Add themes to Fumadocs UI"
-  />
-  <Card
-    href="/docs/ui/markdown"
-    title="Markdown"
-    description="Learn how to write documents in Fumadocs"
-  />
-</Cards>
-
-### From Existing Codebase?
-
-You can follow the Manual Installation guide to get started.
-
-<Cards>
-  <Card
-    href="/docs/ui/manual-installation"
-    title="Manual Installation"
-    description="Create fumadocs app from scratch"
-  />
-</Cards>
+- **Email:** [`quincy.m.dack@gmail.com`](mailto:quincy.m.dack@gmail.com)  *Contact email for buisness or questions*
+- **Discord:** [`SwedishAeternum`](https://discord.com/users/718090479585198111) <span className="inline-flex align-middle"> <a target="_blank" href="https://discord.com/users/718090479585198111" className="hover:text-blue-500"><DiscordLogoIcon className="shrink-0 w-[2vw] h-[3vh]" /></a> </span> - Casual contact, good if you want to ask me a quick programming question.
+- **GitHub:** [`SomeProgrammer`](https://github.com/SomePogProgrammer) <span className="inline-flex align-middle"> <a target="_blank" href="https://github.com/SomePogProgrammer" className="hover:text-blue-500"><GitHubLogoIcon className="shrink-0 w-[2vw] h-[3vh]" /></a> </span>
+- **Portfolio:** <span className="inline-flex align-middle"><a target="_blank" href="https://SomePogProgrammer.github.io" className="hover:text-blue-500"><CgWebsite className="mdx_Icon"/></a></span>
