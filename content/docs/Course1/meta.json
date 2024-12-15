@@ -6,11 +6,11 @@
     "pages": [
       "---Guide---",
       "index",
-      "comparisons",
+      "resources",
       "...",
-      "---Setup---",
-      "manual-installation",
-      "(integrations)",
+      "!L1",
+      "---Lesson 1---",
+      ".../L1",
       "---Writing---",
       "markdown",
       "page-conventions",
@@ -20,5 +20,6 @@
       "components",
       "mdx",
       "blocks"
+      
     ]
   }

@@ -1,0 +1,63 @@
+{
+  "name": "fumadocs-typescript",
+  "version": "3.0.2",
+  "description": "Typescript Integration for Fumadocs",
+  "keywords": [
+    "NextJs",
+    "fumadocs",
+    "Docs"
+  ],
+  "homepage": "https://fumadocs.vercel.app",
+  "repository": "github:fuma-nama/fumadocs",
+  "license": "MIT",
+  "author": "Fuma Nama",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./ui": {
+      "import": "./dist/ui/index.js",
+      "types": "./dist/ui/index.d.ts"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/*"
+  ],
+  "dependencies": {
+    "@types/node": "22.8.1",
+    "fast-glob": "^3.3.1",
+    "hast-util-to-jsx-runtime": "^2.3.2",
+    "mdast-util-from-markdown": "^2.0.2",
+    "mdast-util-gfm": "^3.0.0",
+    "mdast-util-to-hast": "^13.2.0",
+    "shiki": "^1.22.2",
+    "ts-morph": "^24.0.0"
+  },
+  "devDependencies": {
+    "@types/estree": "^1.0.6",
+    "@types/hast": "^3.0.4",
+    "@types/mdast": "^4.0.3",
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "typescript": "^5.6.3",
+    "eslint-config-custom": "0.0.0",
+    "fumadocs-ui": "14.2.0"
+  },
+  "peerDependencies": {
+    "typescript": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "clean": "rimraf dist",
+    "dev": "tsup --watch",
+    "lint": "eslint .",
+    "types:check": "tsc --noEmit"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "name": "fumadocs-mdx",
+  "version": "11.1.2",
+  "description": "The built-in source for Fumadocs",
+  "keywords": [
+    "NextJs",
+    "Docs"
+  ],
+  "homepage": "https://fumadocs.vercel.app",
+  "repository": "github:fuma-nama/fumadocs",
+  "license": "MIT",
+  "author": "Fuma Nama",
+  "type": "module",
+  "exports": {
+    "./loader-mdx": "./loader-mdx.cjs",
+    "./config": {
+      "import": "./dist/config/index.js",
+      "types": "./dist/config/index.d.ts"
+    },
+    "./next": {
+      "import": "./dist/next/index.js",
+      "types": "./dist/next/index.d.ts"
+    },
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": "./bin.js",
+  "files": [
+    "dist/*",
+    "loader-mdx.cjs",
+    "bin.js"
+  ],
+  "dependencies": {
+    "@mdx-js/mdx": "^3.1.0",
+    "chokidar": "^4.0.1",
+    "cross-spawn": "^7.0.5",
+    "esbuild": "^0.24.0",
+    "estree-util-value-to-estree": "^3.2.1",
+    "fast-glob": "^3.3.1",
+    "gray-matter": "^4.0.3",
+    "micromatch": "^4.0.8",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/cross-spawn": "^6.0.6",
+    "@types/mdast": "^4.0.3",
+    "@types/mdx": "^2.0.13",
+    "@types/micromatch": "^4.0.9",
+    "@types/react": "^18.3.12",
+    "next": "^15.0.3",
+    "unified": "^11.0.5",
+    "vfile": "^6.0.3",
+    "webpack": "^5.96.1",
+    "eslint-config-custom": "0.0.0",
+    "tsconfig": "7.0.0",
+    "fumadocs-core": "14.5.3"
+  },
+  "peerDependencies": {
+    "fumadocs-core": "^14.0.0",
+    "next": "14.x.x || 15.x.x"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsup",
+    "clean": "rimraf dist",
+    "dev": "tsup --watch",
+    "lint": "eslint .",
+    "types:check": "tsc --noEmit"
+  }
+}

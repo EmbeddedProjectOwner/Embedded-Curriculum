@@ -1,4 +1,4 @@
-import { source } from "@/lib/source";
+/**import { source } from "@/lib/source";
 import {
   DocsPage,
   DocsBody,
@@ -47,6 +47,64 @@ export async function generateMetadata(props: {
 }) {
   const params = await props.params;
   const page = source.getPage(params.slug);
+  if (!page) notFound();
+
+  return {
+    title: page.data.title,
+    description: page.data.description,
+  };
+}
+**/
+import { source } from "../../source";
+import {
+  DocsPage,
+  DocsBody,
+  DocsDescription,
+  DocsTitle,
+} from "fumadocs-ui/page";
+import { notFound } from "next/navigation";
+import defaultMdxComponents from "fumadocs-ui/mdx";
+import type { InferPageType } from "fumadocs-core/source";
+
+// Ensure type safety for the route parameters
+type RouteParams = { slug?: string[] };
+
+export default async function Page(props: {
+  params: Promise<{ slug?: string[] }>;
+}) {
+  const params = await props.params;
+  const slugPath = params.slug?.join("/") || "";
+  console.log("Requested slug:", slugPath);
+
+  const page = source.getPage(params.slug);
+  if (!page) notFound();
+
+  const MDX = page.data.body;
+  return (
+    <DocsPage
+      toc={page.data.toc}
+      tableOfContent={{ enabled: true, style: "clerk" }}
+      full={page.data.full}
+    >
+      <DocsTitle>{page.data.title}</DocsTitle>
+      <DocsDescription>{page.data.description}</DocsDescription>
+      <DocsBody>
+        <MDX components={{ ...defaultMdxComponents }} />
+      </DocsBody>
+    </DocsPage>
+  );
+}
+
+export async function generateStaticParams() {
+  return source.generateParams();
+}
+
+export async function generateMetadata(props: {
+  params: Promise<RouteParams>;
+}) {
+  const params = await props.params;
+  const page = source.getPage(params.slug);
+
   if (!page) notFound();
 
   return {

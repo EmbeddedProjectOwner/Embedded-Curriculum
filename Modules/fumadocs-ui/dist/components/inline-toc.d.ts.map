@@ -1,0 +1,1 @@
+{"version":3,"file":"inline-toc.d.ts","sourceRoot":"","sources":["../../src/components/inline-toc.tsx"],"names":[],"mappings":"AAGA,OAAO,KAAK,EAAE,WAAW,EAAE,MAAM,sBAAsB,CAAC;AAOxD,MAAM,WAAW,cAAc;IAC7B,KAAK,EAAE,WAAW,EAAE,CAAC;IACrB,WAAW,CAAC,EAAE,OAAO,CAAC;CACvB;AAED,wBAAgB,SAAS,CAAC,EACxB,KAAK,EACL,WAAW,GACZ,EAAE,cAAc,GAAG,KAAK,CAAC,YAAY,CA4BrC"}

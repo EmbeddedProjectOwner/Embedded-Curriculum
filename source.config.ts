@@ -12,6 +12,7 @@ import { z } from 'zod';
 import { remarkMermaid } from '@theguild/remark-mermaid';
 
 export const { docs, meta } = defineDocs({
+  
   docs: {
     async: false,
     schema: frontmatterSchema.extend({
@@ -29,7 +30,6 @@ export const { docs, meta } = defineDocs({
     }),
   },
 });
-
 
 export default defineConfig({
   lastModifiedTime: 'git',

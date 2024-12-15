@@ -59,7 +59,7 @@ export const baseOptions: BaseLayoutProps = {
         {
           text: 'Getting Started',
           description: 'Learn to use Fumadocs',
-          url: '/docs',
+          url: '/docs/Course1',
         },
       ],
     },

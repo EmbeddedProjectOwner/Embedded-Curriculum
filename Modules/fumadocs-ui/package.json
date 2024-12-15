@@ -1,0 +1,111 @@
+{
+  "name": "fumadocs-ui",
+  "version": "14.5.4",
+  "description": "The framework for building a documentation website in Next.js",
+  "keywords": [
+    "NextJs",
+    "Docs"
+  ],
+  "homepage": "https://fumadocs.vercel.app",
+  "repository": "github:fuma-nama/fumadocs",
+  "license": "MIT",
+  "author": "Fuma Nama",
+  "type": "module",
+  "exports": {
+    "./style.css": "./dist/style.css",
+    "./image-zoom.css": "./dist/image-zoom.css",
+    "./tailwind-plugin": {
+      "import": "./dist/tailwind-plugin.js",
+      "types": "./dist/tailwind-plugin.d.ts",
+      "default": "./dist/tailwind-plugin.js"
+    },
+    "./components/*": {
+      "import": "./dist/components/*.js",
+      "types": "./dist/components/*.d.ts"
+    },
+    "./i18n": {
+      "import": "./dist/i18n.js",
+      "types": "./dist/i18n.d.ts"
+    },
+    "./layouts/*": {
+      "import": "./dist/layouts/*.js",
+      "types": "./dist/layouts/*.d.ts"
+    },
+    "./page": {
+      "import": "./dist/page.js",
+      "types": "./dist/page.d.ts"
+    },
+    "./provider": {
+      "import": "./dist/provider.js",
+      "types": "./dist/provider.d.ts"
+    },
+    "./mdx": {
+      "import": "./dist/mdx.js",
+      "types": "./dist/mdx.d.ts"
+    },
+    "./og": {
+      "import": "./dist/og.js",
+      "types": "./dist/og.d.ts"
+    }
+  },
+  "files": [
+    "dist/*"
+  ],
+  "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.1",
+    "@radix-ui/react-collapsible": "^1.1.1",
+    "@radix-ui/react-dialog": "^1.1.2",
+    "@radix-ui/react-direction": "^1.1.0",
+    "@radix-ui/react-navigation-menu": "^1.2.1",
+    "@radix-ui/react-popover": "^1.1.2",
+    "@radix-ui/react-scroll-area": "^1.2.1",
+    "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-tabs": "^1.1.1",
+    "class-variance-authority": "^0.7.0",
+    "lodash.merge": "^4.6.2",
+    "lucide-react": "^0.460.0",
+    "next-themes": "^0.4.3",
+    "postcss-selector-parser": "^7.0.0",
+    "react-medium-image-zoom": "^5.2.11",
+    "tailwind-merge": "^2.5.4",
+    "fumadocs-core": "14.5.4"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^15.0.3",
+    "@types/lodash.merge": "^4.6.9",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "autoprefixer": "^10.4.20",
+    "next": "15.0.3",
+    "postcss": "^8.4.49",
+    "postcss-cli": "^11.0.0",
+    "tailwindcss": "^3.4.15",
+    "tsc-alias": "^1.8.10",
+    "@fumadocs/cli": "0.0.4",
+    "eslint-config-custom": "0.0.0"
+  },
+  "peerDependencies": {
+    "next": "14.x.x || 15.x.x",
+    "react": ">= 18",
+    "react-dom": ">= 18",
+    "tailwindcss": "^3.4.14"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "pnpm build:layout && pnpm build:tailwind",
+    "build:layout": "tsc --project tsconfig.build.json && tsc-alias -p tsconfig.build.json",
+    "build:tailwind": "postcss css/*.css --dir dist && postcss src/components/*.css --dir dist/components",
+    "clean": "rimraf dist",
+    "dev": "concurrently \"tsc -w --project tsconfig.build.json\" \"tsc-alias -w -p tsconfig.build.json\" \"pnpm dev:tailwind\"",
+    "dev:tailwind": "postcss css/*.css --dir dist --watch",
+    "lint": "eslint .",
+    "types:check": "tsc --noEmit"
+  }
+}
