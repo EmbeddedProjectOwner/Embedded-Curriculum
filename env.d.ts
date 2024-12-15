@@ -6,6 +6,7 @@ declare namespace NodeJS {
       PORT?: string;
       DATABASE_URL?: string;
       NEXT_PUBLIC_BASE_URL?: string;
+      ORAMA_API_KEY?: string;
       [key: string]: string | undefined; // Allow additional environment variables
     }
   

@@ -1,6 +1,6 @@
 import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
 import Image from 'next/image';
-import Icon from "./images/EmbeddedLogoScaled.png"
+import Icon from "./images/EmbeddedLogoScaledText.png"
 
 
 

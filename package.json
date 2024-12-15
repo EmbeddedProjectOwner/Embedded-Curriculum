@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@radix-ui/react-icons": "^1.3.2",
+    "@radix-ui/themes": "^3.1.6",
     "@theguild/remark-mermaid": "^0.1.3",
     "fumadocs-core": "file:Modules/fumadocs-core",
     "fumadocs-mdx": "file:Modules/fumadocs-mdx",

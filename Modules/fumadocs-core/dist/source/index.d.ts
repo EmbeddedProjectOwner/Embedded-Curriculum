@@ -140,8 +140,10 @@ interface MetaData {
     description?: string | undefined;
 }
 interface PageData {
+    structuredData: StructuredData;
     icon?: string | undefined;
     title: string;
+    description?: string;
 }
 type InferPageType<Utils extends LoaderOutput<any>> = Utils extends LoaderOutput<infer Config> ? Page<Config['source']['pageData']> : never;
 type InferMetaType<Utils extends LoaderOutput<any>> = Utils extends LoaderOutput<infer Config> ? Meta<Config['source']['metaData']> : never;
