@@ -32,6 +32,7 @@ import { createElement } from "react";
 import { IconContainer } from "@/components/ui/icon";
 import { meta, docs } from "@/.source";
 import { customLoader } from "./sourceLoader";
+import { source as sourceLib } from "@/lib/source";
 
 type CustomMeta = {
   slug?: string;
@@ -65,3 +66,5 @@ export const source = customLoader({
   
 });
 
+
+export type FullSource = typeof source & typeof sourceLib

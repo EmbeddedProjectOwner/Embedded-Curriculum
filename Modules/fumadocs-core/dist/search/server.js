@@ -175,6 +175,7 @@ function createFromSource(source, pageToIndex = defaultToIndex, options = {}) {
       return pageToIndex(page);
     })
   });
+
 }
 
 // src/search/_stemmers.ts

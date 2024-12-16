@@ -90,6 +90,7 @@ interface Source<Config extends SourceConfig> {
 interface Page<Data = PageData> {
     file: FileInfo;
     slugs: string[];
+    tags: string[];
     url: string;
     data: Data;
     locale?: string | undefined;

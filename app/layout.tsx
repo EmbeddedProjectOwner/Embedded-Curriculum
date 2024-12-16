@@ -13,8 +13,11 @@ export default function Layout({ children }: { children: ReactNode }) {
       <body className="flex flex-col min-h-screen">
         <RootProvider
         search={{
+          enabled: true,
+          preload: true,
           options: {
-            defaultTag: 'Course 1',
+            type: "fetch",
+            defaultTag: "Course1",
             tags: [
               {
                 name: 'Course 1',
@@ -26,10 +29,6 @@ export default function Layout({ children }: { children: ReactNode }) {
               },
             ],
           },
-          links: [
-            ['Course 1', '/docs/Course1'],
-            ['Course 2', '/docs/Course2']
-          ]
         }}>{children}</RootProvider>
       </body>
     </html>

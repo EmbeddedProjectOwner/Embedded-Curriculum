@@ -526,13 +526,14 @@ function fileToPage(file, getUrl, locale) {
     url: getUrl(file.data.slugs, locale),
     slugs: file.data.slugs,
     data: file.data.data,
+    tags: [],
     locale,
   };
 
   if (page.file?.path) {
     const matterRead = matter.read(`content/docs/${page.file.path}`);
     const matterData = matterRead.data;
-
+    
     if (matterData?.slug) {
       const newSlug = matterData.slug;
       const urlSplit = new URL(`${process.env.NEXT_PUBLIC_BASE_URL}/${page.url}`).pathname.split('/');
@@ -549,6 +550,14 @@ function fileToPage(file, getUrl, locale) {
           }
         }
       }
+    }
+
+    if (matterData?.tags) {
+      matterData.tags.forEach((tag) => {
+        page.tags.push(tag)
+      })
+    } else if (page.tags.length == 0 ) {
+      page.tags.push(page.slugs[0])
     }
   }
 

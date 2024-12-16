@@ -3,6 +3,7 @@
     "description": "The First Course, which teaches Vanilla JS, HTML, & CSS",
     "icon": "LandPlot",
     "root": true,
+    "tags": ["Course1"],
     "pages": [
       "---Guide---",
       "index",

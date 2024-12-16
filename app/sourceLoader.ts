@@ -31,7 +31,6 @@ export function customLoader(options: CustomLoaderOptions) {
 
         getPage(slug: string[] | undefined) {
             const page = baseLoader.getPage(slug);
-
             if (page && options.transform) {
                 page.data.meta = options.transform(page.data.meta as CustomMeta);
             }

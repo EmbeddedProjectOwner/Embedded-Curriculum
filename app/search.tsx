@@ -1,5 +1,5 @@
 'use client';
-
+/*
 import { OramaClient } from '@oramacloud/client';
 import type { SharedProps } from 'fumadocs-ui/components/dialog/search';
 import SearchDialog from 'fumadocs-ui/components/dialog/search-orama';
@@ -32,4 +32,12 @@ export default function CustomSearchDialog(
             showOrama
         />
     );
+}*/
+'use client';
+import SearchDialog, { DefaultSearchDialogProps } from 'fumadocs-ui/components/dialog/search-default';
+import { JSX } from 'react';
+ 
+export default function CustomDialog(props: JSX.IntrinsicAttributes & DefaultSearchDialogProps) {
+  // your own logic here
+  return <SearchDialog {...props} />;
 }

@@ -20,6 +20,7 @@ export function Provider({
         search={{
           SearchDialog,
         }}
+
       >
         <TooltipProvider>
           {children}

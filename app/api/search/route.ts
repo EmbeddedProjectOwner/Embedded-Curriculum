@@ -1,13 +1,63 @@
 import { InferPageType, Page } from '@/Modules/fumadocs-core/dist/source';
-import { source } from '../../source';
+import { FullSource, source } from '../../source';
 import { createFromSource } from 'fumadocs-core/search/server';
- 
-export const { GET } = createFromSource(source, (page: Page) => (
-    console.log(page.data.structuredData), {
-  title: page.data.title,
-  description: page.data.description,
-  url: page.url,
-  id: page.url,
-  structuredData: page.data.structuredData,
-  tag: 'Course1',
-}));
+import { source as sourceLib } from "@/lib/source"
+import { NextRequest, NextResponse } from 'next/server';
+
+async function GetRequest(req: NextRequest) {
+  const { GET } = createFromSource(sourceLib as FullSource, (page: Page) => (
+    {
+      title: page.data.title,
+      description: page.data.description,
+      url: page.url,
+      id: page.url,
+      structuredData: page.data.structuredData,
+    }))
+
+
+  var reqUrl = req.url
+
+  let NewURL: string = reqUrl
+
+  if (reqUrl.includes("&")) {
+    NewURL = reqUrl.split("&")[0]
+  }
+
+  type FullSearch = Array<{
+    id: string,
+    content: string,
+    type: string,
+    url: string
+  }>
+
+  var mockRequest = new NextRequest(NewURL)
+  const fullSearch: FullSearch = await (await GET(mockRequest)).json()
+  const tagRequested = req.nextUrl.searchParams.get("tag") || null
+  var endSearch: FullSearch = []
+
+  if (tagRequested) {
+    for (var entry of fullSearch) {
+      var url: string | string[] = entry.url
+      if (url.includes("#")) {
+        url = url.split("#")[0]
+      }
+      url = url.split("/")
+      if (url[0] === '') {
+        url.splice(0, 1)
+      }
+      if (url[0] === 'docs') {
+        url.splice(0, 1)
+      }
+      if (source.getPage(url)?.tags.includes(tagRequested)) {
+        endSearch.push(entry)
+      }
+
+    }
+
+  } else {
+    endSearch = fullSearch
+  }
+  return NextResponse.json(endSearch)
+}
+
+export { GetRequest as GET }

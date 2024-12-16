@@ -12,8 +12,8 @@ import { z } from 'zod';
 import { remarkMermaid } from '@theguild/remark-mermaid';
 
 export const { docs, meta } = defineDocs({
-  
   docs: {
+    
     async: false,
     schema: frontmatterSchema.extend({
       preview: z.string().optional(),
@@ -68,4 +68,5 @@ export default defineConfig({
     ],
     rehypePlugins: (v) => [rehypeKatex, ...v],
   },
+
 });
