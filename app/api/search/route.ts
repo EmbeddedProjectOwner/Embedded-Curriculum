@@ -1,10 +1,28 @@
-import { InferPageType, Page } from '@/Modules/fumadocs-core/dist/source';
+import { Page } from '@/Modules/fumadocs-core/dist/source/indexT';
 import { FullSource, source } from '../../source';
 import { createFromSource } from 'fumadocs-core/search/server';
 import { source as sourceLib } from "@/lib/source"
 import { NextRequest, NextResponse } from 'next/server';
+import { cacheTag } from 'next/dist/server/use-cache/cache-tag';
+import type { NextApiRequest } from 'next';
+
+type FullSearch = Array<{
+  id: string,
+  content: string,
+  type: string,
+  url: string
+}>
 
 async function GetRequest(req: NextRequest) {
+  if (req && req.method !== "POST") {
+    return HandleSearch(req)
+  } else {
+    return NextResponse.json(null, { status: 405})
+  }
+}
+
+async function HandleSearch(req: NextRequest) {
+
   const { GET } = createFromSource(sourceLib as FullSource, (page: Page) => (
     {
       title: page.data.title,
@@ -14,7 +32,6 @@ async function GetRequest(req: NextRequest) {
       structuredData: page.data.structuredData,
     }))
 
-
   var reqUrl = req.url
 
   let NewURL: string = reqUrl
@@ -23,14 +40,10 @@ async function GetRequest(req: NextRequest) {
     NewURL = reqUrl.split("&")[0]
   }
 
-  type FullSearch = Array<{
-    id: string,
-    content: string,
-    type: string,
-    url: string
-  }>
+  
 
-  var mockRequest = new NextRequest(NewURL)
+  const mockRequest = new NextRequest(NewURL) 
+  
   const fullSearch: FullSearch = await (await GET(mockRequest)).json()
   const tagRequested = req.nextUrl.searchParams.get("tag") || null
   var endSearch: FullSearch = []
@@ -59,5 +72,4 @@ async function GetRequest(req: NextRequest) {
   }
   return NextResponse.json(endSearch)
 }
-
 export { GetRequest as GET }

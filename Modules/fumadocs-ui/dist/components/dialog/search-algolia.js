@@ -6,6 +6,7 @@ import { useOnChange } from 'fumadocs-core/utils/use-on-change';
 import { SearchDialog } from './search';
 import { TagsList } from './tag-list';
 export default function AlgoliaSearchDialog({ index, searchOptions, tags, defaultTag, showAlgolia = false, allowClear = false, ...props }) {
+   "use cache";
     const [tag, setTag] = useState(defaultTag);
     const { search, setSearch, query } = useDocsSearch({
         type: 'algolia',

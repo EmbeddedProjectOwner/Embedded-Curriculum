@@ -9,6 +9,7 @@ import { TagsList } from './tag-list';
  * Orama Cloud integration
  */
 export default function OramaSearchDialog({ client, searchOptions, tags, defaultTag, showOrama = false, allowClear = false, ...props }) {
+    "use cache"
     const [tag, setTag] = useState(defaultTag);
     const { search, setSearch, query } = useDocsSearch({
         type: 'orama-cloud',

@@ -15,6 +15,9 @@ const config = {
   reactStrictMode: true,
   env: {
     NEXT_PUBLIC_BASE_URL: NEXT_PUBLIC_BASE_URL
+  },
+  experimental: {
+    dynamicIO: true
   }
 };
 

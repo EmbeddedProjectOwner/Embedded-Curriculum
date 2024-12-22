@@ -15,6 +15,7 @@ function createStaticClient({
 }) {
   const dbs = /* @__PURE__ */ new Map();
   async function init() {
+    
     const res = await fetch(from);
     if (!res.ok)
       throw new Error(

@@ -6,6 +6,7 @@ async function fetchDocs(query, locale, tag, options) {
   params.set("query", query);
   if (locale) params.set("locale", locale);
   if (tag) params.set("tag", tag);
+  
   const res = await fetch(
     `${options.api ?? "/api/search"}?${params.toString()}`
   );

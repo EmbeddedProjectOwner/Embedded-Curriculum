@@ -28,7 +28,6 @@ export function customLoader(options: CustomLoaderOptions) {
 
     return {
         ...baseLoader,
-
         getPage(slug: string[] | undefined) {
             const page = baseLoader.getPage(slug);
             if (page && options.transform) {
@@ -41,7 +40,7 @@ export function customLoader(options: CustomLoaderOptions) {
             const params = baseLoader.generateParams();
 
             if (options.transform) {
-                return params.map((param) => (
+                return params.map((param: { slug: CustomMeta; }) => (
                     {
                         ...param,
                         slug: options.transform(param.slug as CustomMeta).path,

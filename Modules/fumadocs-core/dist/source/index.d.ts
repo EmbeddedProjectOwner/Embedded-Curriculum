@@ -1,6 +1,8 @@
+// index.d.ts
 import { ReactElement } from 'react';
 import { I as I18nConfig } from '../config-inq6kP6y.js';
 import { R as Root, I as Item, F as Folder$1, S as Separator } from '../page-tree-r8qjoUla.js';
+import { StructuredData } from "../mdx-plugins/index.js";
 
 interface FileInfo {
     /**
@@ -233,4 +235,3 @@ interface PageTreeBuilder {
 }
 declare function createPageTreeBuilder(): PageTreeBuilder;
 
-export { type BuildPageTreeOptions, type BuildPageTreeOptionsWithI18n, type FileInfo, fileSystem as FileSystem, type InferMetaType, type InferPageType, type LanguageEntry, type LoadOptions, type LoaderConfig, type LoaderOptions, type LoaderOutput, type Meta, type MetaData, type Page, type PageData, type PageTreeBuilder, type Source, type SourceConfig, type Transformer, type UrlFn, type VirtualFile, createGetUrl, createPageTreeBuilder, getSlugs, loadFiles, loader, parseFilePath, parseFolderPath };

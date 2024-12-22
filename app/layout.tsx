@@ -1,18 +1,27 @@
+'use server'
 import './global.css';
 import { RootProvider } from 'fumadocs-ui/provider';
 import { Inter } from 'next/font/google';
 import type { ReactNode } from 'react';
+import CustomDialog from './search';
 
 const inter = Inter({
   subsets: ['latin'],
 });
 
-export default function Layout({ children }: { children: ReactNode }) {
+async function customSearchDialog() {
+  'use cache'
+
+  return CustomDialog
+}
+export default async function Layout({ children }: { children: ReactNode }) {
+  'use cache'
   return (
     <html lang="en" className={inter.className} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
         <RootProvider
         search={{
+          SearchDialog: await customSearchDialog(),
           enabled: true,
           preload: true,
           options: {
