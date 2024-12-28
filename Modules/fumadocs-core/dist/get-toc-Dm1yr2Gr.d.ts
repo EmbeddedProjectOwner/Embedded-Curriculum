@@ -5,7 +5,7 @@ interface TOCItemType {
     url: string;
     depth: number;
 }
-type TableOfContents = TOCItemType[];
+export type TableOfContents = TOCItemType[];
 /**
  * Get Table of Contents from markdown/mdx document (using remark)
  *

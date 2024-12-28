@@ -88,6 +88,7 @@ function LoadingIndicator({ isLoading }) {
 function CommandItem({ active, onActiveChange, value, ...props }) {
     return (_jsx("button", { ref: useCallback((element) => {
             if (active === value && element) {
+                console.log("ACTIVE SCROLL")
                 element.scrollIntoView({
                     block: 'nearest',
                 });

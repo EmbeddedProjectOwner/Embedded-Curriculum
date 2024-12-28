@@ -18,12 +18,13 @@
     "paths": {
       "@/*": ["./*"]
     },
+    "allowImportingTsExtensions": true,
     "plugins": [
       {
         "name": "next"
-      }
-    ]
+      },
+    ],
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "lib/env.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "lib/env.ts", "**/*.mdx", "types/mdx.d.ts"],
   "exclude": ["node_modules"]
 }

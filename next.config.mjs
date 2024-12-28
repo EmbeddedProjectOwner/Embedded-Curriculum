@@ -13,6 +13,9 @@ const NEXT_PUBLIC_BASE_URL = isProduction
 /** @type {import('next').NextConfig} */
 const config = {
   reactStrictMode: true,
+  typescript: {tsconfigPath: "./tsconfig.json"},
+
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   env: {
     NEXT_PUBLIC_BASE_URL: NEXT_PUBLIC_BASE_URL
   },

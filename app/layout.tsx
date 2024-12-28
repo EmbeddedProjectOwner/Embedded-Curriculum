@@ -1,9 +1,10 @@
-'use server'
+
 import './global.css';
 import { RootProvider } from 'fumadocs-ui/provider';
 import { Inter } from 'next/font/google';
 import type { ReactNode } from 'react';
 import CustomDialog from './search';
+import { ScrollWrapper } from './scrollWrapper';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -38,7 +39,7 @@ export default async function Layout({ children }: { children: ReactNode }) {
               },
             ],
           },
-        }}>{children}</RootProvider>
+        }}><ScrollWrapper>{children}</ScrollWrapper></RootProvider>
       </body>
     </html>
   );

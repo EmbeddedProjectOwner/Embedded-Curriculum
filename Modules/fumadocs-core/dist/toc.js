@@ -24,8 +24,10 @@ function mergeRefs(...refs) {
 // src/utils/use-anchor-observer.ts
 import { useEffect, useState } from "react";
 function useAnchorObserver(watch, single) {
+
   const [activeAnchor, setActiveAnchor] = useState([]);
   useEffect(() => {
+
     let visible = [];
     const observer = new IntersectionObserver(
       (entries) => {
@@ -64,6 +66,7 @@ function useAnchorObserver(watch, single) {
       observer.disconnect();
     };
   }, [single, watch]);
+
   return single ? activeAnchor.slice(0, 1) : activeAnchor;
 }
 
@@ -95,27 +98,35 @@ function AnchorProvider({
 }
 var TOCItem = forwardRef(
   ({ onActiveChange, ...props }, ref) => {
-    const containerRef = useContext(ScrollContext);
-    const anchors = useActiveAnchors();
-    const anchorRef = useRef(null);
-    const mergedRef = mergeRefs(anchorRef, ref);
-    const isActive = anchors.includes(props.href.slice(1));
-    useOnChange(isActive, (v) => {
-      const element = anchorRef.current;
-      if (!element) return;
-      if (v && containerRef.current) {
-        scrollIntoView(element, {
-          behavior: "smooth",
-          block: "center",
-          inline: "center",
-          scrollMode: "always",
-          boundary: containerRef.current
-        });
-      }
-      onActiveChange?.(v);
-    });
-    return /* @__PURE__ */ jsx("a", { ref: mergedRef, "data-active": isActive, ...props, children: props.children });
-  }
+      const containerRef = useContext(ScrollContext);
+      const anchors = useActiveAnchors();
+      const anchorRef = useRef(null);
+      const mergedRef = mergeRefs(anchorRef, ref);
+      const isActive = anchors.includes(props.href.slice(1));
+      //console.log(isActive, props, "ref: " + ref, mergedRef)
+  
+    /*
+      useOnChange(isActive, (v) => {
+        console.log("EVVER")
+        const element = anchorRef.current;
+        if (!element) return;
+        if (v && containerRef.current) {
+          const newElement = document.getElementById((new URL(element.href).hash).split("#")[1])
+          console.log("newElement")
+          console.log("st")
+        scrollIntoView(newElement, {
+            behavior: "smooth",
+            block: "center",
+            inline: "center",
+            scrollMode: "always",
+            boundary: containerRef.current
+          });
+          console.log('stop')
+        }
+       onActiveChange?.(v);
+      });*/
+      return /* @__PURE__ */ jsx("a", { ref: mergedRef, "data-active": isActive, ...props, children: props.children });
+    }
 );
 TOCItem.displayName = "TOCItem";
 export {

@@ -9,7 +9,6 @@ const SearchDialog = dynamic(() => import('@/app/search'), {
   ssr: false,
 });
 
-
 export function Provider({
     children,
   }: {

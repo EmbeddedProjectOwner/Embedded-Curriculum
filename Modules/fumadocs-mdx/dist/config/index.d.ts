@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 import { F as FileInfo, G as GlobalConfig, M as MarkdownProps, B as BaseCollectionEntry } from '../types-BOXkLY5B.js';
 export { C as CollectionEntry, D as DefaultMDXOptions, b as GetOutput, I as InferSchema, a as InferSchemaType, g as getDefaultMDXOptions } from '../types-BOXkLY5B.js';
 import { z, ZodTypeAny } from 'zod';
@@ -50,7 +51,7 @@ declare const frontmatterSchema: z.ZodObject<{
     description: z.ZodOptional<z.ZodString>;
     icon: z.ZodOptional<z.ZodString>;
     full: z.ZodOptional<z.ZodBoolean>;
-    _openapi: z.ZodOptional<z.ZodObject<{}, "passthrough", z.ZodTypeAny, z.objectOutputType<{}, z.ZodTypeAny, "passthrough">, z.objectInputType<{}, z.ZodTypeAny, "passthrough">>>;
+    _openapi: z.ZodOptional<z.ZodObject<object, "passthrough", z.ZodTypeAny, z.objectOutputType<object, z.ZodTypeAny, "passthrough">, z.objectInputType<{}, z.ZodTypeAny, "passthrough">>>;
 }, "strip", z.ZodTypeAny, {
     title: string;
     icon?: string | undefined;

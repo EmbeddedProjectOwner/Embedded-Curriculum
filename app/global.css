@@ -12,29 +12,6 @@
     --fd-muted-foreground: 215.4 16.3% 46.9%;
   }
 
-.DocPage_frame { 
-    background-image: radial-gradient(49.63% 57.02% at 58.99% -7.2%, hsla(0, 0%, 41%, 0.127) 39.4%, transparent 100%)
-}
-
-.mdx_Icon {
-    flex-shrink: 0;
-    width: 2vw;
-    height: 3vh;
-    align-self: center;
-    inset: initial;
-}
-
-
-.LogoBackground>* {
-    filter: blur(20px);
-    background-color: rgba(255, 255, 255, 0.052);
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-
-.Logo {
-    filter: blur(0);
-}
 
 @layer base {
   :root {
@@ -115,4 +92,32 @@
   body {
     @apply bg-background text-foreground;
     }
+}
+
+body {
+  scroll-behavior: smooth;
+}
+
+.DocPage_frame { 
+  background-image: radial-gradient(49.63% 57.02% at 58.99% -7.2%, hsla(0, 0%, 41%, 0.127) 39.4%, transparent 100%)
+}
+
+.mdx_Icon {
+  flex-shrink: 0;
+  width: 2vw;
+  height: 3vh;
+  align-self: center;
+  inset: initial;
+}
+
+
+.LogoBackground>* {
+  filter: blur(20px);
+  background-color: rgba(255, 255, 255, 0.052);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.Logo {
+  filter: blur(0);
 }

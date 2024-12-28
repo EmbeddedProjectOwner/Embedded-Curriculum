@@ -1,5 +1,6 @@
-import * as DocComponents from "./doc"
-import * as ShadcnComponents from "./shadcn"
+import * as DocComponents_ from "./doc"
+import * as ShadcnComponents_ from "./shadcn"
 
-export {DocComponents, ShadcnComponents}
+export const DocComponents = DocComponents_
+export const ShadcnComponents = ShadcnComponents_
 
