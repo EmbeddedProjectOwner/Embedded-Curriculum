@@ -11,8 +11,7 @@ import * as Steps from "fumadocs-ui/components/steps";
 import * as TypeTable from "fumadocs-ui/components/type-table";
 import * as RootToggle from "fumadocs-ui/components/layout/root-toggle";
 import { AutoTypeTable } from "fumadocs-typescript/ui"
-import {InlineTOC as InlineTOC_} from "fumadocs-ui/components/inline-toc"
-import { InlineTOC } from "./wrap";
+import {InlineTOC} from "fumadocs-ui/components/inline-toc"
 
 export {
   Accordion,
@@ -22,7 +21,6 @@ export {
   Tab,
   Card,
   Files,
-  InlineTOC_,
   InlineTOC,
   Heading,
   ImageZoom,

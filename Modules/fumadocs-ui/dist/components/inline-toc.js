@@ -13,19 +13,18 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "./ui/collapsible";
-import { useEffect } from 'react';
+import { useLinkContext } from "../../../../app/Contexts/client/linkContext"
 
-
-export function InlineTOC({ items, defaultOpen, action}/* : InlineTocProps*/) {
+export function InlineTOC({ items, defaultOpen}/* : InlineTocProps*/) {
+  const { setTriggerLinks, TriggerLinks } = useLinkContext()
 
   return _jsxs(Collapsible, {
     defaultOpen: defaultOpen,
     onOpenChange: (isOpen) => {
       if (isOpen) {
-        console.log("OPEN",isOpen)
-        action()
+        setTriggerLinks(!TriggerLinks)
       } else {
-        action()
+        setTriggerLinks(!TriggerLinks)
       }
     },
     className: "not-prose rounded-lg border bg-fd-card text-fd-card-foreground",

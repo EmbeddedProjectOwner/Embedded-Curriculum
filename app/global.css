@@ -12,7 +12,6 @@
     --fd-muted-foreground: 215.4 16.3% 46.9%;
   }
 
-
 @layer base {
   :root {
         --background: 0 0% 100%;
@@ -27,7 +26,7 @@
         --secondary-foreground: 240 5.9% 10%;
         --muted: 240 4.8% 95.9%;
         --muted-foreground: 240 3.8% 46.1%;
-        --accent: 240 4.8% 95.9%;
+        --accent: 0 0% 69%;
         --accent-foreground: 240 5.9% 10%;
         --destructive: 0 84.2% 60.2%;
         --destructive-foreground: 0 0% 98%;
@@ -99,8 +98,12 @@ body {
 }
 
 .DocPage_frame { 
-  background-image: radial-gradient(49.63% 57.02% at 58.99% -7.2%, hsla(0, 0%, 41%, 0.127) 39.4%, transparent 100%)
+  background-image:  radial-gradient(49.63% 57.02% at 58.99% -7.2%, hsla(0, 0%, 18%, 0.218) 39.4%, transparent 100%);
+  @apply dark:bg-lightModeGradient;
+
 }
+
+
 
 .mdx_Icon {
   flex-shrink: 0;
@@ -110,6 +113,21 @@ body {
   inset: initial;
 }
 
+.attemptSameLine {
+  vertical-align: middle;
+  display: inline-flex;
+}
+
+.linkElement {
+  --tw-text-opacity: 1;
+  color: rgb(29 78 216 / var(--tw-text-opacity, 1));
+  text-decoration: underline;
+}
+
+.linkElement.noUnderline {
+  --tw-text-opacity: 1;
+  color: rgb(29 78 216 / var(--tw-text-opacity, 1));
+}
 
 .LogoBackground>* {
   filter: blur(20px);

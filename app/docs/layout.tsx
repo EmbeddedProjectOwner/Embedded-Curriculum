@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { Suspense, type ReactNode } from 'react';
 import { baseOptions } from '@/app/layout.config';
 import { source } from '../source';
 import {DocsLayout} from 'fumadocs-ui/layouts/notebook'
@@ -7,6 +7,7 @@ import { Slot } from '@radix-ui/react-slot';
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
+    <Suspense>
     <DocsLayout tree={source.pageTree} sidebar = {{tabs:
      {
         transform(option, node) {
@@ -32,5 +33,6 @@ export default function Layout({ children }: { children: ReactNode }) {
     }} {...baseOptions}>
       {children}
     </DocsLayout>
+    </Suspense>
   );
 }

@@ -1,3 +1,4 @@
+"use cache"
 /**import { source } from "@/lib/source";
 import {
   DocsPage,
@@ -63,6 +64,8 @@ import Image from "next/image";
 import LogoIcon from "../../images/EmbeddedLogoText.png"
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
+import { ScrollWrapper } from "@/app/scrollWrapper";
+import { cacheLife } from "next/dist/server/use-cache/cache-life";
 
 const LoaderFunc = () => (<><div className="space-y-6 p-6 max-w-4xl mx-auto">
   {/* Header Section */}
@@ -111,6 +114,11 @@ type RouteParams = { slug?: string[] };
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
 }) {
+  "use cache"
+
+  if (process.env.NODE_ENV == "development") {
+    cacheLife('seconds') // Remove for production
+  }
 
   const params = await props.params;
   const slugPath = params.slug?.join("/") || "";
@@ -125,22 +133,33 @@ export default async function Page(props: {
   return (
     <>
       <Suspense fallback={LoaderFunc()}>
-        <DocsPage
 
-          toc={page.data.toc}
-          tableOfContent={{ enabled: true, style: "clerk" }}
-          full={page.data.full}
-        >
-          <span className="DocPage_frame absolute inset-0 z-[-1] h-[64rem] max-h-screen overflow-hidden flex justify-center"><Image src={LogoIcon.src} width={1250} height={1250} className=" w-[25vw] aspect-[1690/931] opacity-25 mt-[10vh] sm:mt-[12vh] lg:mt-[8vh] xl:mt-[6vh] fixed m-auto" alt={""}></Image> </span>
+        <ScrollWrapper>
+          <Suspense>
+            <DocsPage
 
-          <DocsTitle>{page.data.title}</DocsTitle>
-          <DocsDescription>{page.data.description}</DocsDescription>
-          <DocsBody>
+              toc={page.data.toc}
+              tableOfContent={{ enabled: true, style: "clerk" }}
+              full={page.data.full}
+            >
+              <span className="DocPage_frame absolute inset-0 z-[-1] h-[64rem] max-h-screen overflow-hidden flex justify-center"><Image src={LogoIcon.src} width={1250} height={1250} className=" w-[25vw] aspect-[1690/931] opacity-25 mt-[10vh] sm:mt-[12vh] lg:mt-[8vh] xl:mt-[6vh] fixed m-auto" alt={""}></Image> </span>
+              <Suspense>
+                <DocsTitle>{page.data.title}</DocsTitle>
+              </Suspense>
+              <Suspense>
+                <DocsDescription>{page.data.description}</DocsDescription>
+              </Suspense>
+              <Suspense>
+                <DocsBody>
 
-            <MDX components={{ ...defaultMdxComponents }} />
-          </DocsBody>
-        </DocsPage>
+                  <MDX components={{ ...defaultMdxComponents }} />
+                </DocsBody>
+              </Suspense>
+            </DocsPage>
+          </Suspense>
+        </ScrollWrapper>
       </Suspense>
+
     </>
   );
 }

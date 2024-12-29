@@ -1,3 +1,6 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
+/* eslint-disable @typescript-eslint/no-require-imports */
+
 import { createPreset } from 'fumadocs-ui/tailwind-plugin';
 
 /** @type {import('tailwindcss').Config} */
@@ -95,7 +98,11 @@ export default {
     		animation: {
     			'accordion-down': 'accordion-down 0.2s ease-out',
     			'accordion-up': 'accordion-up 0.2s ease-out'
-    		}
+    		},
+			backgroundImage: {
+				'lightModeGradient': 'radial-gradient(49.63% 57.02% at 58.99% -7.2%, hsla(0, 0%, 41%, 0.3) 39.4%, transparent 100%)',
+				'darkModeGradient': 'radial-gradient(49.63% 57.02% at 58.99% -7.2%, hsla(0, 0%, 0%, 0.323) 39.4%, transparent 100%)'
+			}
     	}
     }
 };

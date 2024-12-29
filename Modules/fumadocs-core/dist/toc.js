@@ -98,11 +98,13 @@ function AnchorProvider({
 }
 var TOCItem = forwardRef(
   ({ onActiveChange, ...props }, ref) => {
+
       const containerRef = useContext(ScrollContext);
       const anchors = useActiveAnchors();
       const anchorRef = useRef(null);
       const mergedRef = mergeRefs(anchorRef, ref);
       const isActive = anchors.includes(props.href.slice(1));
+
       //console.log(isActive, props, "ref: " + ref, mergedRef)
   
     /*
@@ -123,8 +125,8 @@ var TOCItem = forwardRef(
           });
           console.log('stop')
         }
-       onActiveChange?.(v);
       });*/
+     
       return /* @__PURE__ */ jsx("a", { ref: mergedRef, "data-active": isActive, ...props, children: props.children });
     }
 );
