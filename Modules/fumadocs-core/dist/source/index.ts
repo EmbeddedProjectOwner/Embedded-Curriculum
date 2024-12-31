@@ -62,7 +62,7 @@ interface Source<Config extends SourceConfig> {
     files: VirtualFile[] | ((rootDir: string) => VirtualFile[]);
 }
 
-interface Page<Data = PageData> {
+export interface Page<Data = PageData> {
     file: FileInfo;
     slugs: string[];
     tags: string[];

@@ -1,4 +1,5 @@
-import { Page } from '@/Modules/fumadocs-core/dist/source/indexT';
+"use cache"
+import { Page } from '@/Modules/fumadocs-core/dist/source/index';
 import { FullSource, source } from '../../source';
 import { createFromSource } from 'fumadocs-core/search/server';
 import { source as sourceLib } from "@/lib/source"
@@ -14,6 +15,7 @@ type FullSearch = Array<{
 }>
 
 async function GetRequest(req: NextRequest) {
+  "use cache"
   if (req && req.method !== "POST") {
     return HandleSearch(req)
   } else {
@@ -22,7 +24,7 @@ async function GetRequest(req: NextRequest) {
 }
 
 async function HandleSearch(req: NextRequest) {
-
+  "use cache"
   const { GET } = createFromSource(sourceLib as FullSource, (page: Page) => (
     {
       title: page.data.title,
@@ -42,9 +44,9 @@ async function HandleSearch(req: NextRequest) {
 
   
 
-  const mockRequest = new NextRequest(NewURL) 
+  const mockRequest = new NextRequest(NewURL)
   
-  const fullSearch: FullSearch = await (await GET(mockRequest)).json()
+  const fullSearch: FullSearch = await (await GET(mockRequest as NextRequest | any)).json()
   const tagRequested = req.nextUrl.searchParams.get("tag") || null
   var endSearch: FullSearch = []
 
