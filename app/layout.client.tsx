@@ -20,7 +20,6 @@ export function Body({
 
 export function useMode(): string | undefined {
   const { slug } = useParams();
-  console.log(slug)
   return Array.isArray(slug) && slug.length > 0 ? slug[0] : undefined;
 }
 

@@ -1,0 +1,326 @@
+---
+title: Creating A Full Page
+slug: html/4
+---
+import { IoImage, IoLogoCss3, IoLogoHtml5, IoLogoMarkdown } from "react-icons/io5"
+import { DocComponents, ShadcnComponents, FullPageSeparator, ScrollToLink  } from "../../../../components/all"
+import Link from "next/link"
+import { Popup, PopupContent, PopupTrigger } from 'fumadocs-twoslash/ui';
+import { CodeBlock, Pre} from "fumadocs-ui/components/codeblock"
+import { HoverCardInline } from "../../../../components/ui/ease-hovercard"
+import InterestsPageDesign from "../../../../app/images/Course1/html/4/InterestsPageDesignLayout.png"
+import Image from "next/image"
+import { Tab, Tabs } from "fumadocs-ui/components/tabs"
+import defaultMdxComponents from 'fumadocs-ui/mdx';
+import HTML from "../../../../app/(HTMLOutputs)/LayoutHTML.tsx"
+
+
+## Creating The Page
+If you've forgotten the basics: 
+
+#### Need a refresh? 
+[Go back to the Quick steps from Lesson 1](./1#creating-html-file)
+
+
+## The Checklist:
+
+For most things in programming, it's far better to have a plan before you just start writing code.
+This not only, helps you organize your thoughts, but also helps you to get a general idea of what technologies you're probably going to use. Furthermore, I've found that having a plan before I start something helps stop me from getting side tracked. Side tracking isn't a bad thing, as long as it teaches you something; however too much side tracking can end up demotivating you or it ends up creating a more stressful situation for yourself.
+
+So lets come up with a basic plan of what our website needs, then we can go into details. 
+For this, I'll start with a beginner site, that will be unstyled, since we haven't learned CSS yet.
+<>
+<DocComponents.Steps.Steps>
+    <DocComponents.Steps.Step>
+        #### Title
+        First, we need a title for our page! I'm going to keep things basic, and call my page: `My Page`
+    </DocComponents.Steps.Step>
+    <DocComponents.Steps.Step>
+        #### Purpose
+        Next, we should probably know what our site is for. Since I don't want to type much, I'm going to center my page on: `My Interests`
+    </DocComponents.Steps.Step>
+    <DocComponents.Steps.Step>
+        #### Features
+        In every site, you want features that are going to make it either stand out, or function. This could be anything from a topbar to a login page, to a full on dashboard.
+        But I'm keeping this basic for now. so the features we'll have are:
+        - `A Header`
+            <br/>&nbsp;&nbsp;&nbsp;and
+        - `A footer`
+    </DocComponents.Steps.Step>
+    <DocComponents.Steps.Step>
+        #### Technologies
+       Websites often require multiple different tools, programming languages, and technologies to make. (A technology is pretty much like a tool or ultility that is used in development that isn't native to a programming language)
+
+       For now, in order to make this site we'll just be using:
+       - `HTML` &nbsp;<span className="attemptSameLine self-center"> <IoLogoHtml5/> </span> for the UI.
+       <br/>&nbsp;&
+       - `CSS` &nbsp;<span className="attemptSameLine self-center"> <IoLogoCss3/> </span> for the styling.
+
+    </DocComponents.Steps.Step>
+    <DocComponents.Steps.Step>
+        #### Layout
+      Last, but not least. The layout, how do we want our page to look, and where should the main components of our site be?
+      Well, I know we'll have a header, and footer, but lets go into more detail:<br/>
+      My site is about my interests, so each interest should probably have its own space. And I think that i'll include a title/sub-heading, a paragraph, and image for each interest. 
+      Now that we know what the main content will look like, we need to make a decision, how should we lay it out? Should the interests be stacked vertically, horizontally, random? I'm going to choose vertically. Since that'll give me the most room for each interest.
+
+      So here's what that may look like: (Please excuse my lazy mspaint skills)
+    <Image src={InterestsPageDesign.src} width={1500} height={1500} alt='page design'></Image>
+
+</DocComponents.Steps.Step>
+
+
+</DocComponents.Steps.Steps>
+</>
+
+<FullPageSeparator />
+
+    ## The Page
+
+    **So**, now lets go through those steps, creating the page. First though let me define any new elements that I'm using.
+    <>
+
+
+    ### New Elements
+    | Element Name | Description | Where | Main Properties |
+    | ------------ | ----------- | ----- | ------------- |
+    | <div id="titleElement" className="justify-self-center border-none rounded-sm ">`<title>{:html}`</div> | Sets the title of the page, and is visible on the tab      | Put in `<head>{:html}` | <>`innerText`</> |
+    | <div id="headerElement" className="justify-self-center border-none rounded-sm ">`<header>{:html}`</div> | A header, where naviagational links usually are, can also be a static header without naviagion. | Put in `<body>{:html}` | <>`innerText`</>
+    | <div id="strongElement" className="justify-self-center border-none rounded-sm ">`<strong>{:html}`</div> | A HTML element that bolds text. | Put in `<body>{:html}` | <>`innerText`</>
+    | <div id="divElement" className="justify-self-center border-none rounded-sm ">`<div>{:html}`</div> | A HTML element that acts as a container that holds and groups other elements. | Put in `<body>{:html}` | <>`children`</>
+    | <div id="hElement" className="justify-self-center border-none rounded-sm ">`<h1>, <h2>, <h3>, <h4>, <h5>, <h6>{:html}`</div> | A heading element, smaller the number typically = larger, more bold, text | Put in `<body>{:html}` | <>`innerText`</>
+    | <div id="footerElement" className="justify-self-center border-none rounded-sm ">`<footer>{:html}`</div> | A footer, that resides at the bottom of a container, containing misc information. | Put in `<body>{:html}` | <>`innerText`</>
+    
+    <Link href={"https://www.w3schools.com/html/html_elements.asp"}>Learn More</Link>
+    </>
+
+    <br/>
+    <br/>
+    <br/>
+
+    <> <DocComponents.Steps.Steps>
+        <DocComponents.Steps.Step>
+            #### Title
+            To set the tile of an HTML page, you use the: <ScrollToLink id={"titleElement"} >`<title>{:html}`</ScrollToLink> element.
+
+            Now I'm going to create my title element:
+            ```html
+            <title>My Page</title>
+            ```
+
+            So my HTML file will now look like this. [Remember to follow those steps](./1#creating-html-file)
+            ```html title="myHtmlPage.html"
+            <!DOCTYPE html>
+            <html>
+                <head>
+                    <title>My Page</title>
+                </head>
+
+                <body></body>
+            </html>
+            ```
+        </DocComponents.Steps.Step>
+        <DocComponents.Steps.Step>
+            #### Layout
+
+            Just to help you out. Here are a list of new HTML elements I'll be using:
+            - <ScrollToLink id={"titleElement"} >`<title>{:html}`</ScrollToLink>
+            - <ScrollToLink id={"headerElement"} >`<header>{:html}`</ScrollToLink>
+            - <ScrollToLink id={"strongElement"} >`<strong>{:html}`</ScrollToLink>
+            - <ScrollToLink id={"divElement"} >`<div>{:html}`</ScrollToLink>
+            - <ScrollToLink id={"hElement"} >`<h1>, <h2>, <h3>, <h4>, <h5>, <h6>{:html}`</ScrollToLink>
+            - <ScrollToLink id={"footerElement"} >`<footer>{:html}`</ScrollToLink>
+
+            <><DocComponents.Callout.Callout type="error">**Attention!** Mobile users, it's strongly recommended to view this page on a larger screen, output pages on this page are not responsive for devices with smaller screen widths. **If you do wish to use mobile, it is recommended to have your screen orientation on: `Landscape`**</DocComponents.Callout.Callout></>
+
+            So, we've established that our layout is going to be like this sketch:
+            <Image src={InterestsPageDesign.src} width={1500} height={1500} alt='page design'></Image>
+
+            So how would we start.
+
+            Well, I like to start with headers, and footers, because they help you to organize the page and also help you better understand how the site is going to come out.
+            So lets start with the header first. We'll write our header like this.
+            
+            <DocComponents.Callout.Callout>I'm using `style="..."{:ts}` just to show + position the actual element, because without styling, which we have not learned yet, you can't see anything but text. Formatting for this doesn't matter.</DocComponents.Callout.Callout>
+            ```html
+            <header style="
+                padding: 0.5%;
+                outline: solid;
+                height: 15%;
+                width: 100vw;"><h1>Welcome to My Page!</h1></header>
+            ```
+            Next we'll do the footer, and I'll also be adding  styling (`style="...":{:ts}`), but don't worry about knowing what that is currently. You'll learn it later, when we do styling (CSS).
+            ```html
+            <footer style="
+                outline: solid;
+                position: absolute;
+                bottom: 0px;
+                height: 10%;
+                left: 0px;
+                width: 100vw;">Made by: <strong>Me!</strong></footer>
+
+            ```
+
+        This will be the end result: (Yes I know it's ugly, we will change that in the next unit when we do CSS!)
+          <HTML optionNum={1} />
+
+        Now lets do the main content. I'm going to make one for now.
+
+        We know we need these elements for each interest:
+            - Heading
+            - Text
+            - and an Image
+        
+        We are going to organize this *(no this is not optional)*, because we'll have to style it. So we're going to use a `<div>{:html}` element, which acts as a container for the: Heading, Text, and Image.
+
+        So lets start with the heading:
+
+        We're also going to add an `id` property to the div, to help us later identify it.
+        Our heading, doesn't need to be huge, so I'll use an `<h3>{:html}` element, which is smaller than these elements: `<h1>{:html}` `<h2>{:html}`
+        
+        
+        <><DocComponents.Callout.Callout type="warn">**Make sure!** that you put this underneath header, and before footer.</DocComponents.Callout.Callout></>
+        
+        ```html
+        <div id="interests-container" style="padding: 2%; display: flex; flex-direction: column; gap: 10px">
+                    <div id="interest-1" style='display: grid; padding: 2%; outline: solid; gap: 5%; grid-template-areas: 
+                    "heading heading img"
+                    "text text img"
+                    "text text img"
+                    '>
+                       
+                        <div style="grid-area: heading; outline: solid; align-self: start; line-height: 0px; text-align: center;">
+                            <h3>Ice Hockey!</h3>
+                        </div>
+        
+                        <div style="grid-area: text; outline: solid;">
+                            <p>I'm really into Ice-Hockey, since I was born in Minnesota (the state of hockey). My favourite teams are the Minnesota Wild, and the Carolina Hurricanes.</p>
+                        </div>
+        
+                        <div style="grid-area: img; outline: solid;">
+                            <img alt="Image about hockey!" style="height: auto; width: 100%;" src="${MinnWildImage.src}"></img>
+                        </div>
+        
+                    </div>
+            </div>
+        ```
+
+        Here's how that'll look:
+            <HTML optionNum={2} />
+        
+        So I'm going to add on more interest (you can add more, it's just the scaling of this output will probably only fit 2).
+        And I'll go ahead and fill them out.
+
+        Here's my completed div for the interests:
+        ```html
+        <div id="interests-container" style="padding: 2%; display: flex; flex-direction: column; gap: 10px">
+            <div id="interest-1" style='display: grid; padding: 2%; outline: solid; gap: 5%; grid-template-areas: 
+                    "heading heading img"
+                    "text text img"
+                    "text text img"
+                    '>
+                       
+                <div style="grid-area: heading; outline: solid; align-self: start; line-height: 0px; text-align: center;">
+                    <h3>Ice Hockey!</h3>
+                </div>
+            
+                <div style="grid-area: text; outline: solid;">
+                    <p>I'm really into Ice-Hockey, since I was born in Minnesota (the state of hockey). My favourite teams are the Minnesota Wild, and the Carolina Hurricanes.</p>
+                </div>
+            
+                <div style="grid-area: img; outline: solid;">
+                    <img alt="Image about hockey!" style="height: auto; width: 100%;" src="/pathToImage"></img>
+                </div>
+            </div>
+
+            <div id="interest-2" style='display: grid; padding: 2%; outline: solid; gap: 5%; grid-template-areas: 
+                    "img heading heading "
+                    "img text text"
+                    "img text text"
+                    '>
+                       
+                <div style="grid-area: heading; outline: solid; align-self: start; line-height: 0px; text-align: center;">
+                    <h3>Technology</h3>
+                </div>
+        
+                <div style="grid-area: text; outline: solid;">
+                    <p>I like pretty much anything tech. I enjoy repairing, and assembling hardware, notably, laptops. I'm really passionate about programming and, I work on the Audio/Video team for my Church and I love seeing new things in technology.</p>
+                </div>
+        
+                <div style="grid-area: img; outline: solid; width: 80%;">
+                    <img alt="Image about Technology!" style="max-height: 160px ; width: 100%;" src="/pathToImage"></img>
+                </div>
+        
+            </div>
+        </div>
+        ```
+            <HTML optionNum={3} />
+
+       
+
+       So here's the completed HTML Page, incase you're lost:
+       (Once again, the styling we have not gone over yet, we will do that next unit.)
+        ```html title="myHtmlPage.html"
+        <!DOCTYPE html>
+        <html>
+            <head>
+                <title>My Page</title>
+            </head>
+
+            <body style="margin: 0">
+                
+                <header style="padding: 0.5%; outline: solid; height: 15%; left: 0px; width: 100vw; "><h1>Welcome to My Page!<h1/></header>
+
+                <div id="interests-container" style="padding: 2%; display: flex; flex-direction: column; gap: 10px">
+                    <div id="interest-1" style='display: grid; padding: 2%; outline: solid; gap: 5%; grid-template-areas: 
+                            "heading heading img"
+                            "text text img"
+                            "text text img"
+                            '>
+                            
+                        <div style="grid-area: heading; outline: solid; align-self: start; line-height: 0px; text-align: center;">
+                            <h3>Ice Hockey!</h3>
+                        </div>
+                    
+                        <div style="grid-area: text; outline: solid;">
+                            <p>I'm really into Ice-Hockey, since I was born in Minnesota (the state of hockey). My favourite teams are the Minnesota Wild, and the Carolina Hurricanes.</p>
+                        </div>
+                    
+                        <div style="grid-area: img; outline: solid;">
+                            <img alt="Image about hockey!" style="height: auto; width: 100%;" src="/pathToImage"></img>
+                        </div>
+                    </div>
+
+                    <div id="interest-2" style='display: grid; padding: 2%; outline: solid; gap: 5%; grid-template-areas: 
+                            "img heading heading "
+                            "img text text"
+                            "img text text"
+                            '>
+                            
+                        <div style="grid-area: heading; outline: solid; align-self: start; line-height: 0px; text-align: center;">
+                            <h3>Technology</h3>
+                        </div>
+                
+                        <div style="grid-area: text; outline: solid;">
+                            <p>I like pretty much anything tech. I enjoy repairing, and assembling hardware, notably, laptops. I'm really passionate about programming and, I work on the Audio/Video team for my Church and I love seeing new things in technology.</p>
+                        </div>
+                
+                        <div style="grid-area: img; outline: solid; width: 80%;">
+                            <img alt="Image about Technology!" style="max-height: 160px ; width: 100%;" src="/pathToImage"></img>
+                        </div>
+                    </div>
+                </div>
+
+                <footer style="outline: solid; position: absolute; bottom: 0px; height: 10%; left: 0px; width: 100vw;">Made by: <strong>Me!</strong></footer>
+
+            </body>
+        </html>
+        ```
+        </DocComponents.Steps.Step>
+    </DocComponents.Steps.Steps></>
+
+## What Next?
+
+Obviously we're not done. But were going to need to know how to style pages. So that's the next thing!
+
+**Unit 2 | CSS (Styling)**

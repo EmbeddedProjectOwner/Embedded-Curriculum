@@ -150,9 +150,9 @@ export default async function Page(props: {
                 <DocsDescription>{page.data.description}</DocsDescription>
               </Suspense>
               <Suspense>
-                <DocsBody>
+                <DocsBody suppressHydrationWarning>
 
-                  <MDX components={{ ...defaultMdxComponents }} />
+                  <MDX  suppressHydrationWarning components={{ ...defaultMdxComponents }} />
                 </DocsBody>
               </Suspense>
             </DocsPage>

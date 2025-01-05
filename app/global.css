@@ -113,6 +113,10 @@ body {
   inset: initial;
 }
 
+.secondary {
+  color: var(--muted-foreground);
+}
+
 .attemptSameLine {
   vertical-align: middle;
   display: inline-flex;

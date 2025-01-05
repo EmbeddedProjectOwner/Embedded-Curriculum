@@ -56,11 +56,9 @@
     "vfile": "^6.0.3",
     "webpack": "^5.96.1",
     "eslint-config-custom": "0.0.0",
-    "tsconfig": "7.0.0",
-    "fumadocs-core": "14.5.3"
+    "tsconfig": "7.0.0"
   },
   "peerDependencies": {
-    "fumadocs-core": "^14.0.0",
     "next": "14.x.x || 15.x.x"
   },
   "publishConfig": {

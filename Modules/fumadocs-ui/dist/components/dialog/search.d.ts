@@ -9,7 +9,7 @@ export interface SharedProps {
      */
     links?: SearchLink[];
 }
-type SearchDialogProps = SharedProps & SearchValueProps & Omit<SearchResultProps, 'items'> & {
+export type SearchDialogProps = SharedProps & SearchValueProps & Omit<SearchResultProps, 'items'> & {
     results: SortedResult[] | 'empty';
     footer?: ReactNode;
 };

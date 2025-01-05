@@ -34,6 +34,7 @@ interface UseDocsSearch {
         data?: SortedResult[] | 'empty';
         error?: Error;
     };
+    run: () => Promise<any>
 }
 type Client = ({
     type: 'fetch';

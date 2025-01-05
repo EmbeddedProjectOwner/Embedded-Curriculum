@@ -30,14 +30,15 @@ export function customLoader(options: CustomLoaderOptions) {
         ...baseLoader,
         getPage(slug: string[] | undefined) {
             const page = baseLoader.getPage(slug);
+            
             if (page && options.transform) {
                 page.data.meta = options.transform(page.data.meta as CustomMeta);
             }
             return page;
         },
-        
+        pageTree: baseLoader.pageTree,
         generateParams() {
-            const params = baseLoader.generateParams();
+            const params : any = baseLoader.generateParams();
 
             if (options.transform) {
                 return params.map((param: { slug: CustomMeta; }) => (

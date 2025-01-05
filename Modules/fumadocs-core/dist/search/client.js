@@ -36,6 +36,29 @@ function useDocsSearch(client, locale, tag, delayMs = 100, allowEmpty = false, k
   const cacheKey = useMemo(() => {
     return key ?? JSON.stringify([client.type, debouncedValue, locale, tag]);
   }, [client.type, debouncedValue, locale, tag, key]);
+
+  async function run() {
+    if (debouncedValue.length === 0 && !allowEmpty) return "empty";
+    if (client.type === "fetch") {
+      const { fetchDocs } = await import("../fetch-4K7QOPFM.js");
+      return fetchDocs(debouncedValue, locale, tag, client);
+    }
+    if (client.type === "algolia") {
+      const { index, type: _, ...rest } = client;
+      const { searchDocs } = await import("../algolia-NTWLS6J3.js");
+      return searchDocs(index, debouncedValue, tag, rest);
+    }
+    if (client.type === "orama-cloud") {
+      const { searchDocs } = await import("../orama-cloud-QNHGN6SO.js");
+      return searchDocs(debouncedValue, tag, client);
+    }
+    const { createStaticClient } = await import("../static-5GPJ7RUY.js");
+    if (!staticClient) staticClient = createStaticClient(client);
+    const res = staticClient.search(debouncedValue, locale, tag);
+
+    return res
+  }
+
   useOnChange(cacheKey, () => {
     const cached = cache.get(cacheKey);
     if (onStart.current) {
@@ -53,25 +76,7 @@ function useDocsSearch(client, locale, tag, delayMs = 100, allowEmpty = false, k
     onStart.current = () => {
       interrupt = true;
     };
-    async function run() {
-      if (debouncedValue.length === 0 && !allowEmpty) return "empty";
-      if (client.type === "fetch") {
-        const { fetchDocs } = await import("../fetch-4K7QOPFM.js");
-        return fetchDocs(debouncedValue, locale, tag, client);
-      }
-      if (client.type === "algolia") {
-        const { index, type: _, ...rest } = client;
-        const { searchDocs } = await import("../algolia-NTWLS6J3.js");
-        return searchDocs(index, debouncedValue, tag, rest);
-      }
-      if (client.type === "orama-cloud") {
-        const { searchDocs } = await import("../orama-cloud-QNHGN6SO.js");
-        return searchDocs(debouncedValue, tag, client);
-      }
-      const { createStaticClient } = await import("../static-5GPJ7RUY.js");
-      if (!staticClient) staticClient = createStaticClient(client);
-      return staticClient.search(debouncedValue, locale, tag);
-    }
+   
     void run().then((res) => {
       cache.set(cacheKey, res);
       if (interrupt) return;
@@ -83,7 +88,9 @@ function useDocsSearch(client, locale, tag, delayMs = 100, allowEmpty = false, k
       setIsLoading(false);
     });
   });
-  return { search, setSearch, query: { isLoading, data: results, error } };
+  
+ 
+  return { search, setSearch, query: { isLoading, data: results, error }};
 }
 export {
   useDocsSearch

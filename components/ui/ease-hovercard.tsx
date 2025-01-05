@@ -1,20 +1,34 @@
 import React from "react";
 import { HoverCard } from "../shadcn";
-
 interface ReactProps {
-    Content: typeof HoverCard.HoverCardContent.propTypes,
-    Trigger: typeof HoverCard.HoverCardTrigger.propTypes
+    Props: {
+        Content: React.ComponentProps<typeof HoverCard.HoverCardContent>,
+        Trigger: React.ComponentProps<typeof HoverCard.HoverCardTrigger>
+    }
 }
-interface HoverCardProps {
-    Trigger: React.ReactNode,
-    Content: React.ReactNode
-    Props: {}
+interface HoverCardProps extends ReactProps {
+    Trigger: React.ReactNode | "children",
+    Content: React.ReactNode | string,
+    children: React.ReactNode,
 }
 
-export function HoverCardInline(InlineProps: HoverCardProps) {
+export function HoverCardInline({ Props, Trigger, Content, children }: HoverCardProps) {
+    if (!Props) {
+        Props = {
+            Content: {},
+            Trigger: {}
+        }
+    }
     return (
         <HoverCard.HoverCard>
-            <HoverCard.HoverCardContent {...InlineProps.Props.Cont}></HoverCard.HoverCardContent>
+            <HoverCard.HoverCardTrigger {...(Props.Trigger ? Props.Trigger : {})} className="underline">{
+                (Trigger ?
+                    (Trigger !== "children") ? Trigger : children
+                    : "__Hover Over Me!__")
+            }
+            </HoverCard.HoverCardTrigger>
+            <HoverCard.HoverCardContent className="text-sm min-w-[20vw]" {...(Props.Content ? Props.Content : {})}>{Content ? (Content) : children}
+            </HoverCard.HoverCardContent>
         </HoverCard.HoverCard>
     )
 }

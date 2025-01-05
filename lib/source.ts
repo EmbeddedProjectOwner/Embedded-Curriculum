@@ -1,6 +1,6 @@
 import { createMDXSource } from 'fumadocs-mdx';
 import type { InferMetaType, InferPageType } from 'fumadocs-core/source';
-import { loader } from 'fumadocs-core/source';
+import { createPageTreeBuilder, loader } from 'fumadocs-core/source';
 import { icons } from 'lucide-react';
 import { createElement } from 'react';
 import { IconContainer } from '@/components/ui/icon';
@@ -15,8 +15,10 @@ export const source = loader({
       });
   },
   source: createMDXSource(docs, meta),
- 
+  
 });
+
+
 
 
 

@@ -1,0 +1,100 @@
+---
+title: HTML Attributes
+slug: html/2
+---
+
+import { IoImage, IoLogoHtml5, IoLogoMarkdown } from "react-icons/io5"
+import { DocComponents, ShadcnComponents, FullPageSeparator  } from "../../../../components/all"
+import Link from "next/link"
+import { CodeBlock, Pre} from "fumadocs-ui/components/codeblock"
+import { HoverCardInline } from "../../../../components/ui/ease-hovercard"
+import Codesnippets from "./(MDXSnippets)/incorrectCode.mdx"
+
+## HTML Attributes/Properties
+
+Before we can start learning how to use new HTML tags, we need to understand what an HTML attribute is.
+
+HTML attributes (I'm going to refer to them as properties, in HTML it's interchangable). Properties allow you to pass information to a HTML tag. Each HTML tag uses properties differently; however they share a lot in common. 
+
+## Syntax for an Attribute
+
+It's really simple. Inside of the **First** tag, or openning HTML tag, of an element, you can set the value of an element's properties. 
+Here's an example. Using the element: `p` (This stands for paragraph, aka just text.), the property/attribute: `name`
+
+```html
+<p name="myname"></p>
+```
+Properties can be set by simply, typing their name, and then adding an equal sign `=`, followed by the value. In this case, the value is a string (text), so I used double quotes: "",
+What you use to set the property depends on what the value is. For strings you can use:
+- Double quotes `""`
+- Single quote `''`
+- Or, a backtick <code>&#96;</code>
+
+*There are other value types too. Like an array  `[]`, Or Object `{}`. However you don't need to understand or know this currently.*
+
+Just understand, that to set an attribute to a text (string) value, you can use any of these: `""`, `''`, <code>&#96;</code>
+<DocComponents.Accordion.Accordions>
+    <DocComponents.Accordion.Accordion title="Why are there 3 ways to express a string?">
+        Great Question!
+
+        Because of something called: 'An escape character'. 
+        Essentially, characters that are pared together to represent either a type, or beginning/end, have escape rules.
+        
+        Escaping, means ending, an escape character allows for something to end. 
+        These 'pared' characters, like `''{:js}`, `""{:js}`, <code>&#96;</code>, `{}{:js}`, `[]{:js}`, `>{:html}`,`< {:html}` can be 'escaped' by either their corresponding (opposite) character, ex: `" and "{:js}`, `{ and }{:js}`, **or** they can be escaped by an escape character.
+        
+        Some escape characters:
+        - Forward slash `/{:js}`
+        - Backslash `\{:js}`
+        (There's also something called, escape sequences too.)
+
+        What that means is:
+        If I have a string, that uses single quotes:
+        <Codesnippets />
+
+    </DocComponents.Accordion.Accordion>
+    <DocComponents.Accordion.Accordion title="Want to learn about escape expressions?">
+    [Check out the W3Schools JS strings](https://www.w3schools.com/js/js_strings.asp)
+    </DocComponents.Accordion.Accordion>
+</DocComponents.Accordion.Accordions>
+
+
+<FullPageSeparator />
+## Attribute Categories
+I'm going to split up the properties into a few categories so we can group them, this will help us understand what a majority of them do.
+
+<DocComponents.Callout.Callout type="info">**This doesn't cover all HTML properties**, take this with a grain of salt. This is to help organize them to better allow you to understand what they do.</DocComponents.Callout.Callout>
+
+*Different elements have different properties, they will not always be the same.*
+<>
+* ### Identifiers
+    * **Includes** properties like:
+        * `id` - (Identifier/Identification) is referenced by doing: `#[id]`
+        * `class` - The class or classes associated with the element. Reference by doing: `.[classname]`
+        * `name` - The name of the element.
+        * `key` - Used to uniquely identify elements in a table/list.
+        * `element name (TagName)` (This is inferred from the tag of the element)
+
+**Identifiers** are used to, like it sounds, identify an specific element or elements.
+* ### Events & States
+    * **Includes** properties like:
+        * `onClick` - An event that fires when an element is clicked
+        * `onFocus` - An event that fires when an element is focused on (click, drag, etc)
+        * `onChange` - An event that fires when an element or its properties change.
+        * `onHover` - An event that fires when an element is hoverred over by a mouse.
+        * any/most things with 'on' - Represents an event
+        * anything that starts with `data-` - Represents a property associated with a function/event.
+
+**Events & States** are functions, or information associated with interactions that occur with the element. (This will be elaborated more on the JS unit.)
+* ### Properties
+    *  **Includes** properties like:
+        * `style` - Used to style a element with CSS.
+        * `children`- Refers to the elements underneath (Elements inbetween the element's opening and closing tag `<element>(children)</element>{:html}`)
+        * `href` - (Hypertext Reference), aka a link or directory. Ex: https://google.com or ./myDirectory
+        * `src` - (Source), essentially the same thing as href, though it is for certain elements. Ex: https://google.com or ./myDirectory 
+        * `type` - Sometimes different depending on the element, but it typically represents a varient or type of the element.
+        * etc - Most HTML properties all under this category.
+
+**Properties** are used for a wide variety of different things, each one is typically different.
+</>
+<DocComponents.Callout.Callout type="warn">The commonly accepted format for typing properties is all lowercase, try to keep to this. </DocComponents.Callout.Callout>

@@ -33,7 +33,7 @@ import { IconContainer } from "@/components/ui/icon";
 import { meta, docs } from "@/.source";
 import { customLoader } from "./sourceLoader";
 import { source as sourceLib } from "@/lib/source";
-
+import { createPageTreeBuilder, FileSystem_Storage, loader } from "@/Modules/fumadocs-core/dist/source";
 type CustomMeta = {
   slug?: string;
   path?: string;
@@ -50,7 +50,6 @@ const transform : TransformOpt = (meta: CustomMeta) => {
   return meta;
 }
 
-
 export const source = customLoader({
   baseUrl: "/docs",
   source: createMDXSource(docs, meta),
@@ -62,9 +61,8 @@ export const source = customLoader({
   },
 
   
-  transform: transform
+  transform: transform,
   
 });
-
 
 export type FullSource = typeof source & typeof sourceLib

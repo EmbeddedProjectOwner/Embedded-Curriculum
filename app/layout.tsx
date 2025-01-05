@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import type { ReactNode } from 'react';
 import CustomDialog from './search';
 import { ScrollWrapper } from './scrollWrapper';
+import 'fumadocs-twoslash/twoslash.css';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -23,9 +24,8 @@ export default async function Layout({ children }: { children: ReactNode }) {
         search={{
           SearchDialog: await customSearchDialog(),
           enabled: true,
-          preload: true,
           options: {
-            type: "fetch",
+            type: "static",
             defaultTag: "Course1",
             tags: [
               {
@@ -37,6 +37,7 @@ export default async function Layout({ children }: { children: ReactNode }) {
                 value: 'ui',
               },
             ],
+
           },
         }}><ScrollWrapper>{children}</ScrollWrapper></RootProvider>
       </body>

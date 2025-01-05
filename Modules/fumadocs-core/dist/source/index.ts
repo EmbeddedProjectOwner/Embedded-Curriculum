@@ -67,6 +67,7 @@ export interface Page<Data = PageData> {
     slugs: string[];
     tags: string[];
     url: string;
+    rawSlug: string[],
     data: Data;
     locale?: string | undefined;
 }
@@ -89,7 +90,13 @@ interface LoaderOutput<Config extends LoaderConfig> {
     getPage: (slugs: string[] | undefined, language?: string) => Page<Config['source']['pageData']> | undefined;
     getNodePage: (node: Item) => Page<Config['source']['pageData']> | undefined;
     getNodeMeta: (node: Folder$1) => Meta<Config['source']['metaData']> | undefined;
-    generateParams: <TSlug extends string = 'slug', TLang extends string = 'lang'>(slug?: TSlug, lang?: TLang) => (Record<TSlug, string[]> & Record<TLang, string>)[];
+    generateParams: <TSlug extends string = 'slug', TLang extends string = 'lang'>(slug?: TSlug, lang?: TLang) => { [x: string]: any};
+    getWalker: () => {
+        i18n: Map<string, Map<string, Page<PageData>>>;
+        pathToPage: Map<string, any>;
+        pathToMeta: Map<string, any>;
+        rawPages: Map<string, Page<PageData>>;
+    }
 }
 
 
@@ -107,6 +114,7 @@ interface MetaData {
 }
 
 interface PageData {
+    meta: { slug?: string; path?: string; } & Record<string, any>;
     structuredData: StructuredData;
     icon?: string | undefined;
     title: string;
@@ -254,7 +262,7 @@ class Storage {
     }
 }
 
-function buildAll(nodes: File[], ctx: any, skipIndex: boolean): any[] {
+function buildAll(nodes: File[], ctx: any, skipIndex: boolean) {
     const output: any[] = [];
     const folders: any[] = [];
 
@@ -277,7 +285,7 @@ function buildAll(nodes: File[], ctx: any, skipIndex: boolean): any[] {
     return [...output, ...folders];
 }
 
-function resolveFolderItem(folder: Folder, item: string, ctx: any, addedNodePaths: Set<string>): any[] {
+function resolveFolderItem(folder: Folder, item: string, ctx: any, addedNodePaths: Set<string>) {
     if (item === REST_NODE) return [REST_NODE];
 
     const separatorMatch = separator.exec(item);
@@ -322,7 +330,7 @@ function resolveFolderItem(folder: Folder, item: string, ctx: any, addedNodePath
     return [buildFileNode(itemNode, ctx)];
 }
 
-function buildFolderNode(folder: Folder, isGlobalRoot: boolean, ctx: any): any {
+function buildFolderNode(folder: Folder, isGlobalRoot: boolean, ctx: any)  {
     const metaPath = resolvePath(folder.file.path, "meta");
     let meta = findLocalizedFile(metaPath, "meta", ctx) ?? ctx.storage.read(metaPath, "meta");
 
@@ -358,7 +366,7 @@ function buildFolderNode(folder: Folder, isGlobalRoot: boolean, ctx: any): any {
     return removeUndefined(ctx.options.attachFolder?.(node, folder, meta) ?? node);
 }
 
-function buildFileNode(file: PageFile, ctx: any): any {
+function buildFileNode(file: PageFile, ctx: any)  {
     const localized = findLocalizedFile(file.file.flattenedPath, "page", ctx) ?? file;
     const item = {
         type: "page",
@@ -376,7 +384,7 @@ function buildFileNode(file: PageFile, ctx: any): any {
  * @param {Object} ctx - Context object containing storage and additional options.
  * @returns {Object} - The tree structure with the root folder's name and children.
  */
-function build(ctx: any): any {
+function build(ctx: any)  {
     const root = ctx.storage.root();
     const folder = buildFolderNode(root, true, ctx);
 
@@ -474,16 +482,18 @@ function loadFiles(files: VirtualFile[], options: LoadOptions): Storage {
 /**
  * Creates a page tree builder with methods for building and internationalized (i18n) tree structures.
  */
-function createPageTreeBuilder(): any {
+function createPageTreeBuilder()  {
     return {
-        build(options: BuildPageTreeOptions): any {
+        build(options: BuildPageTreeOptions)  {
             return build({
                 options,
                 builder: this,
                 storage: options.storage
             });
         },
-        buildI18n({ i18n, ...options }: { i18n: I18nConfig; }): Record<string, any> {
+        buildI18n({ i18n, ...options }: any): Record<string, any> {
+            // Type checking
+            i18n = i18n as I18nConfig
             const entries = i18n.languages.map((lang: string) => {
                 const tree = build({
                     lang,
@@ -500,9 +510,10 @@ function createPageTreeBuilder(): any {
     };
 }
 
-function indexPages(storage: Storage, getUrl: UrlFn, languages: string[] = []): any {
-    const i18n = new Map<string, Map<string, any>>();
+function indexPages(storage: Storage, getUrl: UrlFn, languages: string[] = []) {
+    const i18n = new Map<string, Map<string, Page>>();
     const pages = new Map<string, any>();
+    const rawPages = new Map<string, any>();
     const metas = new Map<string, any>();
     const defaultMap = new Map<string, any>();
     i18n.set("", defaultMap);
@@ -513,10 +524,10 @@ function indexPages(storage: Storage, getUrl: UrlFn, languages: string[] = []): 
         if (file.format === "page") {
             const page = fileToPage(file, getUrl, file.file.locale);
             pages.set(file.file.path, page);
-
             if (file.file.locale) continue;
 
             defaultMap.set(page.slugs.join("/"), page);
+            rawPages.set(page.rawSlug.join("/"), page);
 
             for (const lang of languages) {
                 const langMap = i18n.get(lang) ?? new Map<string, any>();
@@ -527,11 +538,12 @@ function indexPages(storage: Storage, getUrl: UrlFn, languages: string[] = []): 
             }
         }
     }
-
+    
     return {
         i18n,
         pathToPage: pages,
         pathToMeta: metas,
+        rawPages: rawPages,
     };
 }
 
@@ -563,11 +575,11 @@ function getSlugs(info: FileInfo): string[] {
     );
 }
 
-function loader<Options extends LoaderOptions>(options: Options): any {
+function loader<Options extends LoaderOptions>(options: Options) {
     return createOutput(options);
 }
 
-function createOutput(options: LoaderOptions): any {
+function createOutput(options: LoaderOptions) : LoaderOutput<LoaderConfig>{
     const {
         source,
         rootDir = "",
@@ -602,7 +614,7 @@ function createOutput(options: LoaderOptions): any {
                 getUrl,
                 i18n: options.i18n,
                 ...options.pageTree,
-            });
+            }) as Root;
 
     return {
         _i18n: options.i18n,
@@ -622,7 +634,7 @@ function createOutput(options: LoaderOptions): any {
             return list;
         },
         getPage(slugs: string[] = [], language = options.i18n?.defaultLanguage ?? "") {
-            return walker.i18n.get(language)?.get(slugs.join("/"));
+            return walker.i18n.get(language)?.get(slugs.join("/")) ?? walker.rawPages.get(slugs.join("/"));
         },
         getNodeMeta(node: any) {
             if (!node.$ref?.metaFile) return;
@@ -645,6 +657,9 @@ function createOutput(options: LoaderOptions): any {
                 [slug ?? "slug"]: page.slugs,
             }));
         },
+        getWalker() : typeof walker {
+            return walker
+        }
     };
 }
 
@@ -660,6 +675,7 @@ function fileToPage(file: PageFile, getUrl: UrlFn, locale: string | undefined): 
         file: file.file,
         url: getUrl(file.data.slugs, locale),
         slugs: file.data.slugs,
+        rawSlug: file.file.flattenedPath.split('/'),
         data: file.data.data,
         tags: [],
         locale,
@@ -707,6 +723,7 @@ export {
     loadFiles,
     loader,
     parseFilePath,
+    indexPages,
     parseFolderPath, type LoaderOptions,
 };
 

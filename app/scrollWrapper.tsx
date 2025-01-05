@@ -16,35 +16,41 @@ export function ScrollWrapper({ children }: { children: ReactNode }) {
 
     useEffect(() => {
         document.querySelectorAll("a").forEach((element_) => {
-            const element = element_ as HTMLAnchorElement_
-            if (element.href.includes("://") && new URL(element.href)) {
-            var elementURL = new URL(element.href)
-
-            if (elementURL.hash !== '' && elementURL.pathname == currentPath && !element._smoothScroll) {
-                element.addEventListener("click", (ev) => {
-                    element._smoothScroll = true
-
-                    ev.preventDefault();
-                    router.replace(element.href, {scroll: false}) 
-
-
-                    const hrefDiv = document.getElementById((new URL(element.href).hash).split("#")[1])
-                    if (hrefDiv) {
-                        scrollIntoView(hrefDiv, {
-                            behavior: "smooth",
-                            block: "start",
-                            inline: "center",
-                            scrollMode: "always",
-                            boundary: document.getElementById("nd-toc")
-                        });
-
-                    }
-                    
-                })
+          const element = element_ as HTMLAnchorElement_;
+      
+          // Check if the element already has the _smoothScroll flag to avoid duplicate listeners
+          if (
+            element.href.includes("://") &&
+            new URL(element.href) &&
+            !element._smoothScroll
+          ) {
+            const elementURL = new URL(element.href);
+      
+            if (elementURL.hash !== "" && elementURL.pathname === currentPath) {
+              element._smoothScroll = true; // Set a flag to indicate listener is added
+      
+              element.addEventListener("click", (ev) => {
+                ev.preventDefault();
+      
+                const hrefDiv = document.getElementById(
+                  elementURL.hash.split("#")[1]
+                );
+                if (hrefDiv) {
+                  scrollIntoView(hrefDiv, {
+                    behavior: "smooth",
+                    block: "start",
+                    inline: "center",
+                    scrollMode: "always",
+                    boundary: document.getElementById("nd-toc"),
+                  });
+      
+                  router.replace(element.href, { scroll: false }); // Runs only when the event is triggered
+                }
+              });
             }
-    }})
-    }, [TriggerLinks]);
-
+          }
+        });
+      }, [TriggerLinks, currentPath]); // Dependencies: TriggerLinks or currentPath changes
     useEffect(() => {
         setTriggerLinks((previousState) => !previousState)
     }, [children])

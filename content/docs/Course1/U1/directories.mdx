@@ -1,0 +1,104 @@
+---
+title: File Paths (Directories)
+slug: html/3
+---
+
+import { IoImage, IoLogoHtml5, IoLogoMarkdown } from "react-icons/io5"
+import { DocComponents, ShadcnComponents, FullPageSeparator  } from "../../../../components/all"
+import Link from "next/link"
+import { CodeBlock, Pre} from "fumadocs-ui/components/codeblock"
+import { HoverCardInline } from "../../../../components/ui/ease-hovercard"
+
+## Files/Directories
+A file path, is referred to as a directory (dir). 
+
+There are two types of directories in a typical file system:
+
+
+- ### Absolute Directories
+Absolute Directories are `Complete`, they are the most specific way of defining a file path within a filesystem.
+
+Here's an example. (Using a Windows computer directory)
+
+`C:\Users\User\ProjectsDirectory\Embedded-Curriculum\todo.md`
+In this example:
+- Root Filesystem: `C:\ (The C: drive, or boot drive)`
+- <span className="attemptSameLine">File we want to reference: todo.md &nbsp;<IoLogoMarkdown className="self-center"/> </span>
+<>
+    <DocComponents.Files.Files>
+        <DocComponents.Files.Folder defaultOpen name="C:/">
+            <DocComponents.Files.Folder defaultOpen name="Users/">
+                <DocComponents.Files.Folder defaultOpen name="User/">
+                    <DocComponents.Files.Folder defaultOpen name="ProjectsDirectory/">
+                        <DocComponents.Files.Folder defaultOpen name="Embedded-Curriculum/">
+                            <DocComponents.Files.File icon={<IoLogoMarkdown/>} name="todo.md"/>
+                        </DocComponents.Files.Folder>
+                    </DocComponents.Files.Folder>
+                </DocComponents.Files.Folder>
+            </DocComponents.Files.Folder>
+        </DocComponents.Files.Folder>
+    </DocComponents.Files.Files>
+</>
+- ### Relative Directories
+
+A relative directory is 'relative', to the base file system. What this means is, the file path is relative to the file that refrences it.
+
+Relative directories use a `.` or `..` or sometimes custom aliases to define the relative directory.
+
+Using `./` will define the parent of whatever file you're in.
+So lets say we have this setup, but this time we have:
+- Filesystem (relative to <span className="attemptSameLine">todo.md &nbsp;<IoLogoMarkdown className="self-center"/></span>): `C:/Users/User/ProjectsDirectory/Embedded-Curriculum` defined as (`./` from todo.md)
+- <span className="attemptSameLine">File we're trying to reference EmbeddedIcon.png &nbsp;<IoImage className="self-center"/></span>
+<><DocComponents.Files.Files>
+        <DocComponents.Files.Folder defaultOpen disabled name="C:">
+            <DocComponents.Files.Folder defaultOpen disabled name="Users">
+                <DocComponents.Files.Folder defaultOpen disabled name="User">
+                    <DocComponents.Files.Folder defaultOpen disabled name="ProjectsDirectory">
+                        <DocComponents.Files.Folder defaultOpen disabled name="Embedded-Curriculum">
+                            <DocComponents.Files.Folder defaultOpen name="Images">
+                                <DocComponents.Files.File icon={<IoImage/>} name="EmbeddedIcon.png"/>
+                            </DocComponents.Files.Folder>
+                            <DocComponents.Files.File icon={<IoLogoMarkdown/>} name="todo.md"/>
+                        </DocComponents.Files.Folder>
+                    </DocComponents.Files.Folder>
+                </DocComponents.Files.Folder>
+            </DocComponents.Files.Folder>
+        </DocComponents.Files.Folder>
+    </DocComponents.Files.Files>
+<DocComponents.Callout.Callout>The `.md` file type is known as markdown, it's able to include both HTML, and Rich Text (text that can be italicized, bold, underline, etc)</DocComponents.Callout.Callout>
+</>
+<>
+And inside of `todo.md`, we have a relative directory: 
+
+```md title="todo.md"
+<!-- Same as: C:\Users\User\ProjectsDirectory\Embedded-Curriculum\Images\EmbeddedIcon.png  -->
+<img src="./Images/EmbeddedIcon.png"></img>
+```
+
+If our file directory was ever so slightly different, where `todo.md` is in its own folder, we could use `../` to refer to the Parent's Parent directory (todo -> Parent -> Parent).
+- Filesystem (relative to <span className="attemptSameLine">todo.md &nbsp;<IoLogoMarkdown className="self-center"/></span>): `C:/Users/User/ProjectsDirectory/Embedded-Curriculum/src` defined as (`./` from todo.md, and `../` if we want `/Embedded-Curriculum/`)
+- <span className="attemptSameLine">File we're trying to reference EmbeddedIcon.png &nbsp;<IoImage className="self-center"/></span>
+<><DocComponents.Files.Files>
+        <DocComponents.Files.Folder defaultOpen disabled name="C:">
+            <DocComponents.Files.Folder defaultOpen disabled name="Users">
+                <DocComponents.Files.Folder defaultOpen disabled name="User">
+                    <DocComponents.Files.Folder defaultOpen disabled name="ProjectsDirectory">
+                        <DocComponents.Files.Folder defaultOpen disabled name="Embedded-Curriculum">
+                            <DocComponents.Files.Folder defaultOpen name="Images">
+                                <DocComponents.Files.File icon={<IoImage/>} name="EmbeddedIcon.png"/>
+                            </DocComponents.Files.Folder>
+                            <DocComponents.Files.Folder defaultOpen name="src">
+                                <DocComponents.Files.File icon={<IoLogoMarkdown/>} name="todo.md"/>
+                            </DocComponents.Files.Folder>
+                        </DocComponents.Files.Folder>
+                    </DocComponents.Files.Folder>
+                </DocComponents.Files.Folder>
+            </DocComponents.Files.Folder>
+        </DocComponents.Files.Folder>
+    </DocComponents.Files.Files>
+</>
+```md title="todo.md"
+<!-- Same as: C:\Users\User\ProjectsDirectory\Embedded-Curriculum\Images\EmbeddedIcon.png  -->
+<img src="../Images/EmbeddedIcon.png"></img>
+```
+</>

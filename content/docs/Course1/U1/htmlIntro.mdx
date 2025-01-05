@@ -1,0 +1,142 @@
+---
+title: Intro to HTML
+slug: html/1
+---
+import { IoLogoHtml5 } from "react-icons/io5"
+import { DocComponents, ShadcnComponents, FullPageSeparator } from "../../../../components/all"
+import Link from "next/link"
+import { CodeBlock, Pre} from "fumadocs-ui/components/codeblock"
+import { HoverCardInline } from "../../../../components/ui/ease-hovercard"
+
+<DocComponents.InlineTOC items={toc} />
+
+## What Is ``HTML``? <span className="inline-flex align-middle"><IoLogoHtml5 className="mdx_Icon" /></span> [#what-is-it]
+
+<span className="text-muted-foreground">_Hypertext Markup Language_</span> (HTML), is often referred to as a 'programming language', however it isn't actually one. In reality, it's a extension of markup. 
+If none of that made sense that's fine, here's a explanation of what HTML actually is:
+
+<>HTML is a language that allows for a person to create <HoverCardInline Props={{Content: {className: "text-sm min-w-[30vw]"}}} Trigger={"UI"}>
+``Example``: _This Popup_ <br/><br/> ``Defintion``: "A user interface, UI is the space where interactions between humans and machines occur."  <br/><br/> <Link className="linkElement text-xs " href={"https://en.wikipedia.org/wiki/User_interface"}>(Wikipedia contributors. "User interface." Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 26 Dec. 2024. Web. 29 Dec. 2024.)</Link>
+</HoverCardInline> (User interface, which is almost everything on a computer screen)</> 
+
+<>
+    HTML, is the base of almost every single website on the internet. Ever opened up Inspect element, and wondered, *what am I looking at?*
+    **Simple**: You're looking at HTML.
+</> 
+<> 
+
+ ## Syntax 
+ <>HTML has very a basic <HoverCardInline Trigger={"syntax"} Content={'Definition: Syntax, a way a language is written or interpretted.'}></HoverCardInline> ``(Syntax: A way that a language is written or spoken/interpreted)`` and it works with CSS and JavaScript.</>
+
+    In HTML you can use an opening an closing tag (``<>{:html}``) and a HTML tag name (``<tagname>{:html}``) to represent UI.
+    ```html
+        <> <!-- A Opening Tag -->
+        </> <!-- A Closing Tag -->
+    ```
+    Example:
+
+    
+ 
+
+    ```html title="example.html"
+    <tagname></tagname>
+    ```
+    These tagnames represent an element (Element: An HTML tag) in UI.
+</>
+<DocComponents.Callout.Callout type="warn" title="Important to Note!">It is best practice, and **HIGHLY** recommended to end all elements with a closing tag.  <br/><br/> *Elements may work without a closing tag*; however, a lot of technologies/frameworks that you'll learn later on will require a closing tag. (There are a few exceptions, ex: `<!DOCTYPE>{:html}`)</DocComponents.Callout.Callout>
+
+### Quick Rules
+
+<DocComponents.Steps.Steps>
+   <DocComponents.Steps.Step>
+   ##### **Closing Tags**
+        Elements should **always** have a closing tag.
+        Because: <span className="text-muted-foreground">*Tags show where an element begins and ends. If an element does not have a closing tag, the interpreter may think that all following elements are inside that element.*</span>
+    </DocComponents.Steps.Step>
+    
+    <DocComponents.Steps.Step>
+    ##### **Comments**
+        To make a comment in HTML (Text that doesn't get compiled), use an unclosed tag starting with: `<!--` `your comment` and `-->` to end the commend.
+    <span className="text-muted-foreground">_Example:_</span> 
+        ```html 
+        <!-- my comment -->
+        ```
+    </DocComponents.Steps.Step>
+
+    <DocComponents.Steps.Step>
+    ##### **HTML Documents**
+        <> An HTML file is referred to as a Document: <> Also referred to as <HoverCardInline Trigger={"DOM"}> `DOM` <br/><br/>``Definition:`` Document Object Model</HoverCardInline> (There can be multiple DOMs/Documents inside a page).</><br/></>
+        <br/>
+    </DocComponents.Steps.Step>
+
+    <DocComponents.Steps.Step>
+    ##### **!DOCTYPE**
+        <>
+        HTML Documents start by defining the Document type using the `<!DOCTYPE>{:html}` tag, followed by the type. 
+        <span className="text-muted-foreground">_Example:_</span> 
+            ```html title="newDocument.html"
+            <!DOCTYPE html>
+            ```
+        </>
+    </DocComponents.Steps.Step>
+</DocComponents.Steps.Steps>
+
+<FullPageSeparator />
+## Making a Page [#creating-html-file]
+
+### Steps:
+
+<DocComponents.Steps.Steps>
+
+    <DocComponents.Steps.Step> 
+        
+    #### Create the file: 
+    
+    <>Make sure to add the file extension `.html` at the end of the filename.</>
+        
+       
+       <><DocComponents.Callout.Callout type="info">It's common and **recommended** practice to follow the `camelCase` naming scheme. <br/> <span className="text-muted-foreground">Example Below:</span></DocComponents.Callout.Callout></>
+       
+       ```js
+        MyFile.html /* PascalCase */ // [!code --]
+        myFile.html /* camelCase */ // [!code ++]
+       ```
+        <DocComponents.Files.Files>
+            <DocComponents.Files.Folder name="src" defaultOpen>
+                <DocComponents.Files.File name="myFile.html" lang="html" icon={<IoLogoHtml5/>}>index.html</DocComponents.Files.File>
+            </DocComponents.Files.Folder>
+        </DocComponents.Files.Files>
+        
+    </DocComponents.Steps.Step>
+
+    <DocComponents.Steps.Step> 
+    #### Define the Document
+    Use the !DOCTYPE tag to define the document as an HTML document.
+    ```html title="myFile.html"
+    <!DOCTYPE html>
+    ```
+    </DocComponents.Steps.Step>
+
+    <DocComponents.Steps.Step> 
+    #### Add Document Structure
+    There are *three* other HTML tags which are part of a HTML file's structure, they are:
+        - `<html>{:html}`: This is a container element, that contains the document's HTML
+        - `<head>{:html}`: This is a non-visible part of the page which is used to call scripts, include stylesheets, meta tags, and more.
+        - `<body>{:html}`: This is where all of the UI, and visible parts of your page go.
+    <DocComponents.Callout.Callout type="warn">It's highly recommended you do not include scripts `<script>{:html}` inside the `<body>{:html}`, instead place them in the `<head>{:html}` or inbetween `<head>{:html}` and `<body>{:html}` </DocComponents.Callout.Callout>
+    ```html title="myFile.html"
+    <!DOCTYPE html>
+    <html>
+        <head></head>
+        <body></body>
+    </html>
+    ```
+
+    Now you have a complete HTML structure. The next step is creating our page!
+    </DocComponents.Steps.Step>
+
+</DocComponents.Steps.Steps>
+
+
+<FullPageSeparator />
+

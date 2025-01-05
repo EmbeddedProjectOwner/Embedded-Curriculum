@@ -1,9 +1,4 @@
-import {
-  defineConfig,
-  defineDocs,
-  frontmatterSchema,
-  metaSchema,
-} from 'fumadocs-mdx/config';
+import { defineConfig, defineDocs, frontmatterSchema, metaSchema } from 'fumadocs-mdx/config';
 import { rehypeCodeDefaultOptions } from 'fumadocs-core/mdx-plugins';
 import { transformerTwoslash } from 'fumadocs-twoslash';
 import remarkMath from 'remark-math';
@@ -11,9 +6,9 @@ import rehypeKatex from 'rehype-katex';
 import { z } from 'zod';
 import { remarkMermaid } from '@theguild/remark-mermaid';
 
+
 export const { docs, meta } = defineDocs({
   docs: {
-    
     async: false,
     schema: frontmatterSchema.extend({
       preview: z.string().optional(),
@@ -37,8 +32,8 @@ export default defineConfig({
     rehypeCodeOptions: {
       inline: 'tailing-curly-colon',
       themes: {
-        light: 'catppuccin-latte',
-        dark: 'catppuccin-mocha',
+        light: 'github-light-high-contrast',
+        dark: 'github-dark-high-contrast',
       },
       transformers: [
         ...(rehypeCodeDefaultOptions.transformers ?? []),
@@ -62,11 +57,10 @@ export default defineConfig({
         },
       ],
     },
-    remarkPlugins: [
-      remarkMermaid,
-      remarkMath,
+    remarkPlugins: [remarkMermaid, remarkMath],
+    rehypePlugins: (v) => [
+      rehypeKatex,
+      ...v,
     ],
-    rehypePlugins: (v) => [rehypeKatex, ...v],
   },
-
 });

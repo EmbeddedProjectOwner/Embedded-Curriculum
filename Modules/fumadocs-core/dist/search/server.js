@@ -1,9 +1,13 @@
+//*Import Loader*//
+import {source as sourceLoad} from "../../../../app/source.ts"
+
 import {
   searchAdvanced,
   searchSimple
 } from "../chunk-2ZSMGYVH.js";
 import "../chunk-2V6SCS43.js";
 import "../chunk-MLKGABMK.js";
+
 
 // src/search/server.ts
 import {
@@ -111,6 +115,7 @@ import {
   create as create2,
   insertMultiple as insertMultiple2
 } from "@orama/orama";
+
 async function createDBSimple({
   indexes,
   language
@@ -154,8 +159,26 @@ function defaultToIndex(page) {
     structuredData: page.data.structuredData
   };
 }
+const rawPages = sourceLoad.getWalker().rawPages
+
+
 function createFromSource(source, pageToIndex = defaultToIndex, options = {}) {
+ 
+  const sourcePages = new Map()
+
+  rawPages.forEach((page) => {
+    sourcePages.set(sourcePages.size, ({
+      title: page.data.title,
+      description: page.data.description ? page.data.description : void 0,
+      url: `/${page.url.split("/")[1]}/${page.slugs.join("/")}`,
+      id: page.slugs.join("/"),
+      structuredData: page.data.structuredData,
+      slugs: page.slugs,
+    }))
+  })
+ 
   if (source._i18n) {
+
     return createI18nSearchAPI("advanced", {
       ...options,
       i18n: source._i18n,
@@ -171,9 +194,10 @@ function createFromSource(source, pageToIndex = defaultToIndex, options = {}) {
   }
   return createSearchAPI("advanced", {
     ...options,
-    indexes: source.getPages().map((page) => {
+    indexes: sourcePages
+    /*source.getPages().map((page) => {
       return pageToIndex(page);
-    })
+    })*/
   });
 
 }
