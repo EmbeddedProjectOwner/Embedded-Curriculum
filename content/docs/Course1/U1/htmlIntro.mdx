@@ -28,7 +28,7 @@ If none of that made sense that's fine, here's a explanation of what HTML actual
  ## Syntax 
  <>HTML has very a basic <HoverCardInline Trigger={"syntax"} Content={'Definition: Syntax, a way a language is written or interpretted.'}></HoverCardInline> ``(Syntax: A way that a language is written or spoken/interpreted)`` and it works with CSS and JavaScript.</>
 
-    In HTML you can use an opening an closing tag (``<>{:html}``) and a HTML tag name (``<tagname>{:html}``) to represent UI.
+    In HTML you can use an opening an closing tag (``<>{:tsx}``) and a HTML tag name (``<tagname/>{:tsx}``) to represent UI.
     ```html
         <> <!-- A Opening Tag -->
         </> <!-- A Closing Tag -->
@@ -137,6 +137,18 @@ If none of that made sense that's fine, here's a explanation of what HTML actual
 
 </DocComponents.Steps.Steps>
 
+### HTML Document Tree
 
+We already defined, DOM; however there are some important terms to define in a document tree.
+So lets do that before we continue. (These aren't all of them)
+
+A Document tree is essentially a hierarchy, similar to an ancestor tree.
+
+- Parent: A parent in HTML, is an element that is the 'container' or holder of another element. 
+```tsx
+<ul> // [!code highlight]
+    <li></li>
+</ul>
+```
 <FullPageSeparator />
 

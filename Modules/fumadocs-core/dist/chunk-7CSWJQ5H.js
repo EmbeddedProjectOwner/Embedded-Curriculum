@@ -6,6 +6,9 @@ import { toJsxRuntime } from "hast-util-to-jsx-runtime";
 import { Fragment } from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { createOnigurumaEngine } from "shiki/engine/oniguruma";
+import github_dark_colorblind from '../../../themes/github-dark-colorblind.json' with { type: "json"}
+import github_light_colorblind from '../../../themes/github-light-colorblind.json' with { type: "json"}
+
 function createStyleTransformer() {
   return {
     name: "rehype-code:styles",
@@ -20,8 +23,8 @@ function createStyleTransformer() {
   };
 }
 var defaultThemes = {
-  light: "github-light",
-  dark: "github-dark"
+  light: github_light_colorblind,//"github-light-high-contrast",
+  dark: github_dark_colorblind//"github-dark-high-contrast"
 };
 async function highlight(code, options) {
   const { lang, components, engine, ...rest } = options;
@@ -31,10 +34,12 @@ async function highlight(code, options) {
   } else if ("themes" in options && options.themes) {
     themes = { themes: options.themes };
   }
+  
   const highlighter = await getSingletonHighlighter({
     langs: [lang],
     engine: engine ?? createOnigurumaEngine(() => import("shiki/wasm")),
-    themes: "theme" in themes ? [themes.theme] : Object.values(themes.themes).filter((v) => v !== void 0)
+    themes: defaultThemes
+    //themes: "theme" in themes ? [themes.theme] : Object.values(themes.themes).filter((v) => v !== void 0)
   });
   const hast = highlighter.codeToHast(code, {
     lang,

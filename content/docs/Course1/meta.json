@@ -5,22 +5,15 @@
     "root": true,
     "tags": ["Course1"],
     "pages": [
-      "---Guide---",
+      "---Course Guide---",
       "index",
       "resources",
+      "---Visual Studio Code Setup---",
       "...",
       "!L1",
       "--- Unit 1 | HTML ---",
       ".../U1",
-      "---Writing---",
-      "markdown",
-      "page-conventions",
-      "navigation",
-      "---UI---",
-      "theme",
-      "components",
-      "mdx",
-      "blocks"
-      
+      "--- Unit 2 | CSS ---",
+      ".../U2"
     ]
   }

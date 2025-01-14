@@ -31,10 +31,10 @@ export default defineConfig({
   mdxOptions: {
     rehypeCodeOptions: {
       inline: 'tailing-curly-colon',
-      themes: {
+      /*themes: {
         light: 'github-light-high-contrast',
         dark: 'github-dark-high-contrast',
-      },
+      },*/
       transformers: [
         ...(rehypeCodeDefaultOptions.transformers ?? []),
         transformerTwoslash(),
@@ -64,3 +64,5 @@ export default defineConfig({
     ],
   },
 });
+
+

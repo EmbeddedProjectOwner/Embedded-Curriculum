@@ -1,9 +1,23 @@
-HTML:
+
+Course 1:
+====
+### Intro
+    - Who I am, What's this for.
+    - Setting up Visual Studio Code.
+
+### Resources: 
+- W3Schools: 
+   - Links: HTML (Include HTML Reference), CSS (Include HTML Reference)
+- Github
+- Stackoverflow
+
+### HTML:
 - [ ] Intro
     - [ ] What it is
     - [ ] Syntax
     - [ ] How to set up a page
     - [ ] Explain properties/attributes (Identifiers: id, name, tag, class)
+    - [ ] DOM/Document Tree
 - [ ] HTML
     - [ ] Elements
     - [ ] Headers
@@ -17,4 +31,105 @@ HTML:
 - [ ] HTML Integrates
     - [ ] With CSS (Link to CSS)
     - [ ] How to reference a style sheet
-    
+
+
+### CSS:
+- [ ] Introduction
+    - [ ] What is CSS
+    - [ ] Syntax
+    - [ ] CSS usage (External CSS, Internal CSS, Inline CSS)
+- [ ] Selectors (Folder)
+    - [ ] Types of Selectors:
+        - Simple Selectors
+            - Element `element name`,
+            - Class `.`,
+            - Id `#`,
+            - Universal `*`,
+        - Combinator Selectors
+            - Descendant Combinator `&nbsp;`,
+            - Child Combinator `>`,
+            - Next sibling combinator `+`,
+            - Subsequent-sibling combinator `~`,
+        - Pseudo-class selectors (select elements based on a certain state)
+        - Pseudo-elements selectors (select and style a part of an element)
+        - Attribute selectors
+    - [ ] Grouping Selectors
+- [ ] The "Box Model"
+    - Def: "Box Model" container elements.
+    - Important styling for containers:
+        - padding
+        - margin
+        - content
+        - border
+    - Sizing:
+        - Width (Units too)
+        - Height (Units too)
+        - Min/Max w/h
+- [ ] Text Styles
+    - Typography = text
+    - Go over importing fonts, 
+    - Font styles:
+        - font-family
+        - font-size
+        - font-style
+        - font-weight
+        - line height
+    - Text styles:
+        - text-align,
+        - text-decoration
+        - text-transform
+        - color
+- [ ] Backgrounds
+    - Properties:
+        - background-color
+        - background-size
+        - background-image
+        - background-position
+        - background-repeat
+- [ ] Layouts:
+    - Positioning:
+        - static
+        - relative
+        - absolute
+        - fixed
+        - sticky
+    - Display:
+        - block
+        - inline
+        - inline-block
+        - none
+    - Overflow:
+        - overflow
+        - overflow-x
+        - overflow-y
+- [ ] Flexboxs & Grids:
+    - What is it?
+    - Main Properties:
+        - display: flex;
+        - flex-direction
+ 		- justify-content
+ 		- align-items
+ 		- align-content
+ 		- gap
+    - Item Properties:
+ 		- flex
+ 		- order
+ 		- align-self
+    - Grids (Go to w3schools)
+- [ ] Responsive CSS
+    - What is it & Why do we need to do it.
+    - Media based screen sizes.
+    - Recommended approaches:
+        - Start by making the UI work for mobile (don't wait)
+        - Create 2 separate layouts (if needed) one for mobile one for larger screens.
+    - Units, relative, and absolute.
+- [ ] Tranistions & Animations:
+    - This is very basic,
+    - Props:
+ 		- transition-property
+ 		- transition-duration
+ 		- transition-timing-function
+    - Go to W3Schools.
+### CSS Integrates
+- [ ] Styling Our Page
+    - [ ] Integrate with HTML, lets revisit that HTML page
