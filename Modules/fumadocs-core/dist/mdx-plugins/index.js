@@ -299,6 +299,7 @@ var defaultShortcuts = {
   shell: "shellscript",
   zsh: "shellscript",
   html: "html",
+  css: "css",
   "c++": "cpp"
 };
 var defaultIcons = {
@@ -397,6 +398,11 @@ var defaultIcons = {
     fill: "currentColor",
     d: "M0 32l34.9 395.8L191.5 480l157.6-52.2L384 32H0zm308.2 127.9H124.4l4.1 49.4h175.6l-13.6 148.4-97.9 27v.3h-1.1l-98.7-27.3-6-75.8h47.7L138 320l53.5 14.5 53.7-14.5 6-62.2H84.3L71.5 112.2h241.1l-4.4 47.7z",
   },
+  css: { 
+    viewBox: "0 0 512 512",
+    fill: "currentColor",
+    d: "m64 32 35 403.22L255.77 480 413 435.15 448 32zm290.68 334.9L256.07 395l-98.46-28.24-6.75-77.76h48.26l3.43 39.56 53.59 15.16.13.28 53.47-14.85 5.64-64.15H203l-4-50h120.65l4.35-51H140l-4-49h240.58z"
+  },
   csharp: {
     viewBox: "0 0 24 24",
     fill: "currentColor",
@@ -427,7 +433,8 @@ function transformerIcon(options = {}) {
       const icon = iconName in icons ? icons[iconName] : defaultIcon;
       
       if (icon) {
-        
+        pre.properties.langtype = lang
+
         pre.properties.icon = `<svg viewBox="${icon.viewBox}"><path d="${icon.d}" fill="${icon.fill}" /></svg>`;
       }
       return pre;

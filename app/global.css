@@ -114,7 +114,7 @@ body {
 }
 
 .secondary {
-  color: var(--muted-foreground);
+  color: hsl(var(--muted-foreground));
 }
 
 .attemptSameLine {

@@ -3,3 +3,173 @@ title: Intro to CSS
 description: The introduction page for Unit 2 (CSS)
 slug: /css/1
 ---
+import { IoLogoHtml5 } from "react-icons/io5"
+import { DocComponents, ShadcnComponents, FullPageSeparator } from "../../../../components/all"
+import Link from "next/link"
+import { CodeBlock, Pre} from "fumadocs-ui/components/codeblock"
+import { HoverCardInline } from "../../../../components/ui/ease-hovercard"
+import { Popup, PopupContent, PopupTrigger } from 'fumadocs-twoslash/ui';
+import CodeBlockOutput from "../../../../components/custom/outputCodeblock"
+import { Tab, Tabs } from "fumadocs-ui/components/tabs"
+
+# Introduction
+
+
+## What is CSS?
+
+<>
+CSS, which stands for: `Cascading Style Sheets`, is a programming language that has a very simple premise. It is made to add styling to HTML code, allowing you to make your HTML look how you'd like it to. 
+
+CSS is very simple, and is quite easy to learn, knowing HTML and HTML structures will be nessesary to coding in CSS. So if you haven't already 
+<span className="secondary">*it is highly recommended you go back and review [HTML DOM/Structure](/docs/Course1/U1/html/1#html-document-tree)*</span>
+</>
+
+<DocComponents.Callout.Callout>CSS files use the `.css` file extension.  (Also to do comments in CSS use `/*` to begin a comment, and `*/` to end the comment</DocComponents.Callout.Callout>
+## Syntax
+
+<>
+<>
+Once again, CSS is really easy to learn, but you need to **pay attention** to the syntax, this section will be the most important part.
+
+The syntax of CSS conists of something called a: "CSS Rule"
+A rule styles HTML depending on the declarations.
+
+CSS Rules consist of 3 things:
+    - A selector (& other properties, *if any*)
+    - Curly braces `{}`
+    - Declarations: `propertyName: propertyValue`
+
+
+A Rule is structured like this:
+
+
+```css 
+rule {
+    property: propertyValue
+}
+```
+
+So to create a rule you need to have a selector, which I'll get into soon. Next the rule will use curly braces `{}` to define the beginning and end of the rule. 
+These are also to contain declarations. Declarations consit of the `propertyName`, followed by a colon `:` (which sets the property to the following value), and the `propertyValue`. (Also the semi-colon `;` is nessesary to add another declaration.)
+These properties are what actually is used to style a component.
+
+We'll go back to this, but next we need to know how to actually use our CSS.
+
+## CSS Usage
+
+CSS can be used in three ways, these are types of CSS are:
+<DocComponents.Steps.Steps>
+    <DocComponents.Steps.Step>
+        ### Inline CSS
+
+        **What is it?** Inline CSS is CSS written within a HTML element. 
+        <br/>
+        
+        **Pros:** Allows you to style elements directly in the HTML, so this is useful if you don't want to create a dedicated CSS file or skip using selectors.
+        <br/>
+        **Cons:** Usually not best practice to use inline CSS because it can often cause your HTML file to become very messy. And ultimately ruins easy readability of the code, making it harder to maintain.
+
+        **Usage:** To do inline css, you simply add the attribute `style{:css}` to your element's attributes, and set it equal to either a string. And add declarations, all on one line, no need for a selector because you're automatically selected to the specific element.
+        **Example:**
+
+        <CodeBlockOutput>
+            ```html
+            <!-- This is Inline styling -->
+            <p style="color: green">My Text Color is Green!</p>
+
+            ```
+        </CodeBlockOutput>
+      
+    </DocComponents.Steps.Step>
+    <DocComponents.Steps.Step>
+        ### Internal CSS
+
+        **What is it?** Internal CSS is CSS that still is in the HTML file; however it uses the `<style></style>{:html}` HTML element, and it still utilizes selectors.
+        <br/>
+        
+        **Pros:** Allows you to style elements directly in the HTML, and a cleaner alternative to inline styles.
+        <br/>
+        **Cons:** Typically also seen as a bad practice, depending on if it makes your HTML messy. This may also make some of your HTML messy and less organized.
+
+        **Usage:** To use internal CSS you should create a new style element `<style></style>{:html}` (Putting it in `<head><head/>{:html}`). From there, all the children of the element will be recognized as CSS. So start coding CSS inbetween the style brackets.
+        **Example:**
+
+        <CodeBlockOutput>
+            ```html
+            <!-- This is internal css -->
+            <!DOCTYPE html>
+            <html>
+                <head>
+                    <style>
+                        p {
+                            color: green;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <p>My Text Color is Green!</p>
+                </body>
+            </html>
+            ```
+        </CodeBlockOutput>
+      
+    </DocComponents.Steps.Step>
+    <DocComponents.Steps.Step>
+        ### External CSS
+
+        **What is it?** External CSS imports CSS stylesheets (CSS files) and applies them to the HTML.
+        <br/>
+        
+        **Pros:** This is best practice, it allows for CSS to be separate, to have both organized HTML and CSS, which helps with maintainability. Furthermore, it allows you to reuse styles across multiple HTML pages.
+        <br/>
+        **Cons:** If improperly imported, or if external links (that aren't from the project filesystem) are imported, it can create security vulnerabilities which could be exploited.
+
+        **Usage:** To use external CSS, you'll need to 'import' the stylesheet. First you'll need to make sure that your CSS is in a dedicated `.css` file, then this by add the `<link></link>{:html}` element in the `<head>{:html}` of the HTML, and editing/adding these two properties:<br/><br/>
+        - **The `rel{:css}` attribute**<br/>
+            - **Value**: `rel="stylesheet"{:js}`<br/>
+            - **Meaning**: Stands for 'relationship', and tells HTML the role this link is playing. 
+        - **The `href{:css}` attribute**<br/>
+            - **Value**: `href="/pathToCssFile"{:js}`<br/>
+            - **Meaning** href stands for: Hypertext Reference, it's basically the link, url, or directory we are referring to. In this case it'd be the directory to our CSS file.
+
+        **Example:**
+
+        
+            
+        <CodeBlockOutput className="m-[2%]">
+                    <Tabs items={["HTML", "CSS File"]} defaultValue="HTML" >
+
+
+                        ```html title="index.html" tab="HTML"
+                        <!DOCTYPE html>
+                        <html>
+                            <head>
+                                <!-- This is external css -->
+                                <link rel="stylesheet" href="../../../../app/css/index.css"></link>
+                            </head>
+                            <body>
+                                <p>My Text Color is Green!</p>
+                            </body>
+                        </html>
+                        ```
+
+
+                        ```css title="index.css" tab="CSS File"
+                        /* External CSS */
+
+                        p {
+                            color: green;
+                        }
+                        ```
+
+
+                    </Tabs>
+        </CodeBlockOutput>
+        
+      
+    </DocComponents.Steps.Step>
+</DocComponents.Steps.Steps>
+
+</>
+</>
+

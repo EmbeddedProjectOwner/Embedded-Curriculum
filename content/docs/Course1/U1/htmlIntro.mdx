@@ -7,6 +7,7 @@ import { DocComponents, ShadcnComponents, FullPageSeparator } from "../../../../
 import Link from "next/link"
 import { CodeBlock, Pre} from "fumadocs-ui/components/codeblock"
 import { HoverCardInline } from "../../../../components/ui/ease-hovercard"
+import { Popup, PopupContent, PopupTrigger } from 'fumadocs-twoslash/ui';
 
 <DocComponents.InlineTOC items={toc} />
 
@@ -137,18 +138,114 @@ If none of that made sense that's fine, here's a explanation of what HTML actual
 
 </DocComponents.Steps.Steps>
 
-### HTML Document Tree
+## HTML Document Tree
 
 We already defined, DOM; however there are some important terms to define in a document tree.
 So lets do that before we continue. (These aren't all of them)
 
-A Document tree is essentially a hierarchy, similar to an ancestor tree.
+A **Document Tree** is essentially a hierarchy, similar to a family tree, where elements are related as parents, children, ancestors, descendants, or siblings.
 
-- Parent: A parent in HTML, is an element that is the 'container' or holder of another element. 
-```tsx
-<ul> // [!code highlight]
+### Parent
+A parent in HTML is an element that is the "container" or holder of another element.
+
+<DocComponents.Callout.Callout type="info">
+    Quick definitions:
+
+    `Nested` - Meaning underneath or inbetween an HTML element. <br/>
+    *When I talk about nesting (or containing) elements*: <br/> <br/>
+    `Directly` - Meaning an element is one of the first elements underneath it's parent. <br/> <br/>
+    `Indirectly` - Meaning an element is not in the first quote 'group' of elements immediately underneath the parent.
+
+    Example: (Relative to the first div )
+    ```html
+    <div>
+        <div title="DirectlyNested">
+            <div title="IndirectlyNested">
+                <div title="IndirectlyNested"></div>
+            </div>
+        </div>
+    </div>
+    ```
+</DocComponents.Callout.Callout>
+```html
+<ul id="myUnOrderedList">
     <li></li>
 </ul>
 ```
+
+```html
+<!-- In this example, the parent is: -->
+<ul></ul> <!-- [!code highlight] -->
+```
+
+---
+
+### Child
+A child is an element that is directly nested inside a parent element.
+
+```html
+<ul id="myUnOrderedList">
+    <li></li>
+</ul>
+```
+
+```html
+<!-- In this example, the child is: -->
+<li></li> <!-- [!code highlight] -->
+```
+
+---
+
+### Descendant
+A descendant is any element nested inside a parent element, at any level of the hierarchy (directly or indirectly).
+
+```html
+<div>
+    <section>
+        <p></p>
+    </section>
+</div>
+```
+
+```html
+<!-- In this example, the descendants of <div> are: -->
+<section></section>, <p></p> <!-- [!code highlight] -->
+```
+
+---
+
+### Ancestor
+An ancestor is any element that contains a given element, either directly or indirectly, higher up in the hierarchy.
+
+```html
+<div>
+    <section>
+        <p></p>
+    </section>
+</div>
+```
+
+```html
+<!-- In this example, the ancestors of <p> are: -->
+<section></section>, <div></div> <!-- [!code highlight] -->
+```
+
+---
+
+### Sibling
+A sibling is an element that shares the same parent as another element.
+
+```html
+<ul>
+    <li>Item 1</li>
+    <li>Item 2</li>
+</ul>
+```
+
+```html
+<!-- In this example, the siblings are: -->
+<li>Item 1</li> and <li>Item 2</li> <!-- [!code highlight] -->
+```
+
 <FullPageSeparator />
 

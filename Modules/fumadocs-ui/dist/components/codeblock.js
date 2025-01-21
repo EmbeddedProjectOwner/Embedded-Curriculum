@@ -6,8 +6,36 @@ import { cn } from '../utils/cn';
 import { ScrollArea, ScrollBar, ScrollViewport, } from '../components/ui/scroll-area';
 import { useCopyButton } from '../utils/use-copy-button';
 import { buttonVariants } from '../components/ui/button';
+import React from "react";
 export const Pre = forwardRef(({ className, ...props }, ref) => {
-    return (_jsx("pre", { ref: ref, className: cn('p-4 focus-visible:outline-none', className), ...props, children: props.children }));
+    const [uid, setUid] = React.useState(null);
+    const [langType, setLangType] = React.useState()
+
+    React.useEffect(() => {
+      if (!props.top && !uid) {
+        const newUid = crypto.randomUUID();
+        props.top = newUid; // Assign to props if necessary
+        setUid(newUid);
+      }
+    }, [props.top, uid]);
+  
+    React.useEffect(() => {
+      if (uid) {
+        const element = document.getElementById(uid);
+        if (element) {
+          if (element.closest("figure").getAttribute('langtype')) {
+            setLangType(element.closest("figure").getAttribute('langtype'))
+            element.querySelector('code').setAttribute("langtype", element.closest("figure").getAttribute('langtype'))
+          }
+        }
+      }
+    }, [uid]);
+  
+    // Use a placeholder value while waiting for the client-side render
+    const id = uid || "placeholder-id";
+  
+   
+    return (_jsx("pre", { ref: ref, id: id, langtype: langType, className: cn('p-4 focus-visible:outline-none', className), ...props, children: props.children }));
 });
 Pre.displayName = 'Pre';
 export const CodeBlock = forwardRef(({ title, allowCopy = true, keepBackground = false, icon, viewportProps, ...props }, ref) => {

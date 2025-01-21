@@ -12,6 +12,7 @@ const NEXT_PUBLIC_BASE_URL = isProduction
 
 /** @type {import('next').NextConfig} */
 const config = {
+  
   reactStrictMode: false,
   typescript: {tsconfigPath: "./tsconfig.json"},
 
