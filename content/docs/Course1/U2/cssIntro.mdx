@@ -1,6 +1,7 @@
 ---
 title: Intro to CSS
 description: The introduction page for Unit 2 (CSS)
+icon: PaintBucket
 slug: /css/1
 ---
 import { IoLogoHtml5 } from "react-icons/io5"
@@ -91,7 +92,7 @@ CSS can be used in three ways, these are types of CSS are:
         <br/>
         **Cons:** Typically also seen as a bad practice, depending on if it makes your HTML messy. This may also make some of your HTML messy and less organized.
 
-        **Usage:** To use internal CSS you should create a new style element `<style></style>{:html}` (Putting it in `<head><head/>{:html}`). From there, all the children of the element will be recognized as CSS. So start coding CSS inbetween the style brackets.
+        **Usage:** To use internal CSS you should create a new style element `<style></style>{:html}` (Putting it in `<head></head>{:html}`). From there, all the children of the element will be recognized as CSS. So start coding CSS inbetween the style brackets.
         **Example:**
 
         <CodeBlockOutput>
@@ -124,7 +125,7 @@ CSS can be used in three ways, these are types of CSS are:
         <br/>
         **Cons:** If improperly imported, or if external links (that aren't from the project filesystem) are imported, it can create security vulnerabilities which could be exploited.
 
-        **Usage:** To use external CSS, you'll need to 'import' the stylesheet. First you'll need to make sure that your CSS is in a dedicated `.css` file, then this by add the `<link></link>{:html}` element in the `<head>{:html}` of the HTML, and editing/adding these two properties:<br/><br/>
+        **Usage:** To use external CSS, you'll need to 'import' the stylesheet. First you'll need to make sure that your CSS is in a dedicated `.css` file, then this by add the `<link>{:html}` element in the `<head>{:html}` of the HTML, and editing/adding these two properties:<br/><br/>
         - **The `rel{:css}` attribute**<br/>
             - **Value**: `rel="stylesheet"{:js}`<br/>
             - **Meaning**: Stands for 'relationship', and tells HTML the role this link is playing. 
@@ -135,17 +136,18 @@ CSS can be used in three ways, these are types of CSS are:
         **Example:**
 
         
-            
+
         <CodeBlockOutput className="m-[2%]">
                     <Tabs items={["HTML", "CSS File"]} defaultValue="HTML" >
 
 
                         ```html title="index.html" tab="HTML"
-                        <!DOCTYPE html>
-                        <html>
+                        <!DOCTYPE html> 
+                        <html><!-- This is external css -->
                             <head>
                                 <!-- This is external css -->
-                                <link rel="stylesheet" href="../../../../app/css/index.css"></link>
+                                <!-- Remember: The href would be the path to your css file -->
+                                <link rel="stylesheet" href="/examples/css/U2/L1/index.css" />
                             </head>
                             <body>
                                 <p>My Text Color is Green!</p>

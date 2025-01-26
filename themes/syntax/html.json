@@ -3,9 +3,6 @@
     "name": "html",
     "patterns": [
         {
-            "include": "#xml-processing"
-        },
-        {
             "include": "#comment"
         },
         {
@@ -22,6 +19,9 @@
         },
         {
             "include": "#entities"
+        },
+        {
+            "include": "#xml-processing"
         }
     ],
     "repository": {
@@ -32,7 +32,11 @@
                 },
                 {
                     "include": "#jsx-tag-in-expression"
+                },
+                {
+                    "include": "#comment"
                 }
+                
             ]
         },
         "jsx-children": {
@@ -199,6 +203,12 @@
                     "patterns": [
                         {
                             "include": "#jsx-children"
+                        },
+                        {
+                            "include": "#comment"
+                        },
+                        {
+                            "include": "#tags-valid"
                         }
                     ]
                 }
@@ -311,6 +321,12 @@
             "patterns": [
                 {
                     "include": "#jsx-children"
+                },
+                {
+                    "include": "#comment"
+                },
+                {
+                    "include": "#tags-valid"
                 }
             ]
         },
@@ -734,13 +750,13 @@
             "name": "meta.tag.metadata.cdata.html"
         },
         "comment": {
-            "begin": "<!--",
+            "begin": "\\s*<!--",
             "captures": {
                 "0": {
                     "name": "punctuation.definition.comment.html"
                 }
             },
-            "end": "-->",
+            "end": "-->\\s*",
             "name": "comment.block.html",
             "patterns": [
                 {
@@ -756,6 +772,7 @@
                     "name": "invalid.illegal.characters-not-allowed-here.html"
                 }
             ]
+
         },
         "core-minus-invalid": {
             "comment": "This should be the root pattern array includes minus #tags-invalid",
@@ -1439,9 +1456,7 @@
                 },
                 "tags": {
                     "patterns": [
-                        {
-                            "include": "#comment"
-                        },
+                        
                         {
                             "include": "#cdata"
                         },

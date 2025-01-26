@@ -7,7 +7,6 @@ import { CodeBlock } from "@/Modules/fumadocs-ui/dist/components/codeblock";
 import HTML from "@/app/(HTMLOutputs)/LayoutHTML";
 import type { HTMLCodeOptions } from "../../app/(HTMLOutputs)/LayoutHTML";
 
-
 interface CodeBlockProps {
     children: typeof CodeBlock | any,
     codeOptions: HTMLCodeOptions,

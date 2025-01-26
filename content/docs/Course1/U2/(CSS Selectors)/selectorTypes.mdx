@@ -1,0 +1,142 @@
+---
+title: Selector Types
+description: Learn what types of selectors there are in CSS and what they do.
+slug: /css/selectors/1
+---
+import { IoLogoHtml5 } from "react-icons/io5"
+import { DocComponents, ShadcnComponents, FullPageSeparator } from "../../../../../components/all"
+import Link from "next/link"
+import { CodeBlock, Pre} from "fumadocs-ui/components/codeblock"
+import { HoverCardInline } from "../../../../../components/ui/ease-hovercard"
+import { Popup, PopupContent, PopupTrigger } from 'fumadocs-twoslash/ui';
+import CodeBlockOutput from "../../../../../components/custom/outputCodeblock"
+import { Tab, Tabs } from "fumadocs-ui/components/tabs"
+
+## Simple Selectors
+
+<>
+    <>
+    **Recap:**
+Simple selectors are used to target specific HTML elements and apply styles to them. These selectors help you control the appearance of elements on a webpage. Let’s go over the basic types:
+
+    </>
+</>
+
+<br/>
+
+### Element Selectors
+
+<>
+    <>
+
+Element selectors target all instances of a specific HTML element type. For example, if you want to style every `<p>{:html}` tag or `<h1>{:html}` tag, you can use an element selector.
+
+<Tabs items={['HTML', 'CSS']} defaultValue={'HTML'}>
+```html tab="HTML"
+<p>This is a paragraph.</p>
+<p>Another paragraph here!</p>
+```
+
+```css tab="CSS"
+p {
+    color: blue;
+    font-size: 16px;
+}
+```
+</Tabs>
+
+This will turn all `<p>{:html}` tags **`blue`** and set their **`font-size`** to `16px`.
+
+    </>
+</>
+
+<br/>
+
+### Class Selectors
+
+<>
+    <>
+
+Class selectors allow you to target elements with a specific class. Classes are reusable, so you can style multiple elements the same way by giving them the same class.
+
+<Tabs items={['HTML', 'CSS']} defaultValue={'HTML'}>
+```html tab="HTML"
+<div class="highlight">This text is highlighted!</div>
+<p class="highlight">This paragraph is also highlighted.</p>
+```
+
+```css tab="CSS"
+.highlight {
+    background-color: yellow;
+    font-weight: bold;
+}
+```
+</Tabs>
+
+This will add a **`yellow`** `background-color` and **`bold`** `font-weight` to all elements with the `highlight` class.
+
+    </>
+</>
+
+<br/>
+
+### Id Selectors
+
+<>
+    <>
+
+Id selectors are used to target a single element on the page by its **unique** ID. IDs must be unique per page, so only one element should ever use a particular ID.
+
+<Tabs items={['HTML', 'CSS']} defaultValue={'HTML'}>
+```html tab="HTML"
+<h1 id="main-title">Welcome to My Website</h1>
+```
+
+```css tab="CSS"
+#main-title {
+    color: red;
+    font-size: 24px;
+}
+```
+</Tabs>
+
+This will make the element with the `main-title` ID **`red`** and **set its `font-size` to `24px`**.
+
+    </>
+</>
+
+<br/>
+
+### Universal Selectors
+
+<>
+    <>
+
+The universal selector (`*`) targets every single element on the page. It’s commonly used to apply global styles like resetting default margins or padding.
+
+<Tabs items={['HTML', 'CSS']} defaultValue={'HTML'}>
+```html tab="HTML"
+<h1>Header</h1>
+<p>A paragraph.</p>
+<div>Some content here.</div>
+```
+
+```css tab="CSS"
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+```
+</Tabs>
+
+This removes the **default `margin` and `padding`** from all elements and sets `box-sizing` to `border-box` for all elements.
+
+    </>
+</>
+
+<br/>
+
+---
+
+With these simple selectors, you can begin styling specific elements, classes, and IDs, or even all elements on your page.

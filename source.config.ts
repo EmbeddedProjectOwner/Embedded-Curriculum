@@ -5,6 +5,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import { z } from 'zod';
 import { remarkMermaid } from '@theguild/remark-mermaid';
+import { LandPlot } from 'lucide-react';
 
 
 export const { docs, meta } = defineDocs({

@@ -513,6 +513,7 @@ function rehypeCode(options = {}) {
   if (codeOptions.tab !== false) {
     codeOptions.transformers = [...codeOptions.transformers, transformerTab()];
   }
+  
   let themeItems = [];
   if ("themes" in codeOptions) {
     themeItems = Object.values(codeOptions.themes);
@@ -524,9 +525,11 @@ function rehypeCode(options = {}) {
     themes: themeItems.filter(Boolean),
     langs: codeOptions.langs ?? Object.keys(bundledLanguages)
   });
+  
   const transformer = highlighter.then(
     (instance) => rehypeShikiFromHighlighter(instance, codeOptions)
   );
+  
   return async (tree, file) => {
     await (await transformer)(tree, file, () => {
     });
