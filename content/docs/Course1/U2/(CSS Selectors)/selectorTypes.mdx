@@ -9,7 +9,7 @@ import Link from "next/link"
 import { CodeBlock, Pre} from "fumadocs-ui/components/codeblock"
 import { HoverCardInline } from "../../../../../components/ui/ease-hovercard"
 import { Popup, PopupContent, PopupTrigger } from 'fumadocs-twoslash/ui';
-import CodeBlockOutput from "../../../../../components/custom/outputCodeblock"
+import CodeBlockOutput from "../../../../../components/custom/OutputCodeBlock/outputCodeblock"
 import { Tab, Tabs } from "fumadocs-ui/components/tabs"
 
 ## Simple Selectors
@@ -30,8 +30,8 @@ Simple selectors are used to target specific HTML elements and apply styles to t
     <>
 
 Element selectors target all instances of a specific HTML element type. For example, if you want to style every `<p>{:html}` tag or `<h1>{:html}` tag, you can use an element selector.
-
-<Tabs items={['HTML', 'CSS']} defaultValue={'HTML'}>
+<CodeBlockOutput>
+<Tabs items={['CSS', 'HTML']} defaultIndex={0}>
 ```html tab="HTML"
 <p>This is a paragraph.</p>
 <p>Another paragraph here!</p>
@@ -44,7 +44,7 @@ p {
 }
 ```
 </Tabs>
-
+</CodeBlockOutput>
 This will turn all `<p>{:html}` tags **`blue`** and set their **`font-size`** to `16px`.
 
     </>
@@ -59,7 +59,8 @@ This will turn all `<p>{:html}` tags **`blue`** and set their **`font-size`** to
 
 Class selectors allow you to target elements with a specific class. Classes are reusable, so you can style multiple elements the same way by giving them the same class.
 
-<Tabs items={['HTML', 'CSS']} defaultValue={'HTML'}>
+<CodeBlockOutput>
+<Tabs items={['CSS', 'HTML']} defaultIndex={0}>
 ```html tab="HTML"
 <div class="highlight">This text is highlighted!</div>
 <p class="highlight">This paragraph is also highlighted.</p>
@@ -72,7 +73,7 @@ Class selectors allow you to target elements with a specific class. Classes are 
 }
 ```
 </Tabs>
-
+</CodeBlockOutput>
 This will add a **`yellow`** `background-color` and **`bold`** `font-weight` to all elements with the `highlight` class.
 
     </>
@@ -87,7 +88,8 @@ This will add a **`yellow`** `background-color` and **`bold`** `font-weight` to 
 
 Id selectors are used to target a single element on the page by its **unique** ID. IDs must be unique per page, so only one element should ever use a particular ID.
 
-<Tabs items={['HTML', 'CSS']} defaultValue={'HTML'}>
+<CodeBlockOutput>
+<Tabs items={['CSS', 'HTML']} defaultIndex={0}>
 ```html tab="HTML"
 <h1 id="main-title">Welcome to My Website</h1>
 ```
@@ -99,6 +101,7 @@ Id selectors are used to target a single element on the page by its **unique** I
 }
 ```
 </Tabs>
+</CodeBlockOutput>
 
 This will make the element with the `main-title` ID **`red`** and **set its `font-size` to `24px`**.
 
@@ -114,7 +117,8 @@ This will make the element with the `main-title` ID **`red`** and **set its `fon
 
 The universal selector (`*`) targets every single element on the page. It’s commonly used to apply global styles like resetting default margins or padding.
 
-<Tabs items={['HTML', 'CSS']} defaultValue={'HTML'}>
+<CodeBlockOutput>
+<Tabs items={['CSS', 'HTML']} defaultIndex={0}>
 ```html tab="HTML"
 <h1>Header</h1>
 <p>A paragraph.</p>
@@ -129,6 +133,7 @@ The universal selector (`*`) targets every single element on the page. It’s co
 }
 ```
 </Tabs>
+</CodeBlockOutput>
 
 This removes the **default `margin` and `padding`** from all elements and sets `box-sizing` to `border-box` for all elements.
 

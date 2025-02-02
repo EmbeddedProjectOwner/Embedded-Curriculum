@@ -1,0 +1,181 @@
+---
+title: Combinator Selectors
+slug: /css/selectors/2
+description: CSS combinator selectors, how they work, and what they do.
+---
+
+import { IoLogoHtml5 } from "react-icons/io5"
+import { DocComponents, ShadcnComponents, FullPageSeparator } from "../../../../../components/all"
+import Link from "next/link"
+import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock"
+import { HoverCardInline } from "../../../../../components/ui/ease-hovercard"
+import { Popup, PopupContent, PopupTrigger } from 'fumadocs-twoslash/ui';
+import CodeBlockOutput from "../../../../../components/custom/OutputCodeBlock/outputCodeblock"
+import { Tab, Tabs } from "fumadocs-ui/components/tabs"
+
+<>    
+    ## Combinator Selectors
+
+    Combinator selectors define relationships between elements. They help you select elements based on their placement within the HTML structure.
+
+    ### Descendant Combinator (` `)
+    
+    Selects all elements that are descendants of a specified element.
+
+    <CodeBlockOutput>
+    <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+    ```html tab="HTML"
+    <div>
+        <p>This paragraph is selected.</p>
+        <section>
+            <p>This paragraph is also selected.</p>
+        </section>
+    </div>
+    ```
+
+    ```css tab="CSS"
+    div p {
+        color: blue;
+    }
+    ```
+    </Tabs>
+    </CodeBlockOutput>
+
+    ### Child Combinator (`>`)
+    
+    Selects only direct children of a specified element.
+
+    <CodeBlockOutput>
+    <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+    ```html tab="HTML"
+    <div>
+        <p>This paragraph is selected.</p>
+        <section>
+            <p>This paragraph is NOT selected.</p>
+        </section>
+    </div>
+    ```
+
+    ```css tab="CSS"
+    div > p {
+        color: red;
+    }
+    ```
+    </Tabs>
+    </CodeBlockOutput>
+
+    ### Next Sibling Combinator (`+`)
+    
+    Selects the immediate next sibling element.
+    <CodeBlockOutput>
+    <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+    ```html tab="HTML"
+    <h1>Heading</h1>
+    <p>This paragraph is selected.</p>
+    <p>This paragraph is NOT selected.</p>
+    ```
+
+    ```css tab="CSS"
+    h1 + p {
+        font-weight: bold;
+    }
+    ```
+    </Tabs>
+    </CodeBlockOutput>
+
+    ### Subsequent Sibling Combinator (`~`)
+
+    Selects all following siblings of an element.
+
+    <CodeBlockOutput>
+    <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+    ```html tab="HTML"
+    <h1>Heading</h1>
+    <p>This paragraph is selected.</p>
+    <p>This paragraph is also selected.</p>
+    ```
+
+    ```css tab="CSS"
+    h1 ~ p {
+        color: green;
+    }
+    ```
+    </Tabs>
+    </CodeBlockOutput>
+</>
+
+<>    
+    ## Pseudo-Class Selectors
+
+    Pseudo-classes select elements based on a specific state.
+    <CodeBlockOutput>
+    <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+    ```html tab="HTML"
+    <button>Hover over me</button>
+    ```
+
+    ```css tab="CSS"
+    button:hover {
+        background-color: yellow;
+    }
+    ```
+    </Tabs>
+    </CodeBlockOutput>
+
+    - `:hover{:css}` - Styles an element when hovered over.
+    - `:focus{:css}` - Styles an element when it gains focus.
+    - `:nth-child(n){:css}` - Selects elements based on their position in a parent element.
+</>
+
+<>    
+    ## Pseudo-Element Selectors
+
+    Pseudo-elements allow styling a part of an element.
+
+    <CodeBlockOutput>
+    <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+    ```html tab="HTML"
+    <p>This paragraph's first letter is styled.</p>
+    ```
+
+    ```css tab="CSS"
+    p::first-letter {
+        font-size: 2rem;
+        color: red;
+    }
+    ```
+    </Tabs>
+    </CodeBlockOutput>
+
+    - `::before{:css}` - Inserts content before an element.
+    - `::after{:css}` - Inserts content after an element.
+    - `::first-letter{:css}` - Styles the first letter of an element.
+    - `::first-line{:css}` - Styles the first line of an element.
+</>
+
+<>    
+    ## Attribute Selectors
+
+    Attribute selectors style elements based on attributes.
+
+    <CodeBlockOutput>
+    <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+    ```html tab="HTML"
+    <input type="text" placeholder="This input is styled">
+    <input type="password" placeholder="This input is NOT styled">
+    ```
+
+    ```css tab="CSS"
+    input[type="text"] {
+        border: 2px solid blue;
+    }
+    ```
+    </Tabs>
+    </CodeBlockOutput>
+
+    - `[attr]{:css}` - Selects elements with a specified attribute.
+    - `[attr="value"]{:css}` - Selects elements with an exact attribute value.
+    - `[attr^="value"]{:css}` - Selects elements whose attribute starts with a value.
+    - `[attr$="value"]{:css}` - Selects elements whose attribute ends with a value.
+    - `[attr*="value"]{:css}` - Selects elements whose attribute contains a value.
+</>

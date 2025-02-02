@@ -93,6 +93,7 @@ export interface HTMLCodeOptions {
 	tabProps?: { title: string },
 	class_Name?: string,
 	customHTML?: string,
+  customCSS?: string,
 	includePage?: boolean 
 }
 
@@ -102,7 +103,8 @@ export default function HTML({
 	tabProps,
 	class_Name,
 	customHTML,
-	includePage 
+	includePage,
+  customCSS 
 }: HTMLCodeOptions) {
   // Render HTML content directly into an iframe
   let htmlString = optionNum ? `
@@ -132,6 +134,7 @@ export default function HTML({
         <html>
         <head>
           <title>My Page</title>
+          ${(customCSS) ? `<style type="text/css">${customCSS}</style>` : ""}
         </head>
           <body style="margin: 0;">
             ${customHTML}
@@ -140,6 +143,9 @@ export default function HTML({
       `
     } else {
      htmlString = customHTML
+     if (customCSS) {
+      htmlString = `<style type="text/css">${customCSS}</style> ${customHTML}`
+     }
     }
   }
 

@@ -6,6 +6,10 @@
         "cssIntro",
         "---CSS---",
         "...", 
+        "(CSS Selectors)",
+        "cssBoxModel",
+        "cssTextStyles",
+        "cssBackgroundsLayouts",
         "!(MDXSnippets)"
     ]
     

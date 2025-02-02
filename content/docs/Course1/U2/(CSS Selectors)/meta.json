@@ -2,6 +2,7 @@
     "pages": [
         "whatIsIt",
         "selectorTypes",
-        "groupingSelectors"
+        "combinatorSelectors",
+        "..."
     ]
 }

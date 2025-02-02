@@ -1,0 +1,132 @@
+---
+title: Text Styling
+description: How to style typography in CSS, what to use, and how to use it.
+slug: /css/3
+---
+
+import { IoLogoHtml5 } from "react-icons/io5"
+import { DocComponents, ShadcnComponents, FullPageSeparator } from "../../../../components/all"
+import Link from "next/link"
+import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock"
+import { HoverCardInline } from "../../../../components/ui/ease-hovercard"
+import { Popup, PopupContent, PopupTrigger } from 'fumadocs-twoslash/ui';
+import CodeBlockOutput from "../../../../components/custom/OutputCodeBlock/outputCodeblock"
+import { Tab, Tabs } from "fumadocs-ui/components/tabs"
+
+
+# Text Styling
+
+<>
+Typography refers to the styling of text on a webpage. In CSS, there are various properties to control the way text appears, from font selection to text alignment and decoration.
+</>
+
+## Importing Fonts
+
+<>
+You can import fonts in CSS using `@import{:css}`, linking a font from Google Fonts, or defining local fonts.
+
+```css title="Importing Google Fonts"
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+```
+</>
+
+## Font Styles
+
+<>
+Font-related properties control the appearance of text, such as size, weight, and style.
+
+| Property       | Description                                      | Example |
+|---------------|--------------------------------------------------|---------|
+| `font-family{:css}` | Defines the font of the text                    | `font-family: Arial, sans-serif;{:css}` |
+| `font-size{:css}`   | Sets the size of the text                       | `font-size: 16px;{:css}` |
+| `font-style{:css}`  | Defines the style of the font (`normal{:css}`, `italic{:css}`, `oblique{:css}`) | `font-style: italic;{:css}` |
+| `font-weight{:css}` | Specifies the thickness of the font (`400{:css}`, `700{:css}`, `bold{:css}`) | `font-weight: bold;{:css}` |
+| `line-height{:css}` | Defines the space between lines of text         | `line-height: 1.5;{:css}` |
+</>
+
+## Text Styles
+
+<>
+Text styles control the alignment, decoration, and transformation of text.
+
+| Property          | Description                                  | Example |
+|------------------|----------------------------------------------|---------|
+| `text-align{:css}`     | Aligns text (`left{:css}`, `center{:css}`, `right{:css}`)     | `text-align: center;{:css}` |
+| `text-decoration{:css}`| Adds decoration (`underline{:css}`, `line-through{:css}`, `none{:css}`) | `text-decoration: underline;{:css}` |
+| `text-transform{:css}` | Controls capitalization (`uppercase{:css}`, `lowercase{:css}`, `capitalize{:css}`) | `text-transform: uppercase;{:css}` |
+| `color{:css}`         | Sets the text color                          | `color: #333;{:css}` |
+</>
+
+## Examples 
+### Basic Text Styling
+
+<CodeBlockOutput>
+  <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+    ```css tab="CSS"
+    .styled-text {
+      font-family: 'Roboto', sans-serif;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: underline;
+      text-transform: uppercase;
+      color: #ff5733;
+    }
+    ```
+    ```html tab="HTML"
+    <p class="styled-text">This is styled text</p>
+    ```
+  </Tabs>
+</CodeBlockOutput>
+
+### Advanced Text Effects
+
+<>
+Beyond basic text styling, CSS allows you to apply more advanced effects like `text-shadow{:css}` and glow effects.
+
+| Property               | Description                                    | Syntax & Parameters |
+|------------------------|------------------------------------------------|----------------------|
+| `text-shadow{:css}`    | Adds shadow to text with offset and blur.      | `text-shadow: x-offset y-offset blur-radius color;{:css}` <br/> **x-offset**: Horizontal shadow position <br/> **y-offset**: Vertical shadow position <br/> **blur-radius**: How much the shadow blurs (optional) <br/> **color**: The shadow color |
+| `filter: drop-shadow(){:css}` | Similar to `text-shadow{:css}`, but applies a glow effect that affects transparent parts of text/images. | `filter: drop-shadow(x-offset y-offset blur-radius color);{:css}` <br/> **x-offset**: Horizontal shadow position <br/> **y-offset**: Vertical shadow position <br/> **blur-radius**: How much the shadow blurs <br/> **color**: The glow color |
+
+</>
+
+### Text Shadow
+
+<CodeBlockOutput>
+  <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+    ```css tab="CSS"
+    .shadow-text {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+    }
+    ```
+    ```html tab="HTML"
+    <p class="shadow-text">This text has a shadow</p>
+    ```
+  </Tabs>
+</CodeBlockOutput>
+
+### Glowing Text
+
+<CodeBlockOutput>
+  <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+    ```css tab="CSS"
+    .glow-text {
+      font-size: 24px;
+      font-weight: bold;
+      color: cyan;
+      filter: drop-shadow(0px 0px 8px cyan);
+    }
+    ```
+    ```html tab="HTML"
+    <p class="glow-text">This text glows</p>
+    ```
+  </Tabs>
+</CodeBlockOutput>

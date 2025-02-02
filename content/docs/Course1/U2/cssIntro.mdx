@@ -10,7 +10,7 @@ import Link from "next/link"
 import { CodeBlock, Pre} from "fumadocs-ui/components/codeblock"
 import { HoverCardInline } from "../../../../components/ui/ease-hovercard"
 import { Popup, PopupContent, PopupTrigger } from 'fumadocs-twoslash/ui';
-import CodeBlockOutput from "../../../../components/custom/outputCodeblock"
+import CodeBlockOutput from "../../../../components/custom/OutputCodeBlock/outputCodeblock"
 import { Tab, Tabs } from "fumadocs-ui/components/tabs"
 
 # Introduction
@@ -138,7 +138,7 @@ CSS can be used in three ways, these are types of CSS are:
         
 
         <CodeBlockOutput className="m-[2%]">
-                    <Tabs items={["HTML", "CSS File"]} defaultValue="HTML" >
+                    <Tabs items={["HTML", "CSS File"]} defaultIndex={0} >
 
 
                         ```html title="index.html" tab="HTML"

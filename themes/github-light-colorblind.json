@@ -373,29 +373,29 @@
       {
         "scope": "invalid.broken",
         "settings": {
-          "fontStyle": "italic",
-          "foreground": "#6f3800"
+          
+          "foreground": "#0550AE"
         }
       },
       {
         "scope": "invalid.deprecated",
         "settings": {
-          "fontStyle": "italic",
-          "foreground": "#6f3800"
+          
+          "foreground": "#0550AE"
         }
       },
       {
         "scope": "invalid.illegal",
         "settings": {
-          "fontStyle": "italic",
-          "foreground": "#6f3800"
+          
+          "foreground": "#0550AE"
         }
       },
       {
         "scope": "invalid.unimplemented",
         "settings": {
-          "fontStyle": "italic",
-          "foreground": "#6f3800"
+          
+          "foreground": "#0550AE"
         }
       },
       {
@@ -410,7 +410,7 @@
       {
         "scope": "message.error",
         "settings": {
-          "foreground": "#6f3800"
+          "foreground": "#0550AE"
         }
       },
       {
@@ -495,7 +495,7 @@
       {
         "scope": "markup.italic",
         "settings": {
-          "fontStyle": "italic",
+          
           "foreground": "#24292f"
         }
       },
@@ -536,7 +536,7 @@
         ],
         "settings": {
           "background": "#fff5e8",
-          "foreground": "#6f3800"
+          "foreground": "#0550AE"
         }
       },
       {
@@ -620,7 +620,7 @@
       {
         "scope": "brackethighlighter.unmatched",
         "settings": {
-          "foreground": "#6f3800"
+          "foreground": "#0550AE"
         }
       },
       {

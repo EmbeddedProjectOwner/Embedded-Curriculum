@@ -1,0 +1,149 @@
+---
+title: Backgrounds & Layouts
+description: CSS how to style backgrounds and add layouts, positioning, to your page.
+slug: /css/4
+---
+
+import { IoLogoHtml5 } from "react-icons/io5"
+import { DocComponents, ShadcnComponents, FullPageSeparator } from "../../../../components/all"
+import Link from "next/link"
+import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock"
+import { HoverCardInline } from "../../../../components/ui/ease-hovercard"
+import { Popup, PopupContent, PopupTrigger } from 'fumadocs-twoslash/ui';
+import CodeBlockOutput from "../../../../components/custom/OutputCodeBlock/outputCodeblock"
+import { Tab, Tabs } from "fumadocs-ui/components/tabs"
+
+# Backgrounds & Layouts
+
+<>
+In this section, we'll cover how to style backgrounds and work with layouts in CSS. This includes background properties and common layout-related properties like positioning, display, and overflow.
+</>
+
+## Background Properties
+
+<><>
+| Property            | Description                               | Syntax & Parameters |
+|---------------------|-------------------------------------------|---------------------|
+| `background-color`   | Sets the background color of an element.  | `background-color: color; {:css}` <br/> **color**: Can be any valid color value (hex, rgb, rgba, named color, etc.) |
+| `background-size`    | Defines the size of the background image. | `background-size: width height; {:css}` <br/> **width**: Width of the background image (can be in % or px). <br/> **height**: Height of the background image (can be in % or px). |
+| `background-image`   | Specifies the background image.           | `background-image: url('image-url'); {:css}` <br/> **url**: The URL path to the image. |
+| `background-position`| Defines the position of the background image. | `background-position: x-position y-position; {:css}` <br/> **x-position**: Horizontal position (e.g., `center`, `left`, `right`, or percentage). <br/> **y-position**: Vertical position (e.g., `center`, `top`, `bottom`, or percentage). |
+| `background-repeat`  | Specifies how the background image should repeat. | `background-repeat: repeat / repeat-x / repeat-y / no-repeat; {:css}` <br/> **repeat**: Image repeats both horizontally and vertically. <br/> **repeat-x**: Image repeats only horizontally. <br/> **repeat-y**: Image repeats only vertically. <br/> **no-repeat**: The background image is shown once only. |
+</></>
+
+## Layouts & Positioning
+
+### Positioning
+
+<>
+<>
+| Property      | Description                                      | Syntax & Parameters |
+|---------------|--------------------------------------------------|---------------------|
+| `static`      | Default positioning. Element stays in the normal flow of the document. | `position: static; {:css}` |
+| `relative`    | Element is positioned relative to its normal position. | `position: relative; {:css}` |
+| `absolute`    | Element is positioned relative to the nearest positioned ancestor. | `position: absolute; {:css}` |
+| `fixed`       | Element is positioned relative to the viewport and will stay in the same place when scrolling. | `position: fixed; {:css}` |
+| `sticky`      | Element is positioned based on the user's scroll position. | `position: sticky; {:css}` |
+</>
+</>
+
+### Display
+
+<>
+<>
+| Property      | Description                                      | Syntax & Parameters |
+|---------------|--------------------------------------------------|---------------------|
+| `block`       | Element takes up the full width available and starts on a new line. | `display: block; {:css}` |
+| `inline`      | Element only takes up as much width as necessary and does not start on a new line. | `display: inline; {:css}` |
+| `inline-block`| Element behaves like an inline element but allows setting width and height. | `display: inline-block; {:css}` |
+| `none`        | Element is removed from the document layout. | `display: none; {:css}` |
+</>
+</>
+
+### Overflow
+
+<>
+<>
+| Property      | Description                                      | Syntax & Parameters |
+|---------------|--------------------------------------------------|---------------------|
+| `overflow`    | Specifies what to do if content overflows an element's box. | `overflow: visible / hidden / scroll / auto; {:css}` |
+| `overflow-x`  | Controls horizontal overflow. | `overflow-x: visible / hidden / scroll / auto; {:css}` |
+| `overflow-y`  | Controls vertical overflow. | `overflow-y: visible / hidden / scroll / auto; {:css}` |
+</>
+</>
+
+## Example: Background Styling
+
+<CodeBlockOutput>
+  <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+    ```css tab="CSS"
+    .background-example {
+      background-color: #f0f0f0;
+      background-image: url('background.jpg');
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    ```
+    ```html tab="HTML"
+    <div class="background-example">
+      This div has a background image with specific positioning and sizing.
+    </div>
+    ```
+  </Tabs>
+</CodeBlockOutput>
+
+## Example: Layout with Positioning
+
+<CodeBlockOutput>
+  <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+    ```css tab="CSS"
+    .position-relative {
+      position: relative;
+      top: 10px;
+      left: 20px;
+    }
+    .position-absolute {
+      position: absolute;
+      top: 50px;
+      left: 100px;
+    }
+    ```
+    ```html tab="HTML"
+    <div class="position-relative">
+      This div is positioned relative.
+    </div>
+    <div class="position-absolute">
+      This div is positioned absolute.
+    </div>
+    ```
+  </Tabs>
+</CodeBlockOutput>
+
+## Example: Display and Overflow
+
+<CodeBlockOutput>
+  <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+    ```css tab="CSS"
+    .display-block {
+      display: block;
+      width: 100%;
+      height: 50px;
+    }
+    .overflow-hidden {
+      overflow: hidden;
+      width: 200px;
+      height: 100px;
+    }
+    ```
+    ```html tab="HTML"
+    <div class="display-block">
+      This block element takes up the full width.
+    </div>
+    <div class="overflow-hidden">
+      This container hides overflowing content.
+    </div>
+    ```
+  </Tabs>
+</CodeBlockOutput>
+

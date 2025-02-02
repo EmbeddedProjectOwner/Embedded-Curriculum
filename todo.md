@@ -46,7 +46,7 @@ Course 1:
             - Id `#`,
             - Universal `*`,
         - Combinator Selectors
-            - Descendant Combinator `&nbsp;`,
+            - Descendant Combinator,
             - Child Combinator `>`,
             - Next sibling combinator `+`,
             - Subsequent-sibling combinator `~`,
