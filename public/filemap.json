@@ -5259,7 +5259,7 @@
 															[
 																"s",
 																{
-																	"w": "buisness",
+																	"w": "Business",
 																	"s": "sness",
 																	"e": true,
 																	"k": "s",
@@ -20574,7 +20574,7 @@
 					"com": 0.09090909090909091,
 					"contact": 0.09090909090909091,
 					"for": 0.09090909090909091,
-					"buisness": 0.09090909090909091,
+					"Business": 0.09090909090909091,
 					"or": 0.09090909090909091,
 					"questions": 0.09090909090909091
 				},
@@ -26777,7 +26777,7 @@
 				"email": 1,
 				"gmail": 1,
 				"com": 3,
-				"buisness": 1,
+				"Business": 1,
 				"discord": 1,
 				"swedishaeternum": 1,
 				"-": 17,
@@ -28875,7 +28875,7 @@
 				"page_id": "Course1",
 				"type": "text",
 				"url": "/docs/Course1#my-contactssocials",
-				"content": "Email: quincy.m.dack@gmail.com Contact email for buisness or questions"
+				"content": "Email: quincy.m.dack@gmail.com Contact email for Business or questions"
 			},
 			"60": {
 				"id": "Course1-58",
@@ -30816,7 +30816,7 @@
 					],
 					[
 						59,
-						"Email: quincy.m.dack@gmail.com Contact email for buisness or questions"
+						"Email: quincy.m.dack@gmail.com Contact email for Business or questions"
 					],
 					[
 						76,

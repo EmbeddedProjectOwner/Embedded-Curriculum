@@ -4,6 +4,14 @@ import { source } from '../source';
 import { DocsLayout } from 'fumadocs-ui/layouts/notebook'
 import { Slot } from '@radix-ui/react-slot';
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  icons: {
+    icon: "/EmbeddedLogoScaled.png", // Correct path
+    apple: "/EmbeddedLogoScaled.png",
+  },
+};
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (

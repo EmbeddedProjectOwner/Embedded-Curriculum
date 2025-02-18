@@ -3,6 +3,7 @@ export interface TagItem {
     name: string;
     value: string | undefined;
     props?: HTMLAttributes<HTMLButtonElement>;
+    subTags?: TagItem[]
 }
 export interface TagsListProps extends HTMLAttributes<HTMLDivElement> {
     tag?: string;

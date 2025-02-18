@@ -21,106 +21,213 @@ In this section, we'll cover how to style backgrounds and work with layouts in C
 
 ## Background Properties
 
-<><>
+<>
 | Property            | Description                               | Syntax & Parameters |
 |---------------------|-------------------------------------------|---------------------|
-| `background-color`   | Sets the background color of an element.  | `background-color: color; {:css}` <br/> **color**: Can be any valid color value (hex, rgb, rgba, named color, etc.) |
-| `background-size`    | Defines the size of the background image. | `background-size: width height; {:css}` <br/> **width**: Width of the background image (can be in % or px). <br/> **height**: Height of the background image (can be in % or px). |
-| `background-image`   | Specifies the background image.           | `background-image: url('image-url'); {:css}` <br/> **url**: The URL path to the image. |
-| `background-position`| Defines the position of the background image. | `background-position: x-position y-position; {:css}` <br/> **x-position**: Horizontal position (e.g., `center`, `left`, `right`, or percentage). <br/> **y-position**: Vertical position (e.g., `center`, `top`, `bottom`, or percentage). |
-| `background-repeat`  | Specifies how the background image should repeat. | `background-repeat: repeat / repeat-x / repeat-y / no-repeat; {:css}` <br/> **repeat**: Image repeats both horizontally and vertically. <br/> **repeat-x**: Image repeats only horizontally. <br/> **repeat-y**: Image repeats only vertically. <br/> **no-repeat**: The background image is shown once only. |
-</></>
-
-## Layouts & Positioning
-
-### Positioning
-
+| `background-color{:css}`   | Sets the background color of an element.  | `background-color: color; {:css}` <br/> **color**: Can be any valid color value (hex, rgb, rgba, named color, etc.) |
+| `background-size{:css}`    | Defines the size of the background image. | `background-size: width height; {:css}` <br/> **width**: Width of the background image (can be in % or px). <br/> **height**: Height of the background image (can be in % or px). |
+| `background-image{:css}`   | Specifies the background image.           | `background-image: url('image-url'); {:css}` <br/> **url**: The URL path to the image. |
+| `background-position{:css}`| Defines the position of the background image. | `background-position: x-position y-position; {:css}` <br/> **x-position**: Horizontal position (e.g., `center{:css}`, `left{:css}`, `right{:css}`, or percentage). <br/> **y-position**: Vertical position (e.g., `center{:css}`, `top{:css}`, `bottom{:css}`, or percentage). |
+| `background-repeat{:css}`  | Specifies how the background image should repeat. | `background-repeat: repeat / repeat-x / repeat-y / no-repeat; {:css}` <br/> **repeat**: Image repeats both horizontally and vertically. <br/> **repeat-x**: Image repeats only horizontally. <br/> **repeat-y**: Image repeats only vertically. <br/> **no-repeat**: The background image is shown once only. |
+</>
 <>
+
+## Positioning
+
 <>
 | Property      | Description                                      | Syntax & Parameters |
 |---------------|--------------------------------------------------|---------------------|
-| `static`      | Default positioning. Element stays in the normal flow of the document. | `position: static; {:css}` |
-| `relative`    | Element is positioned relative to its normal position. | `position: relative; {:css}` |
-| `absolute`    | Element is positioned relative to the nearest positioned ancestor. | `position: absolute; {:css}` |
-| `fixed`       | Element is positioned relative to the viewport and will stay in the same place when scrolling. | `position: fixed; {:css}` |
-| `sticky`      | Element is positioned based on the user's scroll position. | `position: sticky; {:css}` |
+| `static{:css}`      | Default positioning. Element stays in the normal flow of the document. | `position: static;{:css}` |
+| `relative{:css}`    | Element is positioned relative to its normal position. | `position: relative; {:css}` |
+| `absolute{:css}`    | Element is positioned relative to the nearest positioned ancestor. | `position: absolute; {:css}` |
+| `fixed{:css}`       | Element is positioned relative to the viewport and will stay in the same place when scrolling. | `position: fixed; {:css}` |
+| `sticky{:css}`      | Element is positioned based on the user's scroll position. | `position: sticky; {:css}` |
 </>
+
+### Relative V.S Absolute Positioning
+
+Elements with absolute positioning will not obey by the constrictions of other elements. Absolute positioning is not influenced by the margins of other elements.
+
+Whereas, elements with relative positoning are constrainted, they follow margins, and will try and by default position themself directly after the previous element.
+<CodeBlockOutput>
+  <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+    ```css tab="CSS"
+    header {
+      width: 100%;
+      height: 5%;
+      background-color: blue;
+      position: relative;
+      color: white;
+      z-index: 5 
+      /* 
+      Z-Index is used to say the order of display, because pages are in layers.
+       - The higher the z-index the higher up it will be (Above other elements),
+       - If the z-index is lower than elements with a higher z-index will appear ontop of it.
+      */
+    }
+    .position-relative {
+      position: relative;
+      width: 280px;
+      height: 92px;
+      background-color: lightblue;
+      border: 1px solid #000;
+    }
+    .position-absolute {
+      position: absolute;
+      top: 5px;
+      left: 385px;
+      width: 200px;
+      height: 100px;
+      background-color: lightgreen;
+      border: 1px solid #000;
+      padding-top: 35px;
+      
+    }
+
+    
+    ```
+    ```html tab="HTML"
+    <header> This header is used as a reference, look how the absolute and relative elements position themself from another relative element. </header>
+    <div class="position-relative">
+      This div is positioned relative. It has a width of 280px and height of 92px. It will follow the header's margins, if there are none (like in this case) it will be directly below.
+    </div>
+    <div class="position-absolute">
+      This div is positioned absolute. It has a width of 200px and height of 100px.
+      (This ignores all other elements, and positions itself where set)
+    </div>
+    ```
+  </Tabs>
+</CodeBlockOutput>
+
+#### Relative Positioning
+
+<>
+
+`position: relative{:css}` allows you to position an element relative to its normal position in the document layout. By default, it will remain in the document flow, but you can use the `top{:css}`, `right{:css}`, `bottom{:css}`, and `left{:css}` properties to move it. 
+
+    <CodeBlockOutput>
+      <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+        ```css tab="CSS"
+        .position-relative {
+          position: relative;
+          width: 200px;
+          height: 100px;
+          background-color: lightblue;
+          border: 1px solid #000;
+}
+        ```
+
+        ```html tab="HTML"
+        <div class="position-relative">
+          This div is positioned relative. It has a width of 200px and height of 100px.
+        </div>
+        ```
+      </Tabs>
+    </CodeBlockOutput>
+
 </>
+
+#### Absolute Positioning
+
+<>
+
+ `position: absolute{:css}` removes the element from the document flow and positions it relative to the nearest positioned ancestor (an element with `position{:css}` other than `static{:css}`). If there is no positioned ancestor, it will be positioned relative to the `<html>{:html}` element.
+
+ <CodeBlockOutput>
+ <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+```css tab="CSS"
+.position-absolute {
+  position: absolute;
+  top: 50px; /* 50px from the top of the nearest positioned ancestor */
+  left: 100px; /* 100px from the left */
+  width: 200px;
+  height: 100px;
+  background-color: lightgreen;
+  border: 1px solid #000;
+}
+```
+
+```html tab="HTML"
+<div class="position-absolute">
+  This div is positioned absolute. It has a width of 200px and height of 100px.
+</div>
+```
+</Tabs>
+</CodeBlockOutput>
+
+</>
+
+### Fixed Positioning
+
+<>
+
+With `position: fixed{:css}`, the element is fixed in place relative to the viewport. It remains at the same position even when scrolling the page.
+
+<CodeBlockOutput>
+  <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+```css tab="CSS"
+.position-fixed {
+  position: fixed;
+  top: 0; /* Stays at the top of the viewport */
+  left: 0; /* Stays at the left of the viewport */
+  width: 200px;
+  height: 100px;
+  background-color: lightcoral;
+  border: 1px solid #000;
+}
+```
+
+```html tab="HTML"
+<div class="position-fixed">
+  This div is positioned fixed. It stays at the top-left of the viewport.
+</div>
+```
+</Tabs>
+</CodeBlockOutput>
+</>
+
+### Sticky Positioning
+
+<>
+
+`position: sticky{:css}` is a hybrid between `relative{:css}` and `fixed{:css}`. It behaves like `relative{:css}` until a specified scroll position is reached, after which it "sticks" to that position as you scroll.
+
+<CodeBlockOutput>
+      <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+```css tab="CSS"
+.position-sticky {
+  position: sticky;
+  top: 0; /* Sticks to the top when scrolling */
+  width: 200px;
+  height: 100px;
+  background-color: lightyellow;
+  border: 1px solid #000;
+}
+```
+
+```html tab="HTML"
+<div class="position-sticky">
+  This div is positioned sticky. It sticks to the top of the page when scrolling.
+</div>
+```
+</Tabs>
+</CodeBlockOutput>
+</>
+
+</>
+
+## Layouts
 
 ### Display
 
 <>
-<>
 | Property      | Description                                      | Syntax & Parameters |
 |---------------|--------------------------------------------------|---------------------|
-| `block`       | Element takes up the full width available and starts on a new line. | `display: block; {:css}` |
-| `inline`      | Element only takes up as much width as necessary and does not start on a new line. | `display: inline; {:css}` |
-| `inline-block`| Element behaves like an inline element but allows setting width and height. | `display: inline-block; {:css}` |
-| `none`        | Element is removed from the document layout. | `display: none; {:css}` |
+| `block{:css}`       | Element takes up the full width available and starts on a new line. | `display: block; {:css}` |
+| `inline{:css}`      | Element only takes up as much width as necessary and does not start on a new line. | `display: inline; {:css}` |
+| `inline-block{:css}`| Element behaves like an inline element but allows setting width and height. | `display: inline-block; {:css}` |
+| `none{:css}`        | Element is removed from the document layout. | `display: none; {:css}` |
 </>
-</>
-
-### Overflow
-
-<>
-<>
-| Property      | Description                                      | Syntax & Parameters |
-|---------------|--------------------------------------------------|---------------------|
-| `overflow`    | Specifies what to do if content overflows an element's box. | `overflow: visible / hidden / scroll / auto; {:css}` |
-| `overflow-x`  | Controls horizontal overflow. | `overflow-x: visible / hidden / scroll / auto; {:css}` |
-| `overflow-y`  | Controls vertical overflow. | `overflow-y: visible / hidden / scroll / auto; {:css}` |
-</>
-</>
-
-## Example: Background Styling
-
-<CodeBlockOutput>
-  <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
-    ```css tab="CSS"
-    .background-example {
-      background-color: #f0f0f0;
-      background-image: url('background.jpg');
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-    ```
-    ```html tab="HTML"
-    <div class="background-example">
-      This div has a background image with specific positioning and sizing.
-    </div>
-    ```
-  </Tabs>
-</CodeBlockOutput>
-
-## Example: Layout with Positioning
-
-<CodeBlockOutput>
-  <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
-    ```css tab="CSS"
-    .position-relative {
-      position: relative;
-      top: 10px;
-      left: 20px;
-    }
-    .position-absolute {
-      position: absolute;
-      top: 50px;
-      left: 100px;
-    }
-    ```
-    ```html tab="HTML"
-    <div class="position-relative">
-      This div is positioned relative.
-    </div>
-    <div class="position-absolute">
-      This div is positioned absolute.
-    </div>
-    ```
-  </Tabs>
-</CodeBlockOutput>
-
-## Example: Display and Overflow
 
 <CodeBlockOutput>
   <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
@@ -129,21 +236,114 @@ In this section, we'll cover how to style backgrounds and work with layouts in C
       display: block;
       width: 100%;
       height: 50px;
+      background-color: lightcoral;
+      border: 1px solid #000;
     }
-    .overflow-hidden {
-      overflow: hidden;
-      width: 200px;
-      height: 100px;
+    .display-inline {
+      display: inline;
+      width: 150px;
+      height: 50px;
+      background-color: lightyellow;
+      border: 1px solid #000;
+    }
+    .display-inline-block {
+      display: inline-block;
+      width: 150px; /* Must limit width for inline-block to have height, unless elements around it compress it. */
+      min-height: 50px;
+      background-color: lightseagreen;
+      border: 1px solid #000;
+    }
+    .display-none {
+      display: none;
     }
     ```
     ```html tab="HTML"
     <div class="display-block">
-      This block element takes up the full width.
+      This div is a block element. It takes up the entire width and starts on a new line.
     </div>
-    <div class="overflow-hidden">
-      This container hides overflowing content.
+    <div class="display-inline">
+      This div is inline. It only takes up as much width as necessary.
+    </div>
+    <div class="display-inline-block">
+      This div is inline-block. It behaves like inline but can have width and height.
+    </div>
+    <div class="display-none">
+      This div is hidden because display is set to none.
     </div>
     ```
   </Tabs>
 </CodeBlockOutput>
 
+### Overflow
+
+<>
+
+Handling overflow ensures that when content is too large to fit in an element's box, you can manage how it behaves using properties like `hidden{:css}`, `scroll{:css}`, and `auto{:css}`.
+
+<CodeBlockOutput resizeable={false} style="overflow-hidden" >
+      <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+```css tab="CSS"
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.overflow-hidden {
+  overflow: hidden;
+  position: relative;
+  width: 200px;
+  height: 350px;
+  background-color: lightpink;
+  border: 1px solid #000;
+}
+
+.overflow-scroll {
+  overflow: scroll;
+  position: relative;
+  width: 200px;
+  height: 350px;
+  background-color: white;
+  border: 1px solid #000;
+}
+
+.overflow-auto {
+  overflow: auto;
+  position: relative;
+  width: 200px;
+  height: 350px;
+  background-color: lightblue;
+  border: 1px solid #000;
+}
+
+.overflowSpan {
+  line-height: 150;
+  color: red;
+}
+```
+
+```html tab="HTML"
+<div class="container">
+  <div class="overflow-hidden">
+    This div has overflow hidden. Content that overflows will be clipped.
+    <br/>
+    <span class="overflowSpan">Overflow!</span>
+
+  </div>
+  <div class="overflow-scroll">
+    This div has overflow scroll. Content that overflows will have scrollbars.
+    <br/>
+    <span class="overflowSpan">Overflow!</span>
+
+  </div>
+  <div class="overflow-auto">
+    This div has overflow auto. Scrollbars appear when content overflows.
+    <br/>
+    <span class="overflowSpan">Overflow!</span>
+  </div>
+</div>
+```
+</Tabs>
+</CodeBlockOutput>
+
+</>

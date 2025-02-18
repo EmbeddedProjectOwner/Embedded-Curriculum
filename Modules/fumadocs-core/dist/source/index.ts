@@ -6,6 +6,7 @@ import { ReactElement } from 'react';
 import { I as I18nConfig } from '../config-inq6kP6y.js';
 import { R as Root, I as Item, F as Folder$1, S as Separator } from '../page-tree-r8qjoUla.js';
 import { StructuredData } from "../mdx-plugins/index.js";
+import { TableOfContents } from "../get-toc-Dm1yr2Gr.js";
 
 interface FileInfo {
     locale?: string;
@@ -114,6 +115,9 @@ interface MetaData {
 }
 
 interface PageData {
+    full: boolean | undefined;
+    toc: TableOfContents | undefined;
+    body: any;
     meta: { slug?: string; path?: string; } & Record<string, any>;
     structuredData: StructuredData;
     icon?: string | undefined;

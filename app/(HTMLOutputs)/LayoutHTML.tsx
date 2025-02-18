@@ -94,7 +94,8 @@ export interface HTMLCodeOptions {
 	class_Name?: string,
 	customHTML?: string,
   customCSS?: string,
-	includePage?: boolean 
+	includePage?: boolean,
+  resizeable?: boolean
 }
 
 export default function HTML({ 
@@ -113,7 +114,7 @@ export default function HTML({
 <head>
   <title>My Page</title>
 </head>
-<body style="margin: 0;">
+<body style="margin: 0; overflow: hidden;">
   
       ${HTMLContent[(optionNum ?? 1) - 1]}
 
@@ -136,7 +137,7 @@ export default function HTML({
           <title>My Page</title>
           ${(customCSS) ? `<style type="text/css">${customCSS}</style>` : ""}
         </head>
-          <body style="margin: 0;">
+          <body style="margin: 0; overflow: hidden;">
             ${customHTML}
           </body>
         </html>

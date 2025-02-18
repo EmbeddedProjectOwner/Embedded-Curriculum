@@ -1,0 +1,171 @@
+---
+title: Flexboxes & Grids
+description: Learn what flexboxes and grids are, how to use them and implement them effectively.
+slug: /css/5
+---
+
+import { IoLogoHtml5 } from "react-icons/io5"
+import { DocComponents, ShadcnComponents, FullPageSeparator } from "../../../../components/all"
+import Link from "next/link"
+import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock"
+import { HoverCardInline } from "../../../../components/ui/ease-hovercard"
+import { Popup, PopupContent, PopupTrigger } from 'fumadocs-twoslash/ui';
+import CodeBlockOutput from "../../../../components/custom/OutputCodeBlock/outputCodeblock"
+import { Tab, Tabs } from "fumadocs-ui/components/tabs"
+
+# Flexboxes & Grids
+
+<>
+In this section, we'll dive into two powerful layout systems in CSS: **Flexbox** and **Grid**. We'll cover the core concepts of both, how to use their main properties, and provide some examples for better understanding.
+</>
+
+## Flexbox Layout
+
+<>
+Flexbox is a one-dimensional layout model that allows you to lay out items in a row or column with more flexibility and control. It is particularly useful for aligning and distributing space among items in a container.
+</>
+
+### Main Properties
+<>
+| Property            | Description                                 | Syntax & Parameters |
+|---------------------|---------------------------------------------|---------------------|
+| `display: flex{:css}`      | Activates the flexbox layout on the container. | `display: flex; {:css}` |
+| `flex-direction{:css}`     | Defines the direction in which flex items are placed in the flex container. | `flex-direction: row / row-reverse / column / column-reverse; {:css}` |
+| `justify-content{:css}`    | Aligns items horizontally (along the main axis). | `justify-content: flex-start / flex-end / center / space-between / space-around; {:css}` |
+| `align-items{:css}`        | Aligns items vertically (along the cross axis). | `align-items: flex-start / flex-end / center / baseline / stretch; {:css}` |
+| `align-content{:css}`      | Aligns multiple lines of flex items when there is extra space in the cross axis. | `align-content: flex-start / flex-end / center / space-between / space-around / stretch; {:css}` |
+| `gap{:css}`                | Defines the space between flex items. | `gap: 10px; {:css}` |
+</>
+
+<CodeBlockOutput>
+  <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+     ```css tab="CSS"
+    .flex-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+    }
+    .flex-item {
+      width: 30%;
+      height: 100px;
+      background-color: lightblue;
+      border: 1px solid #000;
+    }
+     ```
+     ```html tab="HTML"
+    <div class="flex-container">
+      <div class="flex-item">Item 1</div>
+      <div class="flex-item">Item 2</div>
+      <div class="flex-item">Item 3</div>
+    </div>
+     ```
+  </Tabs>
+</CodeBlockOutput>
+
+### Item Properties
+
+<>
+| Property         | Description                                 | Syntax & Parameters |
+|------------------|---------------------------------------------|---------------------|
+| `flex{:css}`           | Defines the ability of an item to grow or shrink. | `flex: 1  /  0  /  auto; {:css}` |
+| `order{:css}`          | Specifies the order of the flex items. | `order: 1; {:css}` |
+| `align-self{:css}`     | Allows individual items to override the `align-items{:css}` property. | `align-self: auto / flex-start / flex-end / center / baseline / stretch; {:css}` |
+</>
+<CodeBlockOutput>
+  <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+     ```css tab="CSS"
+    .flex-item-order {
+      order: 2;
+    }
+    .flex-item-align-self {
+      align-self: flex-start;
+    }
+     ```
+     ```html tab="HTML"
+    <div class="flex-container">
+      <div class="flex-item flex-item-order">Item 1</div>
+      <div class="flex-item flex-item-align-self">Item 2</div>
+      <div class="flex-item">Item 3</div>
+    </div>
+     ```
+  </Tabs>
+</CodeBlockOutput>
+
+---
+
+## Grids Layout
+
+<>
+<>
+CSS Grid Layout is a two-dimensional layout system that allows you to control both rows and columns simultaneously. It is highly effective for creating complex layouts with fewer lines of code.
+
+### Main Properties
+
+| Property         | Description                                 | Syntax & Parameters |
+|------------------|---------------------------------------------|---------------------|
+| `display: grid{:css}`  | Activates the grid layout on the container. | `display: grid; {:css}` |
+| `grid-template-columns{:css}` | Defines the columns in the grid layout. | `grid-template-columns: 100px 200px 300px; {:css}` |
+| `grid-template-rows{:css}`    | Defines the rows in the grid layout. | `grid-template-rows: 100px 200px; {:css}` |
+| `grid-gap{:css}`       | Defines the gap between rows and columns. | `grid-gap: 10px; {:css}` |
+</>
+</>
+<CodeBlockOutput>
+  <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+     ```css tab="CSS"
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      grid-gap: 10px;
+    }
+    .grid-item {
+      background-color: lightcoral;
+      border: 1px solid #000;
+      height: 100px;
+    }
+     ```
+     ```html tab="HTML"
+    <div class="grid-container">
+      <div class="grid-item">Item 1</div>
+      <div class="grid-item">Item 2</div>
+      <div class="grid-item">Item 3</div>
+    </div>
+     ```
+  </Tabs>
+</CodeBlockOutput>
+
+### Grid Item Properties
+<>
+| Property         | Description                                 | Syntax & Parameters |
+|------------------|---------------------------------------------|---------------------|
+| `grid-column{:css}`    | Defines the column span of a grid item. | `grid-column: span 2; {:css}` |
+| `grid-row{:css}`       | Defines the row span of a grid item. | `grid-row: span 2; {:css}` |
+| `align-self{:css}`     | Aligns a grid item within its grid cell. | `align-self: stretch / center / start / end; {:css}` |
+</>
+<CodeBlockOutput>
+  <Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+     ```css tab="CSS"
+    .grid-item-span {
+      grid-column: span 2;
+    }
+    .grid-item-align-self {
+      align-self: center;
+    }
+     ```
+     ```html tab="HTML"
+    <div class="grid-container">
+      <div class="grid-item grid-item-span">Item 1</div>
+      <div class="grid-item grid-item-align-self">Item 2</div>
+      <div class="grid-item">Item 3</div>
+    </div>
+     ```
+  </Tabs>
+</CodeBlockOutput>
+
+---
+<>
+If you'd like to learn more on flexboxes, and grids I'd strongly recommend looking at the W3Schools Documentation: 
+[W3Schools CSS Grid](https://www.w3schools.com/css/css_grid.asp)
+[W3Schools CSS Flexbox](https://www.w3schools.com/css/css3_flexbox.asp)
+</>

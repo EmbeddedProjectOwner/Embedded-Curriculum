@@ -28,4 +28,4 @@ THE AUTHORS RESERVE THE RIGHT TO EDIT THIS LICENCE WITHOUT NOTICE, BY USING THE 
 
 ### Conclusion
 
-This license is intended to promote open-source collaboration while ensuring that the Software remains free and accessible for non-commercial use. If you have any questions regarding this license, please contact my [buisness email](quincy.m.dack@gmail.com).
+This license is intended to promote open-source collaboration while ensuring that the Software remains free and accessible for non-commercial use. If you have any questions regarding this license, please contact my [Business email](quincy.m.dack@gmail.com).

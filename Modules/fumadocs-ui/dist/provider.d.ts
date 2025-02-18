@@ -19,7 +19,7 @@ export interface RootProviderProps {
     /**
      * @remarks `SearchProviderProps`
      */
-    search?: Partial<SearchOptions>;
+    search?: Partial<SearchOptions> | any;
     /**
      * Customise options of `next-themes`
      */

@@ -1,13 +1,13 @@
-import type { HTMLCodeOptions } from "@/app/(HTMLOutputs)/LayoutHTML"
+import type { HTMLCodeOptions } from "../../../../app/(HTMLOutputs)/LayoutHTML"
 import { CodeBlock } from "@/Modules/fumadocs-ui/dist/components/codeblock"
 import React from "react"
 import ReactDOMServer from 'react-dom/server'
 
 type langs = "js" | "jsx" | "ts" | "tsx" | "c" | "cs" | "gql" | "py" | "bash" | "sh" | "shell" | "zsh" | "html" | "css" | "c++"
-export interface CodeBlockProps {
+export interface CodeBlockProps extends HTMLCodeOptions {
     children: typeof CodeBlock | any,
-    codeOptions: HTMLCodeOptions,
     className: string,
+    style: string
 }
 
 export interface HandleOutputProps {
