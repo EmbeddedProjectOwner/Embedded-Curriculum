@@ -1,0 +1,150 @@
+---
+title: Responsive CSS
+description: Learn how to make your pages scale with screen sizes and responsive.
+slug: /css/5
+---
+
+import { IoLogoCss3 } from "react-icons/io5"
+import { DocComponents, ShadcnComponents, FullPageSeparator } from "../../../../components/all"
+import Link from "next/link"
+import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock"
+import { HoverCardInline } from "../../../../components/ui/ease-hovercard"
+import { Popup, PopupContent, PopupTrigger } from 'fumadocs-twoslash/ui';
+import CodeBlockOutput from "../../../../components/custom/OutputCodeBlock/outputCodeblock"
+import { Tab, Tabs } from "fumadocs-ui/components/tabs"
+
+# Responsive CSS
+
+Responsive CSS allows web pages to adapt to different screen sizes, ensuring usability across various devices like phones, tablets, and desktops. Without it, designs can break or become difficult to use on smaller screens.
+
+## Why is Responsive Design Important?
+
+- Users access websites on different devices.
+- Improves accessibility and usability.
+- Enhances user experience and engagement.
+- Prevents broken layouts on different screen sizes.
+
+## Media Queries: Adapting to Screen Sizes
+
+CSS media queries allow styles to change based on screen width, height, or other factors.
+
+<CodeBlockOutput resizeX>
+<Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+```html tab="HTML"
+<p>This text changes background color on smaller screens.</p>
+```
+```css tab="CSS"
+@media (max-width: 768px) {
+    body {
+        background-color: lightblue;
+    }
+}
+```
+</Tabs>
+</CodeBlockOutput>
+
+This example changes the background color when the screen width is 768px or less.
+
+## Recommended Approaches
+
+### 1. Mobile-First Design
+<>
+<>
+Start designing for small screens first and then scale up. This ensures performance and usability are prioritized.
+
+<CodeBlockOutput resizeX>
+<Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+```html tab="HTML"
+<p class="text">This text resizes on larger screens.</p>
+```
+```css tab="CSS"
+.text {
+    font-size: 16px;
+}
+
+@media (min-height: 425px) {
+    .text {
+        font-size: 18px;
+    }
+}
+```
+</Tabs>
+</CodeBlockOutput>
+</>
+</>
+Here, the base font size is for mobile, and it increases for larger screens.
+
+### 2. Separate Layouts for Different Screens
+
+If needed, you can create distinct layouts for mobile and desktop.
+
+<CodeBlockOutput resizeX>
+<Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+```html tab="HTML"
+<div class="container">
+    <div>Item 1</div>
+    <div>Item 2</div>
+</div>
+```
+```css tab="CSS"
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-height: 425px) {
+    .container {
+        flex-direction: row;
+    }
+}
+```
+</Tabs>
+</CodeBlockOutput>
+
+On smaller screens, the `.container` stacks elements vertically, while on larger screens, it aligns them horizontally.
+
+## Units: Relative vs. Absolute
+
+### Relative Units (Recommended)
+- **%** - Percentage of parent element.
+- **em/rem** - Scales with font size.
+- **vh/vw** - Viewport width and height.
+
+### Absolute Units (Less Flexible)
+- **px** - Fixed pixel size (does not scale).
+- **pt** - Point size (mostly for print).
+
+Using **relative units** helps make layouts more adaptable.
+
+<CodeBlockOutput resizeX>
+<Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+```html tab="HTML"
+<div class="container">Responsive Box</div>
+```
+```css tab="CSS"
+.container {
+    width: 80%;
+    font-size: 1.2rem;
+    background-color: red;
+}
+
+@media (min-height: 425px) {
+    .container {
+        width: 60%;
+        font-size: 1.5rem;
+    }
+}
+```
+</Tabs>
+</CodeBlockOutput>
+
+This ensures elements scale dynamically rather than being fixed.
+
+## Summary
+
+- **Use media queries** to adjust layouts for different screen sizes.
+- **Start with mobile-first** to build an adaptable UI.
+- **Use relative units** for better scalability.
+- **Consider separate layouts** if necessary for usability.
+
+Responsive websites adapt to screen sizes, which is necessary for people on a multitude of different devices to properly interact with your site.

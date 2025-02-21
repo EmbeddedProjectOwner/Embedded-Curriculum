@@ -95,7 +95,8 @@ export interface HTMLCodeOptions {
 	customHTML?: string,
   customCSS?: string,
 	includePage?: boolean,
-  resizeable?: boolean
+  resizeable?: boolean,
+  resizeX?: boolean
 }
 
 export default function HTML({ 

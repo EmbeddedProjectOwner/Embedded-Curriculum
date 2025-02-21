@@ -55,10 +55,8 @@ export function TagsList({
 }: TagsListProps): JSX.Element {
 
     const [PopupTrigger, setPopupTrigger] = React.useState<boolean>(false)
-    const [PopupTag, setPopupTag] = React.useState<string | null>(null)
     const [Value, setValue] = React.useState<string>("")
 
-console.log(tag)
     return (
         <div {...props} className={cn('flex flex-row items-center gap-1', props.className)}>
             {items.map((item) => {
