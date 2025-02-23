@@ -1,7 +1,9 @@
-import { Suspense } from "react";
+'use client'
+import { Suspense, SyntheticEvent, useState } from "react";
 import "../global.css"
 import MinnWildImage from "../images/Course1/html/4/MinnWild.png"
 import EmbeddedLogo from "../images/EmbeddedLogoScaledText.png"
+import React from "react";
 // HTMLContent you want to display
 const HTMLContent = [
   `<header style="padding: 0.5%; outline: solid; height: 15%; left: 0px; width: 100vw; "><h1>Welcome to My Page!<h1/></header>
@@ -96,7 +98,8 @@ export interface HTMLCodeOptions {
   customCSS?: string,
 	includePage?: boolean,
   resizeable?: boolean,
-  resizeX?: boolean
+  resizeX?: boolean,
+  onResize?: (e: SyntheticEvent<HTMLIFrameElement, Event>) => void
 }
 
 export default function HTML({ 
@@ -106,8 +109,10 @@ export default function HTML({
 	class_Name,
 	customHTML,
 	includePage,
-  customCSS 
+  customCSS,
+  onResize
 }: HTMLCodeOptions) {
+  const [set, setFunc] = useState(false)
   // Render HTML content directly into an iframe
   let htmlString = optionNum ? `
   <!DOCTYPE html>
@@ -163,6 +168,7 @@ export default function HTML({
         className={class_Name ? class_Name : "w-full h-[500px] border-2 rounded-md border-black bg-white"}
         srcDoc={htmlString}
         title="Embedded Content"
+        onMouseDown={onResize}
       />
     </>
   );

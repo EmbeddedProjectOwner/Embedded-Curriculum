@@ -62,7 +62,7 @@ Start designing for small screens first and then scale up. This ensures performa
     font-size: 16px;
 }
 
-@media (min-height: 425px) {
+@media (min-height: 400px) {
     .text {
         font-size: 18px;
     }
@@ -87,16 +87,27 @@ If needed, you can create distinct layouts for mobile and desktop.
 </div>
 ```
 ```css tab="CSS"
+.container div {
+    background-color: lightblue;
+    border: solid 1px;
+    width: 45%;
+    margin: 2px;
+    padding: 2px;
+}
 .container {
     display: flex;
+    padding: 2%;
+    background-color: rgba(220,0,0, .5);
+    border: solid 2px;
     flex-direction: column;
 }
 
-@media (min-height: 425px) {
+@media (min-height: 345px) {
     .container {
         flex-direction: row;
     }
 }
+
 ```
 </Tabs>
 </CodeBlockOutput>
@@ -128,7 +139,7 @@ Using **relative units** helps make layouts more adaptable.
     background-color: red;
 }
 
-@media (min-height: 425px) {
+@media (min-height: 400px) {
     .container {
         width: 60%;
         font-size: 1.5rem;
