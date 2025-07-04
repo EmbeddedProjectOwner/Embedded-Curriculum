@@ -1,12 +1,17 @@
 # Embedded Curriculum Production
 
-Copyright (c) 2024 | Quincy.M.Dack | All Rights Reserved
+Copyright (c) 2025 | Quincy.M.Dack | All Rights Reserved
 
 
 **Author: [SomeProgrammer (Quincy M. Dack)](https://github.com/SomePogProgrammer)**
 
+*P.S* I love clean code just as much as the next person, however I unfortunately cannot promise to that everything in this project is clean and beautiful to look at, I try in a lot of the more specialized reusable modules, however I'm not going to manually comment everything. Please excuse any logs which I've missed, I've been in and out of this project (yes I know the debugger is there, but I mainly use the console since a lot of times it's just more reliable.) I'm self taught entirely, so I do my best to follow best practices but a lot of times I make my own up as I go. And most edits to functionality in fuma-docs are going to be poor because I straight up ported over the build node modules, which were not at all cleanly done. Some will look nice, others not so much. But if you ask me in person I'll do my best to explain an edit to you.
 
 The curriculum is open source, under an **EDITED MIT LISCENSE**. See [license](/LICENSE) for more information. 
 
-Credit to:
-Fuma docs for the docs framework
+Credits to:
+Fuma docs for the docs framework (Which **I** have edited, adapted to, and added to.)
+
+
+I also would like to disclaim some stuff. 
+I have spent countless hours in this project working on the ciriculum, and every edit I make has purpose and I take responsibility for; however, AI was used in areas to increase readability, format fuma-doc modules or code, and aid in creating the actual curriculum. As much as it would've been great if I had the time to manually type and program out the basics in the curriculum I just did not have the time to program some of it in MDX. I've re-read and made edits over all AI material, none of it is 100% AI generated, and this curriculum has been tailored to the way I wish to teach. But I will never use AI in any public project as a way to do something if I do not know how to do it or approach it myself. That's not how one gets to where I am in my programming skills, you must force yourself to learn and I teach and practice my belief, that to be a sucessful teacher & learner of programming--AI, another person, or resource-- cannot do it all for you, or you'll never learn. I'm not against learning from watching, and I will not ever let someone, AI, or another resource do something for my project that I don't understand or cannot learn from. You must be able to know your own code in order to be a programmer. Anyone can copy and paste, anyone can hire another person, anyone can listen to instructions and not think about them. The point of learning anything, especially learning with a passion, is actively wanting to learn. Passion, and conciousness yearning is the difference between a human, and any artifical inteligence. Not programmed or forced passion, but concious passion, wanting not for a job, not for a person, not for money, but wanting to learn for yourself and therefore others. Passionate programmers are passionate teachers, passionate workers, and passion can be found and realized but cannot be forced. And that is what makes the parts of this curriculum aided by AI still just as passionate as the rest of it.

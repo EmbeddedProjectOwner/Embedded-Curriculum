@@ -12,6 +12,7 @@
         "cssBackgroundsLayouts",
         "cssFlexboxesGrids",
         "cssResponsive",
+        "cssAnimations",
         "!(MDXSnippets)"
     ]
     

@@ -1,0 +1,217 @@
+---
+title: Transitions & Animations
+description: Basic CSS overview of transitions, animnations, how to create them and their properties.
+slug: /css/7
+---
+
+import { IoLogoHtml5 } from "react-icons/io5"
+import { DocComponents, ShadcnComponents, FullPageSeparator } from "../../../../components/all"
+import Link from "next/link"
+import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock"
+import { HoverCardInline } from "../../../../components/ui/ease-hovercard"
+import { Popup, PopupContent, PopupTrigger } from 'fumadocs-twoslash/ui';
+import CodeBlockOutput from "../../../../components/custom/OutputCodeBlock/outputCodeblock"
+import { Tab, Tabs } from "fumadocs-ui/components/tabs"
+import { FaGraduationCap } from "react-icons/fa";
+
+# Transitions & Animations
+
+CSS transitions and animations add motion to your pages, making them feel more fluid and interactive.
+---
+## CSS Functions
+
+In CSS there are 'functions' which are events or states that elements are in. They use a `:` to indicate they are a function.
+Often you'll use them in transitions and animations to trigger them. A commonly used CSS function is `:hover(){:css}`. CSS functions apply the styles under their table `{}{:css}` when an event is triggered.
+
+As an example. A box turning blue.
+
+
+<CodeBlockOutput>
+<Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+```html tab="HTML"
+<div class="box">Hover Me</div>
+```
+```css tab="CSS"
+/* Normal state, no functions, default style (red) */
+.box { /* [!code highlight] */
+   background-color: red; 
+   width: 20vw;
+   height: 50vh;
+   margin: auto;
+}
+
+.box:hover {
+ background-color: royalblue;
+}
+
+```
+</Tabs>
+</CodeBlockOutput>
+---
+
+## CSS Transitions
+
+
+
+
+
+
+A transition makes a CSS property smoothly change from one value to another over a set duration.
+
+### Transition Properties
+
+| Property                | Description                                 |
+|-------------------------|---------------------------------------------|
+| `transition-property{:css}`  | The CSS property you want to animate        |
+| `transition-duration{:css}`  | How long the transition takes               |
+| `transition-timing-function{:css}`| The speed curve (e.g. ease, linear)     |
+| `transition-delay{:css}`     | Time to wait before starting the transition |
+
+---
+
+### Basic Example
+
+<CodeBlockOutput>
+<Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+```html tab="HTML"
+<button class="btn">Hover Me</button>
+```
+```css tab="CSS"
+.btn {
+    padding: 10px 20px;
+    background-color: cornflowerblue;
+    color: white;
+    border: none;
+    transition: background-color 0.8s ease;
+}
+
+.btn:hover {
+    background-color: darkblue;
+}
+```
+</Tabs>
+</CodeBlockOutput>
+
+This button changes color smoothly on hover using a single property.
+
+---
+
+### Multiple Property Transition
+
+You can combine transitions:
+
+<CodeBlockOutput>
+<Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+```html tab="HTML"
+<div class="box"></div>
+```
+```css tab="CSS"
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: coral;
+    transition: width 0.4s ease-in, background-color 0.4s ease-out;
+}
+
+.box:hover {
+    width: 150px;
+    background-color: tomato;
+}
+```
+</Tabs>
+</CodeBlockOutput>
+
+This changes multiple properties at once with custom easing.
+
+---
+
+## CSS Animations
+
+Animations use `@keyframes{:css}`to define how styles change over time.
+
+### Animation Properties
+
+| Property                   | Description                                                             |
+|----------------------------|-------------------------------------------------------------------------|
+| `@keyframes{:css}`              | Defines the animation steps                                             |
+| `animation-name{:css}`          | The name of the animation (must match `@keyframes`)                     |
+| `animation-duration{:css}`      | How long the animation runs                                             |
+| `animation-timing-function{:css}` | Speed curve over time (e.g. ease, linear, steps)                        |
+| `animation-delay{:css}`          | Delay before the animation starts                                       |
+| `animation-iteration-count{:css}` | Number of times to repeat (can be `infinite`)                           |
+| `animation-direction{:css}`     | Direction (`normal`, `reverse`, `alternate`, etc.)                     |
+| `animation-fill-mode{:css}`     | Defines how the animation applies styles before/after it runs          |
+
+---
+
+### Basic Animation Example
+
+<CodeBlockOutput>
+<Tabs items={['CSS', 'HTML']} defaultIndex={0}>
+```html tab="HTML"
+<div class="fade"></div>
+```
+```css tab="CSS"
+.fade {
+    width: 100px;
+    height: 100px;
+    background-color: teal;
+    animation: fadeIn 2s ease-in-out infinite alternate;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+```
+</Tabs>
+</CodeBlockOutput>
+
+This element fades and scales in and out in an infinite loop.
+
+---
+
+## Summary
+
+- Use **transitions** for hover or interactive effects.
+- Use **animations** for looping or more complex state-based motion.
+- Control timing with properties like `ease{:css}`, `linear{:css}`, `alternate{:css}`, and `delay{:css}`.
+
+There's so much things that I could cover but we're keeping this short and sweet.
+
+<>
+<DocComponents.Callout.Callout type="info">
+     remember as a programmer you're always learning no class can teach you everything.
+</DocComponents.Callout.Callout>
+</>
+
+## References
+
+---
+
+    <DocComponents.Card.Cards>
+        <DocComponents.Card.Card
+            title="W3 Schools Transitions"
+            icon={<FaGraduationCap />}
+            href="https://www.w3schools.com/css/css3_transitions.asp"
+            >
+            For more detailed explanations and examples regarding transitions.
+        </DocComponents.Card.Card>
+        <DocComponents.Card.Card
+            title="W3 Schools Animations"
+            icon={<FaGraduationCap />}
+            href="https://www.w3schools.com/css/css3_animations.asp"
+            >
+            For more detailed explanations and examples regarding animations.
+        </DocComponents.Card.Card>
+    </DocComponents.Card.Cards>
+
+
+
+---

@@ -112,7 +112,6 @@ export default function HTML({
   customCSS,
   onResize
 }: HTMLCodeOptions) {
-  const [set, setFunc] = useState(false)
   // Render HTML content directly into an iframe
   let htmlString = optionNum ? `
   <!DOCTYPE html>
@@ -168,7 +167,7 @@ export default function HTML({
         className={class_Name ? class_Name : "w-full h-[500px] border-2 rounded-md border-black bg-white"}
         srcDoc={htmlString}
         title="Embedded Content"
-        onMouseDown={onResize}
+        onLoad={onResize}
       />
     </>
   );

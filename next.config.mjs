@@ -20,6 +20,7 @@ const config = {
   env: {
     NEXT_PUBLIC_BASE_URL: NEXT_PUBLIC_BASE_URL
   },
+
   experimental: {
     dynamicIO: true
   }

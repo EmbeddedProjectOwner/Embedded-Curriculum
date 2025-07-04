@@ -94,7 +94,6 @@ function handleLangs(langType: langs, setOutput: HandleOutputProps["setOutput"],
 
 export function HandleOutput({ setOutput, output, setTrigger, children, setCSSOutput }: HandleOutputProps): void {
     setTrigger((prev) => !prev)
-
     if (!output) {
         const langType = checkCodeLang(children)
 
