@@ -13,7 +13,9 @@
         "cssFlexboxesGrids",
         "cssResponsive",
         "cssAnimations",
+        "stylingPage",
         "!(MDXSnippets)"
+        
     ]
     
    }

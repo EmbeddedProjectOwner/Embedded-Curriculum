@@ -1,6 +1,6 @@
 import type { HTMLCodeOptions } from "../../../../app/(HTMLOutputs)/LayoutHTML"
 import { CodeBlock } from "@/Modules/fumadocs-ui/dist/components/codeblock"
-import React from "react"
+import React, { useEffect } from "react"
 import ReactDOMServer from 'react-dom/server'
 
 type langs = "js" | "jsx" | "ts" | "tsx" | "c" | "cs" | "gql" | "py" | "bash" | "sh" | "shell" | "zsh" | "html" | "css" | "c++"
@@ -24,13 +24,14 @@ interface langTypes {
     }
 }
 
-function checkCodeLang(children: any): langs | langTypes {
+function checkCodeLang(children: any): langs | langTypes | undefined {
     const outputLang: langs | undefined = (children.props && children.props.langtype) ? children.props.langtype : null
+    if (children) {
     var langTypes: langTypes = {}
-
+    
     if (outputLang) return outputLang
-
-    for (let i of children.props.children) {
+    
+    for (let i of React.Children.toArray(children.props.children)) {
         var actualElement = i.props.children
         if (actualElement.props.langtype) {
 
@@ -38,6 +39,7 @@ function checkCodeLang(children: any): langs | langTypes {
         }
     }
     return langTypes
+}
 }
 
 function handleLangs(langType: langs, setOutput: HandleOutputProps["setOutput"], setCSSOutput: HandleOutputProps["setCSSOutput"], code: any): void {
@@ -92,10 +94,11 @@ function handleLangs(langType: langs, setOutput: HandleOutputProps["setOutput"],
     }
 }
 
-export function HandleOutput({ setOutput, output, setTrigger, children, setCSSOutput }: HandleOutputProps): void {
+export async function  HandleOutput({ setOutput, output, setTrigger, children, setCSSOutput }: HandleOutputProps): Promise<void> {
     setTrigger((prev) => !prev)
-    if (!output) {
-        const langType = checkCodeLang(children)
+    if (!output && children) {
+       
+        const langType = checkCodeLang(await children)
 
 
         if (typeof langType == "object") {

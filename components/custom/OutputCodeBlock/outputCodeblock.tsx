@@ -1,10 +1,11 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import HTML from '@/app/(HTMLOutputs)/LayoutHTML';
 import { CodeBlockProps, HandleOutput } from './Modules/handleOutput';
 import { twMerge } from 'tailwind-merge';
 import { HoverCard } from '@/components/shadcn';
+import { Skeleton } from "@/components/shadcn";
 
 let globalIframe: HTMLIFrameElement | null = null;
 
@@ -23,6 +24,7 @@ const CodeBlockOutput: React.FC<CodeBlockProps> = ({ children, className, ...cod
     const lastSize = useRef({ width: 0, height: 0 });
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
     const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
+    const [loadedChildren, setLoadedChildren] = useState<any>(null);
 
     // Effect to observe and clean up iframe
     useEffect(() => {
@@ -83,8 +85,13 @@ const CodeBlockOutput: React.FC<CodeBlockProps> = ({ children, className, ...cod
         };
     }, [resizeOpen, isMouseDown, trigger]);
 
+    useEffect(() => {
+        if (children) {
+            setLoadedChildren(children)
+        }
+    }, [children])
     // Output handling
-    const handleOutput = () => HandleOutput({ children, output, setOutput, setTrigger, setCSSOutput });
+    const handleOutput = async () => await HandleOutput({ children: loadedChildren, output, setOutput, setTrigger, setCSSOutput });
 
 
     const captureElement = (e: React.SyntheticEvent<HTMLIFrameElement, Event>) => {
@@ -180,12 +187,37 @@ const CodeBlockOutput: React.FC<CodeBlockProps> = ({ children, className, ...cod
     };
 
     return (
-        <>
+        
+        <Suspense fallback={(
+            <>
+            <div className="space-y-6 p-6 w-full mx-auto">
+              <div className="space-y-4">
+                <Skeleton.Skeleton className="h-8 w-1/4 bg-gray-700" /> 
+                <Skeleton.Skeleton className="h-6 w-2/3 bg-gray-700" /> 
+              </div>
+            
+            
+              <div className="space-y-2">
+                <Skeleton.Skeleton className="h-6 w-1/3 bg-gray-700" /> 
+                <Skeleton.Skeleton className="h-10 w-full bg-gray-800 rounded-md" /> 
+              </div>
+            
+              <div className="space-y-3">
+                <Skeleton.Skeleton className="h-6 w-1/4 bg-gray-700" /> 
+                <Skeleton.Skeleton className="h-4 w-full bg-gray-800 rounded-md" />
+                <Skeleton.Skeleton className="h-4 w-5/6 bg-gray-800 rounded-md" /> 
+                <Skeleton.Skeleton className="h-4 w-2/3 bg-gray-800 rounded-md" /> 
+              </div>
+            </div>
+            </>
+        )}>
             {children}
             <div className={className || 'space-y-4'}>
+               
                 <Button variant="outline" onClick={handleOutput}>
                     Show Output
                 </Button>
+                
                 {output && !trigger && (
                     <>
                         <div className="mt-[1.5%]">
@@ -210,7 +242,7 @@ const CodeBlockOutput: React.FC<CodeBlockProps> = ({ children, className, ...cod
                     </>
                 )}
             </div>
-        </>
+        </Suspense>
     );
 };
 

@@ -67,28 +67,23 @@ import { Suspense } from "react";
 import { ScrollWrapper } from "@/app/scrollWrapper";
 import { cacheLife } from "next/dist/server/use-cache/cache-life";
 
-const LoaderFunc = () => (<><div className="space-y-6 p-6 max-w-4xl mx-auto">
-  {/* Header Section */}
+const LoaderFunc = () => (<><div className="space-y-6 p-6 w-full mx-auto">
   <div className="space-y-4">
-    <Skeleton.Skeleton className="h-8 w-1/4 bg-gray-700" /> {/* Title */}
-    <Skeleton.Skeleton className="h-6 w-2/3 bg-gray-700" /> {/* Subtitle */}
+    <Skeleton.Skeleton className="h-8 w-1/4 bg-gray-700" /> 
+    <Skeleton.Skeleton className="h-6 w-2/3 bg-gray-700" /> 
   </div>
 
-  {/* Logo */}
-  <div className="h-16 w-16 bg-gray-700 rounded-lg mx-auto" />
 
-  {/* Table of Contents */}
   <div className="space-y-2">
-    <Skeleton.Skeleton className="h-6 w-1/3 bg-gray-700" /> {/* Table of Contents Title */}
-    <Skeleton.Skeleton className="h-10 w-full bg-gray-800 rounded-md" /> {/* Dropdown */}
+    <Skeleton.Skeleton className="h-6 w-1/3 bg-gray-700" /> 
+    <Skeleton.Skeleton className="h-10 w-full bg-gray-800 rounded-md" /> 
   </div>
 
-  {/* Introduction Section */}
   <div className="space-y-3">
-    <Skeleton.Skeleton className="h-6 w-1/4 bg-gray-700" /> {/* Introduction Title */}
-    <Skeleton.Skeleton className="h-4 w-full bg-gray-800 rounded-md" /> {/* Paragraph Line 1 */}
-    <Skeleton.Skeleton className="h-4 w-5/6 bg-gray-800 rounded-md" /> {/* Paragraph Line 2 */}
-    <Skeleton.Skeleton className="h-4 w-2/3 bg-gray-800 rounded-md" /> {/* Paragraph Line 3 */}
+    <Skeleton.Skeleton className="h-6 w-1/4 bg-gray-700" /> 
+    <Skeleton.Skeleton className="h-4 w-full bg-gray-800 rounded-md" />
+    <Skeleton.Skeleton className="h-4 w-5/6 bg-gray-800 rounded-md" /> 
+    <Skeleton.Skeleton className="h-4 w-2/3 bg-gray-800 rounded-md" /> 
   </div>
 </div></>)
 
