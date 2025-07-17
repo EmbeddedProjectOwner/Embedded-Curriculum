@@ -66,26 +66,9 @@ import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import { ScrollWrapper } from "@/app/scrollWrapper";
 import { cacheLife } from "next/dist/server/use-cache/cache-life";
-
-const LoaderFunc = () => (<><div className="space-y-6 p-6 w-full mx-auto">
-  <div className="space-y-4">
-    <Skeleton.Skeleton className="h-8 w-1/4 bg-gray-700" /> 
-    <Skeleton.Skeleton className="h-6 w-2/3 bg-gray-700" /> 
-  </div>
+import { LoaderFunc } from "@/lib/loaderFunc";
 
 
-  <div className="space-y-2">
-    <Skeleton.Skeleton className="h-6 w-1/3 bg-gray-700" /> 
-    <Skeleton.Skeleton className="h-10 w-full bg-gray-800 rounded-md" /> 
-  </div>
-
-  <div className="space-y-3">
-    <Skeleton.Skeleton className="h-6 w-1/4 bg-gray-700" /> 
-    <Skeleton.Skeleton className="h-4 w-full bg-gray-800 rounded-md" />
-    <Skeleton.Skeleton className="h-4 w-5/6 bg-gray-800 rounded-md" /> 
-    <Skeleton.Skeleton className="h-4 w-2/3 bg-gray-800 rounded-md" /> 
-  </div>
-</div></>)
 
 const DocsPage = dynamic(() => import("fumadocs-ui/page").then((mod) => mod.DocsPage), {
   loading: LoaderFunc
@@ -147,7 +130,7 @@ export default async function Page(props: {
               <Suspense>
                 <DocsBody suppressHydrationWarning>
 
-                  <MDX  suppressHydrationWarning components={{ ...defaultMdxComponents }} />
+                  <MDX suppressHydrationWarning components={{ ...defaultMdxComponents }} />
                 </DocsBody>
               </Suspense>
             </DocsPage>

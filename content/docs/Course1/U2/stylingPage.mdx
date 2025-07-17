@@ -14,6 +14,10 @@ import CodeBlockOutput from "../../../../components/custom/OutputCodeBlock/outpu
 import { Tab, Tabs } from "fumadocs-ui/components/tabs"
 import { FaGraduationCap } from "react-icons/fa";
 import HTML from "../../../../app/(HTMLOutputs)/LayoutHTML"
+import { Suspense } from "react"
+import { LoaderFunc } from "../../../../lib/loaderFunc"
+import MnnImage from "../../../../app/images/Course1/html/4/InterestsPageDesignLayout.png"
+
 
 ## Our Page
 
@@ -91,3 +95,74 @@ Here's what our page currently looks like.
 
 
 </>
+
+Technically, yes we did already do some styling but now we're going to make it look presentable, and apply the stuff we learned.
+
+
+## External CSS
+
+<>
+Alright, now we're going to add a external css file that we'll use to style this.
+</>
+
+<Suspense fallback={LoaderFunc()}></Suspense>
+  
+            ```html title="My Page"
+            <!DOCTYPE html>
+            <html>
+                <head>
+                    <title>My Page</title>
+                    <link rel="stylesheet" href="directoryToCSSFile" /> <!-- [!code highlight] -->
+                </head>
+
+                <body style="margin: 0">
+
+                    <header style="padding: 0.5%; outline: solid; height: 15%; left: 0px; width: 100vw; "><h1>Welcome to My Page!<h1 /></header>
+
+                    <div id="interests-container" style="padding: 2%; display: flex; flex-direction: column; gap: 10px">
+                        <div id="interest-1" style='display: grid; padding: 2%; outline: solid; gap: 5%; grid-template-areas: 
+                            "heading heading img"
+                            "text text img"
+                            "text text img"
+                            '>
+
+                            <div style="grid-area: heading; outline: solid; align-self: start; line-height: 0px; text-align: center;">
+                                <h3>Ice Hockey!</h3>
+                            </div>
+
+                            <div style="grid-area: text; outline: solid;">
+                                <p>I'm really into Ice-Hockey, since I was born in Minnesota (the state of hockey). My favourite teams are the Minnesota Wild, and the Carolina Hurricanes.</p>
+                            </div>
+
+                            <div style="grid-area: img; outline: solid;">
+                                
+                                <img alt="Image about hockey!" style="height: auto; width: 100%;" src="/EmbeddedLogoScaled.png"></img>
+                            </div>
+                        </div>
+
+                        <div id="interest-2" style='display: grid; padding: 2%; outline: solid; gap: 5%; grid-template-areas: 
+                            "img heading heading "
+                            "img text text"
+                            "img text text"
+                            '>
+
+                            <div style="grid-area: heading; outline: solid; align-self: start; line-height: 0px; text-align: center;">
+                                <h3>Technology</h3>
+                            </div>
+
+                            <div style="grid-area: text; outline: solid;">
+                                <p>I like pretty much anything tech. I enjoy repairing, and assembling hardware, notably, laptops. I'm really passionate about programming and, I work on the Audio/Video team for my Church and I love seeing new things in technology.</p>
+                            </div>
+
+                            <div style="grid-area: img; outline: solid; width: 80%;">
+                                <img alt="Image about Technology!" style="max-height: 160px ; width: 100%;" src="/pathToImage"></img>
+                            </div>
+                        </div>
+                    </div>
+
+                    <footer style="outline: solid; position: absolute; bottom: 0px; height: 10%; left: 0px; width: 100vw;">Made by: <strong>Me!</strong></footer>
+
+                </body>
+            </html>
+            ```
+         

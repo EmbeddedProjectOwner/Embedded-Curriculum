@@ -5,6 +5,7 @@ import MinnWildImage from "../images/Course1/html/4/MinnWild.png"
 import EmbeddedLogo from "../images/EmbeddedLogoScaledText.png"
 import React from "react";
 // HTMLContent you want to display
+
 const HTMLContent = [
   `<header style="padding: 0.5%; outline: solid; height: 15%; left: 0px; width: 100vw; "><h1>Welcome to My Page!<h1/></header>
   <footer style="outline: solid; position: absolute; bottom: 0px; height: 10%; left: 0px; width: 100vw;">Made by: <strong>Me!</strong></footer>`,
