@@ -3,166 +3,454 @@ title: Styling Page with CSS
 description: Now we'll learn how to implement our new-found CSS knowledge to style our boring HTML page!
 slug: /css/8
 ---
-
 import { IoLogoHtml5 } from "react-icons/io5"
 import { DocComponents, ShadcnComponents, FullPageSeparator } from "../../../../components/all"
 import Link from "next/link"
 import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock"
 import { HoverCardInline } from "../../../../components/ui/ease-hovercard"
 import { Popup, PopupContent, PopupTrigger } from 'fumadocs-twoslash/ui';
-import CodeBlockOutput from "../../../../components/custom/OutputCodeBlock/outputCodeblock"
+import CodeBlockOutput from "../../../../components/custom/OutputCodeBlock/outputCodeBlock"
 import { Tab, Tabs } from "fumadocs-ui/components/tabs"
 import { FaGraduationCap } from "react-icons/fa";
 import HTML from "../../../../app/(HTMLOutputs)/LayoutHTML"
 import { Suspense } from "react"
 import { LoaderFunc } from "../../../../lib/loaderFunc"
-import MnnImage from "../../../../app/images/Course1/html/4/InterestsPageDesignLayout.png"
-
+import Image from "next/image"
+import CodeBlockOutputServer from "../../../../components/custom/OutputCodeBlock/outputCodeblockServer"
 
 ## Our Page
 
-<>
-Remember that HTML page we made, back in unit 1. [Here](/docs/Course1/U1/html/4)
+    <>
+Remember that HTML page we made, back in unit 1.[Here](/docs/Course1 / U1 / html / 4)
 
 Yeah, that one that we named "My Page", we're going to use what we learned in this CSS unit to style it.
 
 I'm going to base it off a few steps, typically I like to organize how I do stuff.  
- <span className="text-muted-foreground">
-    When I build a page, I usually will style it whilst I make the HTML for it. But either approach is fine.
+    <span className = "text-muted-foreground" >
+        When I build a page, I usually will style it whilst I make the HTML for it.But either approach is fine.
 </span>
 
 
-Here's what our page currently looks like.
+    Here's what our page currently looks like. And by now, you should be able to go over the inline CSS and understand most of it.
 </>
-<>
-            ```html title= "My Page"
-            <!DOCTYPE html>
-            <html>
-                <head>
-                    <title>My Page</title>
-                </head>
+    <>
+        ```html title= "My Page"
+        <!DOCTYPE html>
+        <html>
+            <head>
+                <title>My Page</title>
+            </head>
 
-                <body style="margin: 0">
+            <body style="margin: 0; display: flex; flex-direction: column;">
 
-                    <header style="padding: 0.5%; outline: solid; height: 15%; left: 0px; width: 100vw; "><h1>Welcome to My Page!<h1 /></header>
+                <header style="padding: 0.5%; outline: solid; height: 15%; left: 0px; width: 100vw; "><h1>Welcome to My Page!</h1></header>
 
-                    <div id="interests-container" style="padding: 2%; display: flex; flex-direction: column; gap: 10px">
-                        <div id="interest-1" style='display: grid; padding: 2%; outline: solid; gap: 5%; grid-template-areas: 
+                <div id="interests-container" style="padding: 2%; display: flex; flex-direction: column; gap: 10px">
+                    <div id="interest-1" style='display: grid; padding: 2%; outline: solid; gap: 5%; grid-template-areas: 
                             "heading heading img"
                             "text text img"
                             "text text img"
                             '>
 
-                            <div style="grid-area: heading; outline: solid; align-self: start; line-height: 0px; text-align: center;">
-                                <h3>Ice Hockey!</h3>
-                            </div>
-
-                            <div style="grid-area: text; outline: solid;">
-                                <p>I'm really into Ice-Hockey, since I was born in Minnesota (the state of hockey). My favourite teams are the Minnesota Wild, and the Carolina Hurricanes.</p>
-                            </div>
-
-                            <div style="grid-area: img; outline: solid;">
-                                <img alt="Image about hockey!" style="height: auto; width: 100%;" src="/pathToImage"></img>
-                            </div>
+                        <div style="grid-area: heading; outline: solid; align-self: start; line-height: 0px; text-align: center;">
+                            <h3>Ice Hockey!</h3>
                         </div>
 
-                        <div id="interest-2" style='display: grid; padding: 2%; outline: solid; gap: 5%; grid-template-areas: 
+                        <div style="grid-area: text; outline: solid;">
+                            <p>I'm really into Ice-Hockey, since I was born in Minnesota (the state of hockey). My favourite teams are the Minnesota Wild, and the Carolina Hurricanes.</p>
+                        </div>
+
+                        <div style="grid-area: img; outline: solid;">
+                            <img alt="Image about hockey!" style="height: auto; width: 100%;" src="/pathToImage"></img>
+                        </div>
+                    </div>
+
+                    <div id="interest-2" style='display: grid; padding: 2%; outline: solid; gap: 5%; grid-template-areas: 
                             "img heading heading "
                             "img text text"
                             "img text text"
                             '>
 
-                            <div style="grid-area: heading; outline: solid; align-self: start; line-height: 0px; text-align: center;">
-                                <h3>Technology</h3>
-                            </div>
+                        <div style="grid-area: heading; outline: solid; align-self: start; line-height: 0px; text-align: center;">
+                            <h3>Technology</h3>
+                        </div>
 
-                            <div style="grid-area: text; outline: solid;">
-                                <p>I like pretty much anything tech. I enjoy repairing, and assembling hardware, notably, laptops. I'm really passionate about programming and, I work on the Audio/Video team for my Church and I love seeing new things in technology.</p>
-                            </div>
+                        <div style="grid-area: text; outline: solid;">
+                            <p>I like pretty much anything tech. I enjoy repairing, and assembling hardware, notably, laptops. I'm really passionate about programming and, I work on the Audio/Video team for my Church and I love seeing new things in technology.</p>
+                        </div>
 
-                            <div style="grid-area: img; outline: solid; width: 80%;">
-                                <img alt="Image about Technology!" style="max-height: 160px ; width: 100%;" src="/pathToImage"></img>
-                            </div>
+                        <div style="grid-area: img; outline: solid; width: 80%;">
+                            <img alt="Image about Technology!" style="max-height: 160px ; width: 100%;" src="/pathToImage"></img>
                         </div>
                     </div>
+                </div>
 
-                    <footer style="outline: solid; position: absolute; bottom: 0px; height: 10%; left: 0px; width: 100vw;">Made by: <strong>Me!</strong></footer>
+                <footer style="outline: solid; height: 65px; margin-top: auto; width: 100vw;">Made by: <strong>Me!</strong></footer>
 
-                </body>
-            </html>
-            ````
-     <HTML optionNum={3} />
+            </body>
+        </html>
+        ````
+        <HTML optionNum={3} />
 
 
-</>
+    </>
 
 Technically, yes we did already do some styling but now we're going to make it look presentable, and apply the stuff we learned.
 
 
 ## External CSS
 
-<>
+    <>
 Alright, now we're going to add a external css file that we'll use to style this.
+
+    However, this means we're going to move all of our inline styles over to this, because it creates a cleaner, more organized code enviornment and, depending on your IDE (code editor), it'll have native syntax highlighting.
 </>
 
-<Suspense fallback={LoaderFunc()}></Suspense>
-  
-            ```html title="My Page"
+<DocComponents.Callout.Callout type="info">
+    Just as a notice, your directory will obviously be different than mine. <br/>
+    Also, as an important notice, I've changed up the structure of our HTML to be cleaner.
+</DocComponents.Callout.Callout>
+<>
+
+Now to have external CSS we need to update our code, removing our old style attributes, migrating them to the external CSS file.
+
+**Ideally, we would start with external CSS but I started using inline just for the HTML examples.**
+</>
+
+
+
+<CodeBlockOutput followMinResize tabs={true}>
+    <Tabs items={["HTML"]}>
+        ```html tab="HTML" title="My Page"
             <!DOCTYPE html>
-            <html>
+
+            <html> 
                 <head>
                     <title>My Page</title>
-                    <link rel="stylesheet" href="directoryToCSSFile" /> <!-- [!code highlight] -->
+                    <link rel="stylesheet" href="/examples/css/U2/StylingPage/css/cssOrganized.css"></link> <!-- [!code highlight] -->
                 </head>
 
-                <body style="margin: 0">
+                <body>
 
-                    <header style="padding: 0.5%; outline: solid; height: 15%; left: 0px; width: 100vw; "><h1>Welcome to My Page!<h1 /></header>
 
-                    <div id="interests-container" style="padding: 2%; display: flex; flex-direction: column; gap: 10px">
-                        <div id="interest-1" style='display: grid; padding: 2%; outline: solid; gap: 5%; grid-template-areas: 
-                            "heading heading img"
-                            "text text img"
-                            "text text img"
-                            '>
+                    <header>
+                        <h1>Welcome to My Page!</h1>
+                    </header>
 
-                            <div style="grid-area: heading; outline: solid; align-self: start; line-height: 0px; text-align: center;">
-                                <h3>Ice Hockey!</h3>
+                    <div class="interests-container">
+                        <div class="interests grid-1">
+
+                            <div class="hockey-heading">
+                               <h3>Ice Hockey!</h3>
                             </div>
-
-                            <div style="grid-area: text; outline: solid;">
+                            <div class="hockey-paragraph">
                                 <p>I'm really into Ice-Hockey, since I was born in Minnesota (the state of hockey). My favourite teams are the Minnesota Wild, and the Carolina Hurricanes.</p>
                             </div>
 
-                            <div style="grid-area: img; outline: solid;">
+                            <div class="imageHolder">
                                 
-                                <img alt="Image about hockey!" style="height: auto; width: 100%;" src="/EmbeddedLogoScaled.png"></img>
+                                <img alt="Image about hockey!" class="minnWildImage" src="/images/Course1/html/4/MinnWild.png"></img>
                             </div>
                         </div>
 
-                        <div id="interest-2" style='display: grid; padding: 2%; outline: solid; gap: 5%; grid-template-areas: 
-                            "img heading heading "
-                            "img text text"
-                            "img text text"
-                            '>
-
-                            <div style="grid-area: heading; outline: solid; align-self: start; line-height: 0px; text-align: center;">
+                        <div class="interests grid-2">
+                            <div class="technology-heading">
                                 <h3>Technology</h3>
                             </div>
+                            
+                            <div class="technology-paragraph">
+                            <p>I like pretty much anything tech-related. I enjoy repairing, and assembling hardware, notably, laptops. I'm really passionate about programming and, I work on the Audio/Video team for my Church and I love seeing new things in technology.</p>
+                                </div>
 
-                            <div style="grid-area: text; outline: solid;">
-                                <p>I like pretty much anything tech. I enjoy repairing, and assembling hardware, notably, laptops. I'm really passionate about programming and, I work on the Audio/Video team for my Church and I love seeing new things in technology.</p>
-                            </div>
-
-                            <div style="grid-area: img; outline: solid; width: 80%;">
-                                <img alt="Image about Technology!" style="max-height: 160px ; width: 100%;" src="/pathToImage"></img>
+                            <div class="imageHolder">
+                                <img alt="Image about Technology!" class="technology-image" src="/images/EmbeddedLogoText.png"></img>
                             </div>
                         </div>
                     </div>
 
-                    <footer style="outline: solid; position: absolute; bottom: 0px; height: 10%; left: 0px; width: 100vw;">Made by: <strong>Me!</strong></footer>
+                    <footer class="footer">Made by: <strong>Me!</strong></footer>
 
                 </body>
             </html>
-            ```
-         
+        ```
+        
+            </Tabs>
+            </CodeBlockOutput>
+<div id="ignore">
+       This would be our CSS file:
+
+        ```css  title="Organized External CSS"
+/* 
+This is not an offical practice/format you have to follow, however; 
+I typically like to organize my css in this order:
+    1. Universal selectors. (e.g. *, :root)
+    2. Element-based selectors. (e.g. html, body, [descending elements...])
+    3. Id Selectors (e.g. #)
+    4. Classes & Keyframes (e.g. .)
+    5. Media/misc (For different media screens)
+
+And I like keeping things that are close in the DOM tree closer to one another.
+*/
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    outline: solid;
+    height: 65px;
+    margin-top: auto;
+    width: 100vw;
+}
+
+header {
+    padding: 0.5%;
+    outline: solid;
+    height: 15%;
+    left: 0px;
+    width: 100vw;
+}
+
+.interests-container {
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.interests {
+    display: grid;
+    padding: 2%;
+    outline: solid;
+    gap: 5%;
+
+}
+
+.grid-1 {
+    grid-template-areas:
+        "heading heading img"
+        "text text img"
+        "text text img"
+}
+
+.grid-2 {
+    grid-template-areas:
+        "img heading heading "
+        "img text text"
+        "img text text"
+}
+
+.hockey-heading {
+    grid-area: heading;
+    outline: solid;
+    align-self: start;
+    line-height: 0px;
+    text-align: center;
+}
+
+.hockey-paragraph {
+    grid-area: text;
+    outline: solid;
+}
+
+.imageHolder {
+    grid-area: img;
+    outline: solid;
+    width: 80%;
+}
+
+.minnWildImage {
+    height: auto;
+    width: 100%;
+}
+
+.technology-heading {
+    grid-area: heading;
+    outline: solid;
+    align-self: start;
+    line-height: 0px;
+    text-align: center;
+}
+
+.technology-paragraph {
+    grid-area: text;
+    outline: solid;
+}
+
+.technology-image {
+    max-height: 160px;
+    width: 100%
+}     
+```
+</div>
+
+
+
+<CodeBlockOutputServer followMinResize tabs implementWrapper>
+     <Tabs items={["HTML"]}>
+        ```html tab="HTML" title="My Page"
+            <!DOCTYPE html>
+
+            <html> 
+                <head>
+                    <title>My Page</title>
+                    <link rel="stylesheet" href="/examples/css/U2/StylingPage/css/cssOrganized.css"></link> <!-- [!code highlight] -->
+                </head>
+
+                <body>
+
+
+                    <header>
+                        <h1>Welcome to My Page!</h1>
+                    </header>
+
+                    <div class="interests-container">
+                        <div class="interests grid-1">
+
+                            <div class="hockey-heading">
+                               <h3>Ice Hockey!</h3>
+                            </div>
+                            <div class="hockey-paragraph">
+                                <p>I'm really into Ice-Hockey, since I was born in Minnesota (the state of hockey). My favourite teams are the Minnesota Wild, and the Carolina Hurricanes.</p>
+                            </div>
+
+                            <div class="imageHolder">
+                                
+                                <img alt="Image about hockey!" class="minnWildImage" src="/images/Course1/html/4/MinnWild.png"></img>
+                            </div>
+                        </div>
+
+                        <div class="interests grid-2">
+                            <div class="technology-heading">
+                                <h3>Technology</h3>
+                            </div>
+                            
+                            <div class="technology-paragraph">
+                            <p>I like pretty much anything tech-related. I enjoy repairing, and assembling hardware, notably, laptops. I'm really passionate about programming and, I work on the Audio/Video team for my Church and I love seeing new things in technology.</p>
+                                </div>
+
+                            <div class="imageHolder">
+                                <img alt="Image about Technology!" class="technology-image" src="/images/EmbeddedLogoText.png"></img>
+                            </div>
+                        </div>
+                    </div>
+
+                    <footer class="footer">Made by: <strong>Me!</strong></footer>
+
+                </body>
+            </html>
+        ```
+        
+            </Tabs>
+    <div id="ignore">
+       This would be our CSS file:
+
+        ```css  title="Organized External CSS"
+/* 
+This is not an offical practice/format you have to follow, however; 
+I typically like to organize my css in this order:
+    1. Universal selectors. (e.g. *, :root)
+    2. Element-based selectors. (e.g. html, body, [descending elements...])
+    3. Id Selectors (e.g. #)
+    4. Classes & Keyframes (e.g. .)
+    5. Media/misc (For different media screens)
+
+And I like keeping things that are close in the DOM tree closer to one another.
+*/
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    outline: solid;
+    height: 65px;
+    margin-top: auto;
+    width: 100vw;
+}
+
+header {
+    padding: 0.5%;
+    outline: solid;
+    height: 15%;
+    left: 0px;
+    width: 100vw;
+}
+
+.interests-container {
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.interests {
+    display: grid;
+    padding: 2%;
+    outline: solid;
+    gap: 5%;
+
+}
+
+.grid-1 {
+    grid-template-areas:
+        "heading heading img"
+        "text text img"
+        "text text img"
+}
+
+.grid-2 {
+    grid-template-areas:
+        "img heading heading "
+        "img text text"
+        "img text text"
+}
+
+.hockey-heading {
+    grid-area: heading;
+    outline: solid;
+    align-self: start;
+    line-height: 0px;
+    text-align: center;
+}
+
+.hockey-paragraph {
+    grid-area: text;
+    outline: solid;
+}
+
+.imageHolder {
+    grid-area: img;
+    outline: solid;
+    width: 80%;
+}
+
+.minnWildImage {
+    height: auto;
+    width: 100%;
+}
+
+.technology-heading {
+    grid-area: heading;
+    outline: solid;
+    align-self: start;
+    line-height: 0px;
+    text-align: center;
+}
+
+.technology-paragraph {
+    grid-area: text;
+    outline: solid;
+}
+
+.technology-image {
+    max-height: 160px;
+    width: 100%
+}     
+```
+</div>
+</CodeBlockOutputServer>

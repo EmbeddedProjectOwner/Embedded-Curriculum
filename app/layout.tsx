@@ -21,8 +21,11 @@ export const metadata: Metadata = {
 
   return CustomDialog
 }*/
+
 export default /*async*/ function Layout({ children }: { children: ReactNode }) {
   // 'use cache'
+
+  
   return (
     <html lang="en" className={inter.className} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">

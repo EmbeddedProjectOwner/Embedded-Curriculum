@@ -1,30 +1,24 @@
 'use client';
-import React, { ReactNode, Suspense, useEffect, useImperativeHandle, useLayoutEffect, useRef, useState } from 'react';
-import { Button } from '@/components/ui/button';
+import React, { Suspense, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import HTML from '@/app/(HTMLOutputs)/LayoutHTML';
-import { CodeBlockProps, HandleOutput } from './Modules/handleOutput';
 import { twMerge } from 'tailwind-merge';
 import { HoverCard } from '@/components/shadcn';
 import { Skeleton } from "@/components/shadcn";
 import { LoaderFunc } from '@/lib/loaderFunc';
 import { Tab } from '@/Modules/fumadocs-ui/dist/components/tabs';
-
+import { CodeBlockClientProps } from './Modules/CodeBlock';
 let globalIframe: HTMLIFrameElement | null = null;
 
-export type CodeBlockOutputRef = {
-    utilizeOutput: () => void;
-}
-export default function CodeBlockOutput (props: CodeBlockProps & React.RefAttributes<CodeBlockOutputRef>) {
-  const {
-    children,
-    className,
-    ...codeOptions
-  } = props;
 
-  const ref = (props as any).ref; // ⬅️ new way to grab the ref manually
+export default function CodeBlockOutputClient(props: CodeBlockClientProps) {
+    const {
+        className,
+        ...codeOptions
+    } = props;
+
+    const ref = (props as any).ref; // ⬅️ new way to grab the ref manually
     // State management
-    const [output, setOutput] = useState<string | null>(null);
-    const [CSSOutput, setCSSOutput] = useState<string | null>(null);
+
     const [trigger, setTrigger] = useState<boolean>(true);
     const [finalClassName, setFinalClassName] = useState<string>('');
     const [resizeOpen, setResizeOpen] = useState<boolean>(false);
@@ -36,14 +30,17 @@ export default function CodeBlockOutput (props: CodeBlockProps & React.RefAttrib
     const lastSize = useRef({ width: 0, height: 0 });
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
     const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
-    const [loadedChildren, setLoadedChildren] = useState<any>(null);
     const [initialHeight, setInitialHeight] = useState<string | undefined>()
     const previousInitialHeight = useRef<number | string | undefined>()
     const [currentBody, setCurrentBody] = useState<HTMLIFrameElement | null>(null)
 
-
+    const staticOutput = codeOptions.output
+    const HTMLOutput = staticOutput ? staticOutput?.html : undefined
+    const CSSOutput = staticOutput ? staticOutput.css : undefined
     useImperativeHandle(ref, () => ({
-        utilizeOutput: () => { handleOutput() }
+        utilizeOutput: () => { 
+            console.log("hi")
+            setTrigger((prev) => !prev) }
     }))
 
     // Effect to observe and clean up iframe
@@ -93,6 +90,7 @@ export default function CodeBlockOutput (props: CodeBlockProps & React.RefAttrib
         }
 
         if (trigger) {
+            console.log(trigger, staticOutput)
             setResizeOpen(false);
         }
 
@@ -105,14 +103,8 @@ export default function CodeBlockOutput (props: CodeBlockProps & React.RefAttrib
         };
     }, [resizeOpen, isMouseDown, trigger]);
 
-    useEffect(() => {
-        if (children) {
-            setLoadedChildren(children)
-        }
-    }, [children])
 
     // Output handling
-    const handleOutput = async () => await HandleOutput({ children: loadedChildren, output, setOutput, setTrigger, setCSSOutput, externals: codeOptions.externals });
 
 
     useEffect(() => {
@@ -207,6 +199,7 @@ export default function CodeBlockOutput (props: CodeBlockProps & React.RefAttrib
             intersectionObserver.disconnect();
         };
     };
+
     const cleanupIframe = () => {
         if (iframeRef.current) {
             const rect = iframeRef.current.getBoundingClientRect();
@@ -268,23 +261,20 @@ export default function CodeBlockOutput (props: CodeBlockProps & React.RefAttrib
                 </div>
             </>
         )}>
-            {children}
             <div className={className || 'space-y-4'}>
 
-                <Button variant="outline" onClick={handleOutput}>
-                    Show Output
-                </Button>
 
-                {output && !trigger && (
+
+                {staticOutput && (HTMLOutput || CSSOutput) && !trigger && (
                     <>
                         <div className="mt-[1.5%]">
                             <Suspense fallback={LoaderFunc()}>
                                 <HTML
                                     class_Name={finalClassName}
                                     {...codeOptions}
-                                    customHTML={output}
-                                    customCSS={!output.includes('<link rel="stylesheet"') && CSSOutput ? CSSOutput : undefined}
-                                    includePage={!output.includes('<html>')}
+                                    customHTML={HTMLOutput ? HTMLOutput : undefined}
+                                    customCSS={HTMLOutput ? (!HTMLOutput.includes('<link rel="stylesheet"') && CSSOutput ? CSSOutput : undefined) : undefined}
+                                    includePage={HTMLOutput ? (!HTMLOutput.includes('<html>')) : undefined}
                                     onResize={captureElement}
                                     externals={codeOptions.externals}
                                 />
@@ -304,5 +294,3 @@ export default function CodeBlockOutput (props: CodeBlockProps & React.RefAttrib
         </Suspense>
     );
 };
-
-

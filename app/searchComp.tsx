@@ -10,7 +10,7 @@ const Search: React.FC = () => {
 
   const handleSearch = async (searchQuery: string) => {
     const searchResults = await client.setSearch(searchQuery);
-    setResults(searchResults);
+    setResults(searchResults as any);
   };
 
   return (

@@ -1,14 +1,16 @@
 'use client'
-import { Suspense, SyntheticEvent, useState } from "react";
+import { ReactNode, Suspense, SyntheticEvent, useState } from "react";
 import "../global.css"
 import MinnWildImage from "../images/Course1/html/4/MinnWild.png"
 import EmbeddedLogo from "../images/EmbeddedLogoScaledText.png"
 import React from "react";
+import { LoaderFunc } from "@/lib/loaderFunc";
+import { HTMLCodeOptions } from "@/components/custom/OutputCodeBlock/Modules/handleOutput";
 // HTMLContent you want to display
 
 const HTMLContent = [
   `<header style="padding: 0.5%; outline: solid; height: 15%; left: 0px; width: 100vw; "><h1>Welcome to My Page!<h1/></header>
-  <footer style="outline: solid; position: absolute; bottom: 0px; height: 10%; left: 0px; width: 100vw;">Made by: <strong>Me!</strong></footer>`,
+                      <footer style="outline: solid; height: 65px; margin-top: auto; width: 100vw;">Made by: <strong>Me!</strong></footer>`,
 
   `
 <header style="padding: 0.5%; outline: solid; height: 15%; left: 0px; width: 100vw; "><h1>Welcome to My Page!<h1/></header>
@@ -33,7 +35,8 @@ const HTMLContent = [
 
             </div>
         </div>
-<footer style="outline: solid; position: absolute; bottom: 0px; height: 10%; left: 0px; width: 100vw;">Made by: <strong>Me!</strong></footer>
+                  <footer style="outline: solid; height: 65px; margin-top: auto; width: 100vw;">Made by: <strong>Me!</strong></footer>
+
 
   `,
 
@@ -85,33 +88,24 @@ const HTMLContent = [
 
             </div>
         </div>
-  <footer style="outline: solid; position: absolute; bottom: 0px; height: 10%; left: 0px; width: 100vw;">Made by: <strong>Me!</strong></footer>
+                      <footer style="outline: solid; height: 65px; margin-top: auto; width: 100vw;">Made by: <strong>Me!</strong></footer>
+
 
   `,
 ];
 
-export interface HTMLCodeOptions {
-  optionNum?: number,
-  tabs?: boolean,
-	tabProps?: { title: string },
-	class_Name?: string,
-	customHTML?: string,
-  customCSS?: string,
-	includePage?: boolean,
-  resizeable?: boolean,
-  resizeX?: boolean,
-  onResize?: (e: SyntheticEvent<HTMLIFrameElement, Event>) => void
-}
 
-export default function HTML({ 
+
+export default function HTML({
   optionNum,
-	tabs,
-	tabProps,
-	class_Name,
-	customHTML,
-	includePage,
+  tabs,
+  tabProps,
+  class_Name,
+  customHTML,
+  includePage,
   customCSS,
-  onResize
+  onResize,
+
 }: HTMLCodeOptions) {
   // Render HTML content directly into an iframe
   let htmlString = optionNum ? `
@@ -120,7 +114,7 @@ export default function HTML({
 <head>
   <title>My Page</title>
 </head>
-<body style="margin: 0; overflow: hidden;">
+<body style="margin: 0; height: 100vh; overflow: hidden; display: flex; flex-direction: column;">
   
       ${HTMLContent[(optionNum ?? 1) - 1]}
 
@@ -132,9 +126,11 @@ export default function HTML({
 </head>
 <body style="margin: 0;"></body>`;
 
+  let tabTitle: string | undefined;
+
   if (customHTML) {
     if (includePage) {
-     
+
 
       htmlString = `
       <!DOCTYPE html>
@@ -143,33 +139,48 @@ export default function HTML({
           <title>My Page</title>
           ${(customCSS) ? `<style type="text/css">${customCSS}</style>` : ""}
         </head>
-          <body style="margin: 0; overflow: hidden;">
+          <body style="margin: 0; height: 100vh; overflow: hidden;  display: flex; flex-direction: column;">
             ${customHTML}
           </body>
         </html>
       `
     } else {
-     htmlString = customHTML
-     if (customCSS) {
-      htmlString = `<style type="text/css">${customCSS}</style> ${customHTML}`
-     }
+      htmlString = customHTML
+      if (customCSS) {
+        htmlString = `<style type="text/css">${customCSS}</style> ${customHTML}`
+      }
     }
   }
 
+  if (tabs && tabProps?.title == undefined) {
+    var getHTMLTitle = new RegExp(
+      "(?<=<title>)(.*)(?=<\/title>)", // Finds the ... in <title>...</title>
+      "gi"
+    )
+
+    tabTitle = getHTMLTitle.exec(htmlString)?.[0] ?? undefined
+    
+  }
+  
   return (
     <>
-      {tabs ?? (
+    <Suspense fallback={LoaderFunc()}>
+      {(tabs) ? (
+        <>
         <div className=" rounded-md rounded-br-none rounded-bl-none text-black text-end pr-10 bg-white ml-2 border-2 border-b-0 border-black w-36 h-8">
-          {tabProps?.title ? tabProps.title : "My Page"}
+          {tabs ? tabTitle : "My Page"}
         </div>
-      )}
+        </>
+      ): (<></>)}
 
       <iframe
         className={class_Name ? class_Name : "w-full h-[500px] border-2 rounded-md border-black bg-white"}
         srcDoc={htmlString}
         title="Embedded Content"
         onLoad={onResize}
+        
       />
+    </Suspense>
     </>
   );
 }

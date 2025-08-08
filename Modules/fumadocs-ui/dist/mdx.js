@@ -1,11 +1,11 @@
 import { jsx as _jsx } from "react/jsx-runtime";
 import Link from 'fumadocs-core/link';
-import NextImage from 'next/image';
-import { Card, Cards } from './components/card';
-import { Callout } from './components/callout';
-import { Heading } from './components/heading';
+import NextImage from 'next/image.js';
+import { Card, Cards } from './components/card.js';
+import { Callout } from './components/callout.js';
+import { Heading } from './components/heading.js';
 import { cn } from './utils/cn';
-import { Pre } from './mdx.client';
+import { Pre } from './mdx.client.js';
 function Image(props) {
     return (_jsx(NextImage, { sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 900px", ...props, className: cn('rounded-lg', props.className) }));
 }

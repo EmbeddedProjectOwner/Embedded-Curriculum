@@ -7,7 +7,6 @@ import { z } from 'zod';
 import { remarkMermaid } from '@theguild/remark-mermaid';
 import { LandPlot } from 'lucide-react';
 
-
 export const { docs, meta } = defineDocs({
   docs: {
     async: false,
@@ -64,6 +63,7 @@ export default defineConfig({
       ...v,
     ],
   },
+  
 });
 
 

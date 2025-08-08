@@ -23,6 +23,7 @@
       "import": "./dist/components/*.js",
       "types": "./dist/components/*.d.ts"
     },
+    "./utils/cn": "./dist/utils/cn.js",
     "./i18n": {
       "import": "./dist/i18n.js",
       "types": "./dist/i18n.d.ts"

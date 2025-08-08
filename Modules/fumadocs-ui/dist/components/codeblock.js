@@ -2,7 +2,8 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { Check, Copy } from 'lucide-react';
 import { forwardRef, useCallback, useRef, } from 'react';
-import { cn } from '../utils/cn';
+import { twMerge as cn } from 'tailwind-merge';
+
 import { ScrollArea, ScrollBar, ScrollViewport, } from '../components/ui/scroll-area';
 import { useCopyButton } from '../utils/use-copy-button';
 import { buttonVariants } from '../components/ui/button';
